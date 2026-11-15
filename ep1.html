@@ -323,7 +323,7 @@ page({id:'e1-2',label:'1-2',title:'언어의 구성요소',scenes:[
    hdiv('ov','내용',L,'left:765px;top:92px;width:210px;text-align:center;font-size:28px;font-weight:900;color:#fff;background:#23a271;border-radius:16px;padding:6px'),
    hdiv('ov','사용',L,'left:995px;top:92px;width:210px;text-align:center;font-size:28px;font-weight:900;color:#fff;background:#e8781e;border-radius:16px;padding:6px')];
   this.bx=B.map((b,i)=>hdiv('cd ov b-'+b[2],`<h3 class="k-${b[2]}" style="text-align:center;margin:0">${b[0]}</h3><p style="text-align:center;font-size:21px">${b[1]}</p>`,L,`left:${75+i*230}px;top:150px;width:210px;padding:16px 10px`));
-  const ex=(h)=>hdiv('cd ov',h,L,'left:140px;top:300px;width:1000px;min-height:250px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px');
+  const ex=(h)=>hdiv('cd ov',h,L,'left:140px;top:360px;width:1000px;min-height:240px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px');
   const tile=(a,b,c)=>`<span style="display:inline-flex;align-items:center;justify-content:center;width:90px;height:90px;border-radius:18px;background:${c};font-size:52px;font-weight:900;margin:0 6px">${a}</span>`;
   this.ex=[null,
    ex(`<div style="display:flex;align-items:center;gap:30px;font-size:32px;font-weight:800"><div style="text-align:center">${tile('돈','','#e3effd')}<div style="font-size:22px;margin-top:8px"><b class="k-blue">ㄷ</b> + 온</div></div><div style="font-size:40px;color:#c9b99f">≠</div><div style="text-align:center">${tile('손','','#fde9d4')}<div style="font-size:22px;margin-top:8px"><b class="k-org">ㅅ</b> + 온</div></div><div style="font-size:24px;line-height:1.5;margin-left:24px;color:#5a4d3e">소리 하나(<b>음소</b>)가<br>뜻을 가름<br><span style="font-size:20px">밤-삼, 달-돌</span></div></div>`),
@@ -339,7 +339,7 @@ page({id:'e1-2',label:'1-2',title:'언어의 구성요소',scenes:[
   this.bx.forEach((b,i)=>{pop(b,ap(t,s0+0.9+(i<3?0:i===3?0.9:1.8)+(i<3?i*0.25:0)));cls(b,'on',k>=1&&kb<0&&map[k]===i||kb>=0&&i===1);});
   const want=kb>=0?6:k;
   this.ex.forEach((e,i)=>{if(!e)return;pop(e,want===i?ap(t,i===6?LS(p,1,0):LS(p,0,i)+0.2):0);});
-  if(kb>=0)chip('<span class="st">★</span> 파생어 · 접두사 응용 → <b class="k-blue">형태</b> 영역',ap(t,LS(p,1,0)),580);
+  if(kb>=0)chip('<span class="st">★</span> 파생어 · 접두사 응용 → <b class="k-blue">형태</b> 영역',ap(t,LS(p,1,0)),292);
  }});
 
 /* ═════════ 1-3 언어발달장애란 ═════════ */
@@ -431,7 +431,7 @@ page({id:'e1-4',label:'1-4',title:'원인 · 위험요인 · 보호요인',scene
   const inC=t>=ST(p,2);pop(this.colB,inC?ap(t,ST(p,2)):0);pop(this.colE,inC?ap(t,LS(p,2,1)):0);
   this.itB.forEach((x,i)=>pop(x,inC?ap(t,sub_(p,2,0,i+1,7)+0.6):0,8));this.itE.forEach((x,i)=>pop(x,inC?ap(t,sub_(p,2,1,i,4)+0.3):0,8));
   pop(this.not,inC&&k2===2?ap(t,LS(p,2,2)+0.3):0);
-  if(inC&&k2>=0)chip('<span class="st">★</span> 아동 쪽 = <b class="k-pur">생물학적</b> · 양육 환경 = <b class="k-org">환경</b>',ap(t,LS(p,2,0)),560);
+  if(inC&&k2>=0)chip('<span class="st">★</span> 아동 쪽 = <b class="k-pur">생물학적</b> · 양육 환경 = <b class="k-org">환경</b>',ap(t,LS(p,2,0)),515);
  }});
 </script>
 <script>"use strict";
@@ -468,7 +468,7 @@ page({id:'e1-5',label:'1-5',title:'언어발달장애의 분류',scenes:[
   pop(this.T,inB&&k1===3?ap(t,LS(p,1,3)):0);[...this.T.querySelectorAll('.tl')].forEach((x,i)=>op(x,ap(t,sub_(p,1,3,i*0.8,6)+0.8)));
   const inC=t>=ST(p,2);op(this.Fh,inC?ap(t,ST(p,2)):0);this.F.forEach((f,i)=>{pop(f,inC?ap(t,sub_(p,2,0,i+1,7)):0);cls(f,'on',inC&&k2===1&&(i===0||i===3));});
   pop(this.M,inC&&k2===1?ap(t,LS(p,2,1)+0.3):0);
-  if(inB&&k1>=0&&k1<2)chip('<span class="st">★</span> 설명할 다른 장애가 <b class="k-grn">없으면 일차성</b> · <b class="k-red">있으면 이차성</b>',ap(t,LS(p,1,0)),560);
+  if(inB&&k1>=0&&k1<2)chip('<span class="st">★</span> 설명할 다른 장애가 <b class="k-grn">없으면 일차성</b> · <b class="k-red">있으면 이차성</b>',ap(t,LS(p,1,0)),500);
  }});
 
 /* ═════════ 1-6 중증도와 영역별 결함 ═════════ */
@@ -618,6 +618,9 @@ page({id:'e1-9',label:'1-9',title:'인지 · 의미론과 사회적 상호작용
  {name:'기출 포인트',pre:0.3,post:1.2,lines:[
   '언어의 기능적 효과, 상황과 맥락, 사회적으로 소통하려는 동기, 다른 사람과 상호작용하는 경험을 강조한다면, 사회적 상호작용 이론입니다.']}],
  init(L){const s=SVGROOT(L);
+  this.cogKid=person(s,{kind:'kid',x:230,y:560,s:1.4});this.cogKid.g.style.opacity=0;
+  this.cogTh=bubble(L,300,250,'🔴 ⚽ 🏀  (둥글고 굴러가는 것)',{cls:'th'});
+  this.cogFlow=hdiv('cd ov b-grn',`<div style="display:flex;align-items:center;gap:22px;justify-content:center"><div style="text-align:center"><div style="font-size:46px">🧠</div><b style="font-size:24px" class="k-grn">개념 형성</b><p style="font-size:18px">인지발달</p></div><div style="font-size:40px;color:#e8781e;font-weight:900">➜</div><div style="text-align:center"><div style="font-size:46px">💬</div><b style="font-size:24px" class="k-org">낱말 "공"</b><p style="font-size:18px">언어</p></div></div><p style="text-align:center;margin-top:10px;font-size:20px"><b>Piaget · Bloom</b> · 구문보다 <b class="k-grn">의미</b>를 강조</p>`,L,'left:560px;top:200px;width:600px');
   this.pA=sv('g',{opacity:0},s);this.pB=sv('g',{opacity:0},s);
   sv('rect',{x:70,y:150,width:540,height:400,rx:26,fill:'#fff',stroke:'#88d6b5','stroke-width':4},this.pA);
   sv('rect',{x:670,y:150,width:540,height:400,rx:26,fill:'#fff',stroke:'#c6aaf0','stroke-width':4},this.pB);
@@ -652,7 +655,7 @@ page({id:'e1-9',label:'1-9',title:'인지 · 의미론과 사회적 상호작용
   op(this.pA,inA&&k0===1?ap(t,LS(p,0,1)):0);op(this.pB,inA&&k0===1?ap(t,sub_(p,0,1,1,3)):0);
   pop(this.capA,inA&&k0===1?ap(t,LS(p,0,1)+1.2):0);pop(this.capB,inA&&k0===1?ap(t,sub_(p,0,1,1,3)+1):0);
   pop(this.bubA,inA&&k0===1?ap(t,LS(p,0,1)+0.6):0);pop(this.bubB,inA&&k0===1?ap(t,sub_(p,0,1,1,3)+0.5):0);
-  if(inA&&k0===0)chip('인지발달이 먼저 → 개념을 알아야 낱말 · <b class="k-grn">의미</b> 강조',ap(t,LS(p,0,0)+1));
+  const c0=inA&&k0<=0;op(this.cogKid.g,c0?ap(t,ST(p,0)+0.2):0);pop(this.cogTh,c0?ap(t,ST(p,0)+1.2):0);pop(this.cogFlow,c0?ap(t,LS(p,0,0)+1.6):0);
   this.cog.forEach((c,i)=>pop(c,inA&&k0===2?ap(t,sub_(p,0,2,i,2)+0.2):0));
   const inB=t>=ST(p,1)&&t<ST(p,2);const showMB=inB&&k1!==2;
   op(this.mom2.g,showMB?ap(t,ST(p,1)):0);op(this.baby2.g,showMB?ap(t,ST(p,1)+0.2):0);
@@ -677,12 +680,12 @@ page({id:'e1-10',label:'1-10',title:'다원적 이론과 정보처리',scenes:[
  {name:'결정적 시기',pre:0.3,post:1.2,lines:[
   '결정적 시기는 18개월부터 아동기 중반까지로 봅니다. 생물학적 성숙과 적절한 환경에서의 경험이 함께 중요합니다.']}],
  init(L){const s=SVGROOT(L);
-  this.tri=sv('g',{opacity:0},s);const P=[[640,130],[400,500],[880,500]];
+  this.tri=sv('g',{opacity:0},s);const P=[[640,195],[430,505],[850,505]];
   for(const [a,b] of [[0,1],[1,2],[2,0]])sv('line',{x1:P[a][0],y1:P[a][1],x2:P[b][0],y2:P[b][1],stroke:'#d8c3a2','stroke-width':8,'stroke-dasharray':'2 16','stroke-linecap':'round'},this.tri);
   this.flowDots=[];for(let i=0;i<3;i++)this.flowDots.push(sv('circle',{r:10,fill:'#f08a24'},this.tri));this.P=P;
-  const node=(x,y,t1,t2,c,bg)=>{const g=sv('g',{},this.tri);sv('circle',{cx:x,cy:y,r:78,fill:bg,stroke:c,'stroke-width':5},g);stx(g,x,y-4,t1,{fill:c,'font-size':30});stx(g,x,y+28,t2,{fill:'#6f6252','font-size':19,'font-weight':700});};
-  node(640,130,'형식','구문','#2f7bd8','#e3effd');node(400,500,'내용','의미 · 인지','#23a271','#dcf5ea');node(880,500,'기능','화용 · 사회','#e8781e','#fde9d4');
-  this.triT=hdiv('ov','<b style="font-size:22px">Bloom · McLean · Nelson</b>',L,'left:540px;top:340px;width:200px;text-align:center;color:#8a7558');
+  const node=(x,y,t1,t2,c,bg)=>{const g=sv('g',{},this.tri);sv('circle',{cx:x,cy:y,r:70,fill:bg,stroke:c,'stroke-width':5},g);stx(g,x,y-4,t1,{fill:c,'font-size':30});stx(g,x,y+28,t2,{fill:'#6f6252','font-size':19,'font-weight':700});};
+  node(640,195,'형식','구문','#2f7bd8','#e3effd');node(430,505,'내용','의미 · 인지','#23a271','#dcf5ea');node(850,505,'기능','화용 · 사회','#e8781e','#fde9d4');
+  this.triT=hdiv('ov','<b style="font-size:22px">Bloom · McLean · Nelson</b>',L,'left:520px;top:380px;width:240px;text-align:center;color:#8a7558');
   const box=[['청각적 집중','📺 무시 · 👩 엄마 말','blue'],['청각적 변별','갔어요 / 샀어요','grn'],['조직화','조정 · 연상 전략','org'],['청각적 기억','단기 → 장기','pur']];
   this.ip=box.map((b,i)=>hdiv('cd ov b-'+b[2],`<b class="k-${b[2]}" style="font-size:25px">${b[0]}</b><p style="font-size:19px;margin-top:4px">${b[1]}</p>`,L,`left:${70+i*292}px;top:190px;width:260px;text-align:center;padding:16px 10px`));
   this.ipA=[0,1,2].map(i=>hdiv('ov','➜',L,`left:${333+i*292}px;top:225px;font-size:28px;color:#c9b99f;font-weight:900`));
@@ -696,7 +699,7 @@ page({id:'e1-10',label:'1-10',title:'다원적 이론과 정보처리',scenes:[
  },
  draw(t,p){const inA=t<ST(p,1);op(this.tri,inA?ap(t,ST(p,0)+0.3):0);op(this.triT,inA?ap(t,ST(p,0)+1.4):0);
   const P=this.P;this.flowDots.forEach((d,i)=>{const u=((t*0.35)+i/3)%1;const seg=Math.floor(u*3),f=u*3-seg;const a=P[seg],b=P[(seg+1)%3];d.setAttribute('cx',lerp(a[0],b[0],f).toFixed(1));d.setAttribute('cy',lerp(a[1],b[1],f).toFixed(1));});
-  if(inA)chip('<b class="k-blue">형식</b> + <b class="k-grn">내용</b> + <b class="k-org">기능</b> 이 서로 영향 → 함께 발달',ap(t,LS(p,0,0)+1.5),596);
+  if(inA)chip('<b class="k-blue">형식</b> + <b class="k-grn">내용</b> + <b class="k-org">기능</b> 이 서로 영향 → 함께 발달',ap(t,LS(p,0,0)+1.5));
   const k1=curLine(t,p,1);const inB=t>=ST(p,1)&&t<ST(p,2);const showIP=inB&&k1<=2;
   this.ip.forEach((b,i)=>{const a=i<2?sub_(p,1,1,i,2):sub_(p,1,2,i-2,2);pop(b,showIP?ap(t,i===0&&k1===0?LS(p,1,0)+0.6:a):0);cls(b,'on',showIP&&k1>=1&&t>=a&&t<(i<3?(i<1?sub_(p,1,1,1,2):i<2?LS(p,1,2):sub_(p,1,2,1,2)):LE(p,1,2)+0.3));});
   this.ipA.forEach((a,i)=>{const at=i===0?sub_(p,1,1,1,2):i===1?LS(p,1,2):sub_(p,1,2,1,2);op(a,showIP?ap(t,at):0);});
