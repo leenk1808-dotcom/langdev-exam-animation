@@ -205,10 +205,11 @@ const PAL={mom:{shirt:'#f08a6b',hair:'#5a3a28',pants:'#5b6fa8'},dad:{shirt:'#5b8
  ther:{shirt:'#4fb59a',hair:'#3b2a20',pants:'#5a5f78'},kid:{shirt:'#f6c64a',hair:'#3b2a20',pants:'#6a8fd8'},
  boy:{shirt:'#7fc4ef',hair:'#2f2620',pants:'#e0884f'},baby:{shirt:'#f4a7c0',hair:'#6b4a33',pants:'#f4a7c0'}};
 function person(par,o){const k=o.kind||'kid';const P=Object.assign({},PAL[k],o);const adult=k==='mom'||k==='dad'||k==='ther';
- const g=sv('g',{},par);sv('ellipse',{cx:0,cy:2,rx:adult?62:(k==='baby'?44:44),ry:9,fill:'rgba(150,110,60,.16)'},g);const body=sv('g',{},g);
+ const g=sv('g',{},par);const backHair=sv('g',{},g);sv('ellipse',{cx:0,cy:2,rx:adult?62:(k==='baby'?44:44),ry:9,fill:'rgba(150,110,60,.16)'},g);const body=sv('g',{},g);
  const H=adult?1:(k==='baby'?0.5:0.62);           // 몸 높이 비율
  const hr=adult?30:(k==='baby'?26:27);             // 머리 반지름
- const hip=-95*H*(adult?1:1.05),sh=-180*H-(adult?0:4),hy=sh-hr-8,sw=adult?40:28,hw=adult?33:25;
+ const hip=-95*H*(adult?1:1.05),sh=-180*H-(adult?0:4),hy=sh-hr-3,sw=adult?40:28,hw=adult?33:25;
+ if(k==='mom')sv('path',{d:`M${-hr-5},${hy} Q${-hr-9},${hy+hr+6} ${-hr-3},${sh+34} L${hr+3},${sh+34} Q${hr+9},${hy+hr+6} ${hr+5},${hy}Z`,fill:P.hair},backHair);
  // 다리
  if(k!=='baby'){for(const s of [-1,1]){sv('rect',{x:s*(adult?13:10)-(adult?11:9),y:hip-4,width:adult?22:18,height:-hip-2,rx:9,fill:P.pants},body);
    sv('ellipse',{cx:s*(adult?15:12),cy:-3,rx:adult?16:12,ry:7,fill:INK},body);}}
@@ -223,9 +224,8 @@ function person(par,o){const k=o.kind||'kid';const P=Object.assign({},PAL[k],o);
   const len=adult?78:52;sv('path',{d:`M${ax},${ay} L${ax+s*4},${ay+len}`,stroke:P.shirt,'stroke-width':adult?17:14,'stroke-linecap':'round'},ag);
   sv('circle',{cx:ax+s*4,cy:ay+len+4,r:adult?9:8,fill:SKIN},ag);arms[s]={g:ag,x:ax,y:ay,deg:null};}
  // 목·머리
- sv('rect',{x:-8,y:sh-12,width:16,height:16,fill:SKIN2},g);
+ sv('rect',{x:-9,y:sh-10,width:18,height:16,rx:4,fill:SKIN2},g);
  const head=sv('g',{},g);
- if(k==='mom')sv('path',{d:`M${-hr-6},${hy} Q${-hr-10},${hy+hr+30} ${-hr+4},${hy+hr+34} L${hr-4},${hy+hr+34} Q${hr+10},${hy+hr+30} ${hr+6},${hy}Z`,fill:P.hair},head);
  sv('circle',{cx:0,cy:hy,r:hr,fill:SKIN},head);
  sv('ellipse',{cx:-hr+1,cy:hy+4,rx:5,ry:8,fill:SKIN2},head);sv('ellipse',{cx:hr-1,cy:hy+4,rx:5,ry:8,fill:SKIN2},head);
  // 머리카락
