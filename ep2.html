@@ -314,18 +314,18 @@ page({id:'e2-2',label:'2-2',title:'상징놀이와 언어',scenes:[
  init(L){
   this.row=SP.map((x,i)=>hdiv('cd ov',`<div style="font-size:18px;font-weight:900;line-height:1.2">${x[1]}</div><div style="font-size:14px;color:#8a7558;font-weight:800;margin-top:3px">${x[2]}</div>`,L,`left:${50+i*148}px;top:90px;width:140px;text-align:center;padding:10px 4px;min-height:84px`));
   this.big=hdiv('cd ov','',L,'left:200px;top:220px;width:880px;min-height:250px;text-align:center;padding:26px');
-  this.cmp=[hdiv('cd ov b-blue',`<h3 class="k-blue" style="font-size:26px">단순 상징행동 조합</h3><div style="font-size:42px;margin:10px 0">🥄 ➜ 👩 · 🧸 · 🐻</div><p style="font-size:21px"><b>같은 행동</b>을 <b>여러 대상</b>에게 반복</p>`,L,'left:90px;top:120px;width:520px;text-align:center'),
-   hdiv('cd ov b-org',`<h3 class="k-org" style="font-size:26px">복합 상징행동 조합</h3><div style="font-size:36px;margin:10px 0">🍼 먹이기 ➜ 🧻 입 닦기</div><p style="font-size:21px"><b>서로 다른 행동</b>을 <b>연속</b>으로</p>`,L,'left:670px;top:120px;width:520px;text-align:center')];
+  this.cmp=[hdiv('cd ov b-blue',`<h3 class="k-blue" style="font-size:26px">단순 상징행동 조합</h3><div style="font-size:42px;margin:10px 0">🥄 ➜ 👩 · 🧸 · 🐻</div><p style="font-size:21px"><b>같은 행동</b>을 <b>여러 대상</b>에게 반복</p>`,L,'left:670px;top:120px;width:520px;text-align:center'),
+   hdiv('cd ov b-org',`<h3 class="k-org" style="font-size:26px">복합 상징행동 조합</h3><div style="font-size:36px;margin:10px 0">🍼 먹이기 ➜ 🧻 입 닦기</div><p style="font-size:21px"><b>서로 다른 행동</b>을 <b>연속</b>으로</p>`,L,'left:90px;top:120px;width:520px;text-align:center')];
   this.mono=hdiv('cd ov b-pur',`<div style="display:flex;gap:24px;align-items:center"><div style="font-size:40px">🍽️🧱=🧼</div><div><b class="k-pur" style="font-size:24px">물건대치 시기 (24~35개월)</b><p style="font-size:20px;margin-top:4px">전조작기 <b>자기중심성</b> → 대화가 <b>집단적 독백</b> 형태<br>(같이 말하지만 각자 자기 말만 함)</p></div></div>`,L,'left:190px;top:390px;width:900px');
  },
  draw(t,p){const k0=curLine(t,p,0),k1=curLine(t,p,1);const inA=t<ST(p,1);
   const map=[[0,1],[2],[3,4],[5],[6],[7]];
   const act=inA&&k0>=0?map[k0]:[];
-  let cur=-1;if(inA&&k0>=0){const m=map[k0];cur=m.length>1&&t>=sub_(p,0,k0,1,2)?m[1]:m[0];}
-  this.row.forEach((r,i)=>{const first=[0,0,1,2,2,3,4,5].indexOf(Math.max(-1,map.findIndex(m=>m.includes(i))));const lk=map.findIndex(m=>m.includes(i));const a=lk>=0?(map[lk].length>1&&map[lk][1]===i?sub_(p,0,lk,1,2):LS(p,0,lk)):0;pop(r,inA?ap(t,a):0);cls(r,'on',inA&&i===cur);});
+  let cur=-1;if(inA&&k0>=0){const m=map[k0];cur=m.length>1&&t>=sub_(p,0,k0,k0===2?0.66:1,2)?m[1]:m[0];}
+  this.row.forEach((r,i)=>{const first=[0,0,1,2,2,3,4,5].indexOf(Math.max(-1,map.findIndex(m=>m.includes(i))));const lk=map.findIndex(m=>m.includes(i));const a=lk>=0?(map[lk].length>1&&map[lk][1]===i?sub_(p,0,lk,lk===2?0.66:1,2):LS(p,0,lk)):0;pop(r,inA?ap(t,a):0);cls(r,'on',inA&&i===cur);});
   if(cur>=0){const x=SP[cur];setH(this.big,`<div style="font-size:66px">${x[0]}</div><div style="font-size:34px;font-weight:900;margin-top:10px">${x[1].replace(/<br>/g," ")} <span style="font-size:22px;color:#8a7558">${x[2]}</span></div><p style="font-size:24px;margin-top:8px">${x[3]}</p>`+(x[4]?`<div style="margin-top:14px"><span class="tagp tp-org" style="font-size:22px">같은 시기 언어: ${x[4]}</span></div>`:''));}
   pop(this.big,inA&&cur>=0?ap(t,LS(p,0,0)+0.3):0);
-  const inB=t>=ST(p,1);this.cmp.forEach((c,i)=>pop(c,inB?ap(t,sub_(p,1,0,i,2)+0.2):0));pop(this.mono,inB&&k1===1?ap(t,LS(p,1,1)):0);
+  const inB=t>=ST(p,1);const cA=[sub_(p,1,0,1,2)+0.2,LS(p,1,0)+0.2];this.cmp.forEach((c,i)=>{pop(c,inB?ap(t,cA[i]):0);cls(c,'on',inB&&k1===0&&(i===1?t<cA[0]:t>=cA[0]));});pop(this.mono,inB&&k1===1?ap(t,LS(p,1,1)):0);
   if(inB&&k1===0)chip('<span class="st">★</span> 다른 행동 <b>연속</b> = 복합 · 같은 행동 <b>반복</b> = 단순',ap(t,LS(p,1,0)),420);
  }});
 
