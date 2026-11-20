@@ -346,7 +346,7 @@ page({id:'e2-3',label:'2-3',title:'언어이전기 의사소통',scenes:[
   this.toy=hdiv('ov',EMO('🧸',50),L,'left:700px;top:480px');this.cookie=hdiv('ov',EMO('🍪',50),L,'left:690px;top:330px');
   this.bb=bubble(L,560,360,'');this.mb=bubble(L,330,300,'');
   this.desc=hdiv('cd ov','',L,'left:800px;top:250px;width:420px');
-  this.par=hdiv('cd ov b-grn',`<b class="k-grn" style="font-size:24px">부모의 민감한 반응</b><div style="margin-top:6px"><span class="tagp tp-org" style="font-size:18px">이 시기 = 2단계 · 4~7개월 · 전의도적</span></div><p style="font-size:20px;margin-top:8px">아이는 의도 없이 칭얼대거나 쳐다봄<br>→ 부모가 <b>의도를 연결</b>해 반응<br>→ 아이가 의사소통의 가치를 깨달음</p>`,L,'left:780px;top:250px;width:450px');
+  this.par=hdiv('cd ov b-grn',`<b class="k-grn" style="font-size:24px">부모의 민감한 반응</b><div style="margin-top:6px"><span class="tagp tp-org" style="font-size:18px">목표지향적 의사소통 단계 (4~7개월)</span></div><p style="font-size:20px;margin-top:8px">아이는 의도 없이 칭얼대거나 쳐다봄<br>→ 부모가 <b>의도를 연결</b>해 반응<br>→ 아이가 의사소통의 가치를 깨달음</p>`,L,'left:780px;top:250px;width:450px');
  },
  draw(t,p){const k=curLine(t,p,0);
   this.row.forEach((r,i)=>{pop(r,ap(t,i===0?LS(p,0,0)+1.4+i*0:LS(p,0,0)+1.4+i*0.35));cls(r,'on',k===i+1||(k===6&&i===1));});
