@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>언어발달장애 11편 · 중재 계획과 치료 기법 (voice: elevenlabs.io)</title>
+<style>*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#1d1a16;color:#2f2a24;font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",sans-serif;overflow:hidden}
+#wrap{position:fixed;inset:0;display:flex;flex-direction:column}
+#vp{flex:1;position:relative;overflow:hidden;background:#1d1a16}
+#stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;transform-origin:center center;overflow:hidden;
+ background:radial-gradient(ellipse at 50% 30%,#fffaf0 0%,#fbf1df 60%,#f4e4c8 100%);cursor:pointer;user-select:none}
+#bgdeco{position:absolute;inset:0;pointer-events:none}
+#layers{position:absolute;inset:0}
+.page{position:absolute;inset:0;pointer-events:none}
+.ov{position:absolute;opacity:0;pointer-events:none}
+svg text{font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+#tag{left:28px;top:20px;font-size:19px;color:#8a7558;letter-spacing:.02em;z-index:5}
+#tag b{color:#3f3326;font-weight:800}
+#title{inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(255,248,234,.94);z-index:8}
+#title .ep{font-size:26px;color:#e07a3f;letter-spacing:.14em;font-weight:800}
+#title .nm{font-size:62px;font-weight:900;margin-top:14px;color:#3a2f24}
+#title .sb{font-size:24px;color:#8a7558;margin-top:14px;font-weight:600}
+#sub{position:absolute;left:40px;right:40px;bottom:26px;text-align:center;font-size:27px;line-height:1.45;font-weight:600;pointer-events:none;white-space:nowrap;transition:bottom .25s;color:#fff;z-index:6}
+#sub span{background:rgba(48,38,28,.84);padding:6px 18px;border-radius:12px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+#chip{left:50%;top:62px;transform:translateX(-50%);font-size:25px;font-weight:800;padding:10px 26px;border-radius:40px;
+ background:#fff;border:3px solid #f0a04b;color:#3a2f24;white-space:nowrap;z-index:4;box-shadow:0 6px 18px rgba(120,80,30,.15)}
+#chip .st{color:#f08a24}
+/* 카드 */
+.cd{position:absolute;padding:20px 24px;border-radius:22px;background:#fff;border:3px solid #ead9bd;box-shadow:0 8px 22px rgba(120,80,30,.12)}
+.cd h3{margin:0 0 8px;font-size:30px;font-weight:900}
+.cd p{margin:0;font-size:22px;line-height:1.5;color:#5a4d3e}
+.cd ul{margin:6px 0 0;padding-left:22px;font-size:22px;line-height:1.5;color:#4a3f33}
+.cd.on{border-color:#f08a24;box-shadow:0 0 0 6px rgba(240,138,36,.18),0 10px 26px rgba(120,80,30,.18)}
+.k-blue{color:#2f7bd8}.k-grn{color:#23a271}.k-org{color:#e8781e}.k-red{color:#e0533f}.k-pur{color:#8a5ad6}.k-gry{color:#8a7a66}
+.b-blue{border-color:#8fbaf0}.b-grn{border-color:#88d6b5}.b-org{border-color:#f5bd84}.b-red{border-color:#f2a596}.b-pur{border-color:#c6aaf0}
+.tagp{display:inline-block;padding:4px 14px;border-radius:20px;font-size:20px;font-weight:800;margin:3px 4px 0 0}
+.tp-blue{background:#e3effd;color:#2f6fc4}.tp-grn{background:#dcf5ea;color:#1f8a5f}.tp-org{background:#fde9d4;color:#c4621a}.tp-red{background:#fde2dc;color:#c43f2c}.tp-pur{background:#eee4fd;color:#7246c0}.tp-gry{background:#efe8dc;color:#6f6252}
+/* 말풍선 */
+.bub{position:absolute;padding:12px 20px;border-radius:22px;background:#fff;border:3px solid #3f3326;font-size:26px;font-weight:800;color:#3a2f24;white-space:nowrap;transform:translate(-50%,-100%)}
+.bub:after{content:"";position:absolute;left:var(--tx,50%);bottom:-16px;width:22px;height:22px;background:#fff;border-right:3px solid #3f3326;border-bottom:3px solid #3f3326;transform:translateX(-50%) rotate(45deg)}
+.bub.th{border-style:dashed;color:#6f6252;font-weight:700}
+/* 체크 줄 */
+.ck{display:flex;align-items:flex-start;gap:14px;font-size:23px;line-height:1.45;margin:10px 0;opacity:0}
+.ck i{flex:none;width:32px;height:32px;border-radius:50%;background:#23a271;color:#fff;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:20px;margin-top:2px}
+/* 퀴즈 */
+.quiz{position:absolute;left:110px;right:110px;top:66px;bottom:96px;border-radius:26px;background:#fff;border:3px solid #ead9bd;padding:28px 40px;box-shadow:0 10px 30px rgba(120,80,30,.14)}
+.quiz .qn{font-size:23px;color:#e8781e;font-weight:900}
+.quiz .qt{font-size:28px;font-weight:800;line-height:1.45;margin:10px 0 16px;color:#3a2f24}
+.quiz .op{font-size:24px;line-height:1.3;padding:8px 16px;border-radius:14px;margin:6px 0;border:3px solid transparent;color:#4a3f33}
+.quiz .op.ok{background:#dcf5ea;border-color:#23a271;color:#145a3e;font-weight:900}
+.quiz .ex{margin-top:12px;font-size:22px;line-height:1.5;color:#6b4a14;padding:12px 18px;border-radius:14px;background:#fff1d6}
+/* 메뉴·조작바 */
+#menu{position:absolute;right:16px;bottom:96px;width:400px;max-height:70vh;overflow:auto;border-radius:14px;background:rgba(32,30,28,.97);border:1px solid #4a4540;padding:8px;display:none;z-index:40;cursor:default;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+#menu div{font-size:16px;padding:10px 14px;border-radius:10px;cursor:pointer;color:#f3ede4}
+#menu div:hover{background:#3d3832}
+#menu div b{color:#f5a95a;margin-right:8px}
+#bigplay{inset:0;display:flex;align-items:center;justify-content:center;opacity:1;z-index:9}
+#bigplay div{width:120px;height:120px;border-radius:50%;background:rgba(240,138,36,.92);box-shadow:0 10px 30px rgba(120,60,10,.35);display:flex;align-items:center;justify-content:center}
+#ctl{position:absolute;left:0;right:0;bottom:0;z-index:30;padding:40px 16px 12px;background:linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,.66));transition:opacity .25s;font-family:inherit;color:#fff}
+#ctl.hide{opacity:0;pointer-events:none}
+#vp.nocur{cursor:none}
+#prog{height:18px;position:relative;cursor:pointer;touch-action:none;margin:0 6px 6px}
+#track{position:absolute;left:0;right:0;top:7px;height:4px;border-radius:2px;background:rgba(255,255,255,.3);transition:height .12s,top .12s}
+#fill{position:absolute;left:0;top:7px;height:4px;border-radius:2px;background:#f5a03c;transition:height .12s,top .12s}
+#prog:hover #track,#prog:hover #fill{top:6px;height:6px}
+#knob{position:absolute;top:2px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#f5a03c;transform:scale(0);transition:transform .12s}
+#prog:hover #knob,#ctl.drag #knob{transform:scale(1)}
+.tick{position:absolute;top:7px;width:2px;height:4px;background:rgba(0,0,0,.45)}
+.tick.pg{background:rgba(255,255,255,.9);width:3px;top:4px;height:10px;border-radius:1px}
+.crow{display:flex;align-items:center;gap:10px}
+.crow .sp{flex:1}
+.grp{display:flex;align-items:center;background:rgba(30,28,26,.72);border-radius:26px;padding:3px;gap:2px}
+.pill{background:rgba(30,28,26,.72);border-radius:22px;padding:0 16px;height:42px;display:flex;align-items:center;font-size:15px;font-weight:600;color:#fff;white-space:nowrap;font-variant-numeric:tabular-nums}
+#scn{color:#f3e6d2;font-weight:500;max-width:340px;overflow:hidden;text-overflow:ellipsis}
+#ctl button{border:0;background:transparent;color:#fff;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;border-radius:22px}
+#ctl button:hover{background:rgba(255,255,255,.14)}
+#ctl button.ic{width:44px;height:40px}
+#ctl button.tx{height:40px;padding:0 13px;gap:6px;font-size:15px;font-weight:700}
+#ctl button svg,#ctl button span{pointer-events:none}
+#flash{top:50%;transform:translateY(-50%);font-size:34px;font-weight:800;padding:14px 22px;border-radius:40px;background:rgba(0,0,0,.55);color:#fff;z-index:10}
+#nextEp{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:18px;background:rgba(255,248,234,.95);z-index:12}
+#nextEp .t{font-size:32px;font-weight:900;color:#3a2f24}
+#nextEp a.n{font-size:26px;font-weight:800;color:#fff;background:#f08a24;padding:14px 30px;border-radius:30px;text-decoration:none}
+#nextEp a.h{font-size:20px;color:#8a7558}
+#credit{position:absolute;right:16px;top:20px;font-size:13px;color:#b8a488;z-index:5}
+</style>
+</head>
+<body>
+<div id="wrap">
+ <div id="vp">
+  <div id="stage">
+   <svg id="bgdeco" viewBox="0 0 1280 720"><circle cx="1180" cy="90" r="160" fill="#fde6c4" opacity=".55"/><circle cx="80" cy="660" r="190" fill="#fbe0b8" opacity=".45"/><circle cx="1240" cy="640" r="70" fill="#d9efe4" opacity=".6"/><circle cx="60" cy="120" r="44" fill="#e3effd" opacity=".8"/></svg>
+   <div id="layers"></div>
+   <div id="tag" class="ov"></div>
+   <div id="credit">음성 · elevenlabs.io</div>
+   <div id="chip" class="ov"></div>
+   <div id="sub"></div>
+   <div id="title" class="ov"><div class="ep">언어발달장애 국시 영상</div><div class="nm" id="titleNm"></div><div class="sb" id="titleSb"></div></div>
+   <div id="bigplay" class="ov"><div><svg width="54" height="54" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="#fff"/></svg></div></div>
+   <div id="nextEp"><div class="t">11편 끝</div><a class="n" href="index.html">12편 특정 언어치료 프로그램은 준비 중 · 목록으로 ▶</a><a class="h" href="index.html">목록으로</a></div>
+   <div id="flash" class="ov"></div>
+  </div>
+ </div>
+ <div id="ctl">
+  <div id="prog"><div id="track"></div><div id="ticks"></div><div id="fill"></div><div id="knob"></div></div>
+  <div class="crow">
+   <div class="grp"><button id="bplay" class="ic" title="재생/일시정지 (Space·K)"></button><button id="bback" class="ic" title="10초 뒤로 (J)"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z" fill="#fff"/><text x="12" y="16.2" text-anchor="middle" font-size="7" font-weight="700" fill="#fff" font-family="sans-serif">10</text></svg></button><button id="bfwd" class="ic" title="10초 앞으로 (L)"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M12 5V2l5 4-5 4V7a6 6 0 1 0 6 6h2a8 8 0 1 1-8-8z" fill="#fff"/><text x="12" y="16.2" text-anchor="middle" font-size="7" font-weight="700" fill="#fff" font-family="sans-serif">10</text></svg></button></div>
+   <div class="pill" id="time">0:00 / 0:00</div>
+   <div class="pill" id="scn"></div>
+   <div class="sp"></div>
+   <div class="grp"><button id="bspd" class="tx" title="재생 속도 (&lt; &gt;)">1.0×</button><button id="bmenu" class="tx" title="목차"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 6h2v2H4zm4 0h12v2H8zM4 11h2v2H4zm4 0h12v2H8zM4 16h2v2H4zm4 0h12v2H8z" fill="#fff"/></svg><span>목차</span></button><button id="bhome" class="tx" title="목록 (Esc)"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z" fill="#fff"/></svg><span>목록</span></button><button id="bfull" class="ic" title="전체화면 (F)"><svg id="icoFull" viewBox="0 0 24 24" width="24" height="24"><path d="M4 9V4h5v2H6v3zm11-5h5v5h-2V6h-3zM4 15h2v3h3v2H4zm14 0h2v5h-5v-2h3z" fill="#fff"/></svg></button></div>
+  </div>
+ </div>
+ <div id="menu"></div>
+</div>
+<script>const AUD={};window.AUD=AUD;</script>
+<script>window.EP={name:'11편 · 중재 계획과 치료 기법',sub:'중재 목적 · EBP · Fey 우선순위 · 목표 달성 전략 · 행동목표 · 일반화 · 강화와 처벌 · 아동중심 기법 · 환경중심 언어중재 · EMT · DTT · PRT',next:'index.html'};</script>
+<script>"use strict";
+window.EP=window.EP||{name:'1편',sub:''};
+/* ───────── 공용 도구 ───────── */
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const sm=x=>{x=cl(x);return x*x*(3-2*x)};
+const ramp=(t,a,b)=>sm((t-a)/(b-a));
+const win=(t,a,b,f=0.5)=>Math.min(ramp(t,a,a+f),1-ramp(t,b-f,b));
+const lerp=(a,b,k)=>a+(b-a)*k;
+const op=(e,v)=>{if(e)e.style.opacity=(+v).toFixed(3);};
+const NS='http://www.w3.org/2000/svg';
+function sv(tag,attrs,parent){const e=document.createElementNS(NS,tag);if(attrs)for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function hdiv(cls,html,parent,style){const e=document.createElement('div');if(cls)e.className=cls;if(html!=null)e.innerHTML=html;if(style)e.style.cssText=style;if(parent)parent.appendChild(e);return e;}
+const SVGROOT=layer=>sv('svg',{viewBox:'0 0 1280 720',style:'position:absolute;left:0;top:0;width:1280px;height:720px;overflow:visible'},layer);
+function stx(par,x,y,t,o={}){const e=sv('text',Object.assign({x,y,'text-anchor':'middle',fill:'#3a2f24','font-size':24,'font-weight':800},o),par);e.textContent=t;return e;}
+function grow(path,p){const L=path.__L||(path.__L=path.getTotalLength());path.style.strokeDasharray=L;path.style.strokeDashoffset=L*(1-cl(p));path.style.opacity=p>0?1:0;}
+/* 클래스 토글(바뀔 때만) */
+function cls(e,c,on){if(!e)return;const h=e.classList.contains(c);if(on&&!h)e.classList.add(c);else if(!on&&h)e.classList.remove(c);}
+/* 위로 떠오르며 나타나기 */
+function pop(e,v,dy=14){if(!e)return;op(e,v);const y=((1-v)*dy).toFixed(1);if(e.__y!==y){e.__y=y;e.style.translate=`0 ${y}px`;}}
+function setH(e,h){if(e.__h!==h){e.__h=h;e.innerHTML=h;}}
+
+/* ───────── 페이지·타임라인 ───────── */
+const PAGES=[];const ALL=[];let TOTAL=0;
+const DUR={};
+const est=tx=>{const n=tx.replace(/[\s,.?!·~()]/g,'').length;return Math.max(1.6,n*0.165+0.3);};
+function page(def){PAGES.push(def);return def;}
+function buildTimeline(){let T=0;
+ for(const p of PAGES){p.t0=T;let n=0;const first=p===PAGES[0];
+  for(const s of p.scenes){s.t0=T;T+=(s===p.scenes[0]&&!first)?Math.min(s.pre||0,0.9):(s.pre||0);s.L=[];
+   for(const raw of s.lines||[]){const o=typeof raw==='string'?{tx:raw}:raw;n++;
+    const id=p.id+'_'+String(n).padStart(2,'0');const mute=!!(o.mute||p.mute);
+    const d=o.d||(DUR[id]!=null?DUR[id]:est(o.say||o.tx));
+    const l={id,tx:o.tx,say:o.say||o.tx,t0:T,t1:T+d,mute,nosub:!!(o.nosub||mute),has:!mute&&DUR[id]!=null,src:'audio/'+id+'.mp3'};
+    s.L.push(l);ALL.push(l);T+=d+(o.gap!=null?o.gap:0.45);}
+   T+=(s===p.scenes[p.scenes.length-1]&&p!==PAGES[PAGES.length-1])?Math.min(s.post||0,1.2):(s.post||0);s.t1=T;}
+  p.t1=T;}
+ TOTAL=T;}
+let chipNow=null;
+function chip(html,v,y=62){if(v>0)chipNow={html,v,y};}
+
+/* 자막 나누기 */
+const SUBW=1150,subCache={};let subCtx=null;
+function subW(s){if(!subCtx){subCtx=document.createElement('canvas').getContext('2d');subCtx.font='600 27px "Pretendard","Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",sans-serif';}return subCtx.measureText(s).width+40;}
+function subChunks(tx){if(subCache[tx])return subCache[tx];const out=[];const push=s=>{s=s.trim();if(s)out.push(s);};
+ const sents=tx.match(/[^.?!]+[.?!]+\s*|[^.?!]+$/g)||[tx];
+ for(const sen of sents){if(subW(sen.trim())<=SUBW){push(sen);continue;}
+  const cs=sen.match(/[^,]+,?\s*/g)||[sen];let cur='';
+  for(const c of cs){const cand=cur+c;if(subW(cand.trim())<=SUBW){cur=cand;continue;}
+   push(cur);cur='';if(subW(c.trim())<=SUBW){cur=c;continue;}
+   let w='';for(const word of c.trim().split(' ')){const cw=w?w+' '+word:word;if(subW(cw)<=SUBW)w=cw;else{push(w);w=word;}}cur=w+' ';}
+  push(cur);}
+ return subCache[tx]=out.length?out:[tx];}
+/* ───────── 프레임 ───────── */
+function frame(t){
+ chipNow=null;
+ const cur=PAGES.find(p=>t>=p.t0&&t<p.t1)||PAGES[PAGES.length-1];
+ const last=PAGES[PAGES.length-1];
+ for(const p of PAGES){if(p!==cur){if(p.layer.style.display!=='none')p.layer.style.display='none';continue;}
+  p.layer.style.display='';op(p.layer,ramp(t,p.t0-0.01,p.t0+0.5)*(p===last?1:1-ramp(t,p.t1-0.3,p.t1)));
+  p.draw(t,p);}
+ const c=$('chip');const ch=chipNow?chipNow.html:'';if(c.dataset.v!==ch){c.dataset.v=ch;c.innerHTML=ch;}op(c,chipNow?chipNow.v:0);if(chipNow){const y=chipNow.y+'px';if(c.style.top!==y)c.style.top=y;}
+ const P0=PAGES[0];const tv=cur===P0?1-ramp(t,P0.t0+2.8,P0.t0+3.5):0;
+ op($('title'),tv);
+ const sc=cur.scenes.find(s=>t>=s.t0&&t<s.t1)||cur.scenes[cur.scenes.length-1];
+ const tg=`${EP.name} · <b>${cur.label||cur.id} ${cur.title}</b> · ${sc.name}`;if($('tag').dataset.v!==tg){$('tag').dataset.v=tg;$('tag').innerHTML=tg;}
+ op($('tag'),cur===P0?ramp(t,P0.t0+2.8,P0.t0+3.4):1);$('scn').textContent=(cur.label||cur.id)+' · '+sc.name;
+ let line=null;for(const l of ALL)if(!l.nosub&&t>=l.t0&&t<l.t1+0.25)line=l;
+ let want='';if(line){const chs=subChunks(line.tx);const tot=chs.reduce((a,c)=>a+c.length,0);let acc=0;want=chs[chs.length-1];
+  for(const c of chs){acc+=c.length;if(t<line.t0+(line.t1-line.t0)*acc/tot){want=c;break;}}}
+ const sub=$('sub');if(sub.dataset.v!==want){sub.dataset.v=want;sub.innerHTML=want?`<span>${want}</span>`:'';}
+}
+/* 장면 시간 도우미 */
+const LS=(p,i,j)=>p.scenes[i].L[j].t0, LE=(p,i,j)=>p.scenes[i].L[j].t1;
+const ST=(p,i)=>p.scenes[i].t0, SE=(p,i)=>p.scenes[i].t1;
+const sub_=(p,i,j,k,n)=>{const a=LS(p,i,j),b=LE(p,i,j);return a+(b-a)*k/n;};
+/* 현재 줄 번호(장면 i 안에서). 시작 전 -1 */
+const curLine=(t,p,i)=>{const L=p.scenes[i].L;let k=-1;for(let j=0;j<L.length;j++)if(t>=L[j].t0)k=j;return k;};
+</script>
+<script>"use strict";
+/* ───────── 2D 인물 그림 ─────────
+   person(par,{x,y,s,kind,shirt,hair,pants,face,flip})
+   kind: 'mom' | 'dad' | 'ther'(치료사) | 'kid'(유아) | 'boy' | 'baby'
+   발 아래 가운데가 (x,y). 반환: {g, arm(side,deg), face(type), look(dx)} */
+const SKIN='#f7d2b4',SKIN2='#eab894',INK='#3f3326';
+const PAL={mom:{shirt:'#f08a6b',hair:'#5a3a28',pants:'#5b6fa8'},dad:{shirt:'#5b8fd6',hair:'#2f2620',pants:'#4b4f63'},
+ ther:{shirt:'#4fb59a',hair:'#3b2a20',pants:'#5a5f78'},kid:{shirt:'#f6c64a',hair:'#3b2a20',pants:'#6a8fd8'},
+ boy:{shirt:'#7fc4ef',hair:'#2f2620',pants:'#e0884f'},baby:{shirt:'#f4a7c0',hair:'#6b4a33',pants:'#f4a7c0'}};
+function person(par,o){const k=o.kind||'kid';const P=Object.assign({},PAL[k],o);const adult=k==='mom'||k==='dad'||k==='ther';
+ const g=sv('g',{},par);const backHair=sv('g',{},g);sv('ellipse',{cx:0,cy:2,rx:adult?62:(k==='baby'?44:44),ry:9,fill:'rgba(150,110,60,.16)'},g);const body=sv('g',{},g);
+ const H=adult?1:(k==='baby'?0.5:0.62);           // 몸 높이 비율
+ const hr=adult?30:(k==='baby'?26:27);             // 머리 반지름
+ const hip=-95*H*(adult?1:1.05),sh=-180*H-(adult?0:4),hy=sh-hr-3,sw=adult?40:28,hw=adult?33:25;
+ if(k==='mom')sv('path',{d:`M${-hr-5},${hy} Q${-hr-9},${hy+hr+6} ${-hr-3},${sh+34} L${hr+3},${sh+34} Q${hr+9},${hy+hr+6} ${hr+5},${hy}Z`,fill:P.hair},backHair);
+ // 다리
+ if(k!=='baby'){for(const s of [-1,1]){sv('rect',{x:s*(adult?13:10)-(adult?11:9),y:hip-4,width:adult?22:18,height:-hip-2,rx:9,fill:P.pants},body);
+   sv('ellipse',{cx:s*(adult?15:12),cy:-3,rx:adult?16:12,ry:7,fill:INK},body);}}
+ else{sv('ellipse',{cx:0,cy:-10,rx:34,ry:14,fill:P.pants},body);}
+ // 치마(엄마)
+ if(k==='mom')sv('path',{d:`M${-hw-2},${hip-6} L${hw+2},${hip-6} L${hw+16},${hip+46} L${-hw-16},${hip+46}Z`,fill:'#e2735a'},body);
+ // 몸통
+ sv('path',{d:`M${-sw},${sh+10} Q${-sw},${sh} ${-sw+12},${sh} L${sw-12},${sh} Q${sw},${sh} ${sw},${sh+10} L${hw},${hip} Q${hw},${hip+6} ${hw-6},${hip+6} L${-hw+6},${hip+6} Q${-hw},${hip+6} ${-hw},${hip}Z`,fill:P.shirt},body);
+ if(k==='ther'){sv('path',{d:`M-14,${sh+2} L0,${sh+44} L14,${sh+2}`,fill:'none',stroke:'#2f6f5e','stroke-width':3},body);sv('rect',{x:-11,y:sh+44,width:22,height:28,rx:4,fill:'#fff',stroke:'#2f6f5e','stroke-width':2},body);}
+ // 팔
+ const arms={};for(const s of [-1,1]){const ag=sv('g',{},g);const ax=s*(sw-6),ay=sh+10;
+  const len=adult?78:52;sv('path',{d:`M${ax},${ay} L${ax+s*4},${ay+len}`,stroke:P.shirt,'stroke-width':adult?17:14,'stroke-linecap':'round'},ag);
+  sv('circle',{cx:ax+s*4,cy:ay+len+4,r:adult?9:8,fill:SKIN},ag);arms[s]={g:ag,x:ax,y:ay,deg:null};}
+ // 목·머리
+ sv('rect',{x:-9,y:sh-10,width:18,height:16,rx:4,fill:SKIN2},g);
+ const head=sv('g',{},g);
+ sv('circle',{cx:0,cy:hy,r:hr,fill:SKIN},head);
+ sv('ellipse',{cx:-hr+1,cy:hy+4,rx:5,ry:8,fill:SKIN2},head);sv('ellipse',{cx:hr-1,cy:hy+4,rx:5,ry:8,fill:SKIN2},head);
+ // 머리카락
+ if(k==='baby')sv('path',{d:`M-8,${hy-hr+2} Q0,${hy-hr-10} 6,${hy-hr+1}`,fill:'none',stroke:P.hair,'stroke-width':4,'stroke-linecap':'round'},head);
+ else if(k==='kid'){sv('path',{d:`M${-hr-2},${hy+2} Q${-hr},${hy-hr-6} 0,${hy-hr-4} Q${hr},${hy-hr-6} ${hr+2},${hy+2} Q${hr-4},${hy-hr+10} ${hr*0.2},${hy-hr+12} Q${-hr*0.4},${hy-hr+8} ${-hr+4},${hy-2}Z`,fill:P.hair},head);
+  sv('circle',{cx:hr-2,cy:hy-hr+6,r:7,fill:'#e2735a'},head);}
+ else sv('path',{d:`M${-hr-2},${hy+4} Q${-hr},${hy-hr-8} 0,${hy-hr-6} Q${hr},${hy-hr-8} ${hr+2},${hy+4} Q${hr-6},${hy-hr+8} 0,${hy-hr+10} Q${-hr+6},${hy-hr+8} ${-hr-2},${hy+4}Z`,fill:P.hair},head);
+ if(k==='dad'||k==='ther'){} 
+ // 얼굴
+ const fg=sv('g',{},head);const eY=hy+2,eX=hr*0.36;
+ const eyes=[sv('ellipse',{cx:-eX,cy:eY,rx:3.4,ry:4.4,fill:INK},fg),sv('ellipse',{cx:eX,cy:eY,rx:3.4,ry:4.4,fill:INK},fg)];
+ sv('circle',{cx:-eX-6,cy:eY+10,r:5,fill:'#f4a49a',opacity:.6},fg);sv('circle',{cx:eX+6,cy:eY+10,r:5,fill:'#f4a49a',opacity:.6},fg);
+ const mouth=sv('path',{d:'',fill:'none',stroke:INK,'stroke-width':2.6,'stroke-linecap':'round'},fg);
+ const M={smile:`M-8,${eY+13} Q0,${eY+20} 8,${eY+13}`,open:`M-7,${eY+13} Q0,${eY+24} 7,${eY+13} Z`,flat:`M-6,${eY+16} L6,${eY+16}`,sad:`M-7,${eY+19} Q0,${eY+13} 7,${eY+19}`,o:`M0,${eY+13} m-4,4 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0`};
+ const R={g,head,eyes,mouth,arms,P,hy,hr,adult,
+  face(type){if(R._f===type)return;R._f=type;mouth.setAttribute('d',M[type]||M.smile);mouth.setAttribute('fill',type==='open'||type==='o'?'#c44d3f':'none');},
+  arm(side,deg){const a=arms[side];if(a.deg===deg)return;a.deg=deg;a.g.setAttribute('transform',`rotate(${(-side*deg).toFixed(1)} ${a.x} ${a.y})`);},
+  look(dx){const v=(dx||0).toFixed(1);if(R._lk===v)return;R._lk=v;fg.setAttribute('transform',`translate(${v},0)`);},
+  bob(v){const y=(v||0).toFixed(1);if(R._b===y)return;R._b=y;R.g.setAttribute('transform',R.base+` translate(0,${y})`);}};
+ R.base=`translate(${o.x||0},${o.y||0}) scale(${(o.flip?-1:1)*(o.s||1)},${o.s||1})`;g.setAttribute('transform',R.base);
+ R.face(o.face||'smile');return R;}
+/* 말풍선(HTML). x,y = 꼬리 끝 위치 */
+function bubble(L,x,y,html,o={}){const d=hdiv('bub ov'+(o.cls?' '+o.cls:''),html,L,`left:${x}px;top:${y-18}px;`+(o.style||''));if(o.tail)d.style.setProperty('--tx',o.tail);d.set=h=>setH(d,h);return d;}
+/* 간단 소품 */
+function iconCup(par,x,y,s=1){const g=sv('g',{transform:`translate(${x},${y}) scale(${s})`},par);sv('path',{d:'M-16,-30 L16,-30 L12,8 L-12,8Z',fill:'#fff',stroke:INK,'stroke-width':3},g);sv('path',{d:'M-14,-18 L14,-18 L11,6 L-11,6Z',fill:'#f1f1f1'},g);sv('path',{d:'M16,-22 Q30,-18 14,-4',fill:'none',stroke:INK,'stroke-width':3},g);return g;}
+function iconBall(par,x,y,r=22){const g=sv('g',{},par);sv('circle',{cx:x,cy:y,r,fill:'#f26b5b',stroke:INK,'stroke-width':3},g);sv('path',{d:`M${x-r},${y} Q${x},${y-r*0.5} ${x+r},${y}`,fill:'none',stroke:'#fff','stroke-width':4},g);return g;}
+function iconBook(par,x,y,s=1,c='#5b8fd6'){const g=sv('g',{transform:`translate(${x},${y}) scale(${s})`},par);sv('path',{d:'M-34,-24 Q-17,-32 0,-22 Q17,-32 34,-24 L34,22 Q17,14 0,24 Q-17,14 -34,22Z',fill:'#fff',stroke:c,'stroke-width':4},g);sv('line',{x1:0,y1:-22,x2:0,y2:24,stroke:c,'stroke-width':3},g);return g;}
+function iconSock(par,x,y,s=1){const g=sv('g',{transform:`translate(${x},${y}) scale(${s})`},par);sv('path',{d:'M-10,-36 L10,-36 L10,0 Q10,14 26,14 L30,14 Q38,14 38,22 Q38,30 30,30 L4,30 Q-10,30 -10,14Z',fill:'#f6c64a',stroke:INK,'stroke-width':3},g);sv('rect',{x:-10,y:-36,width:20,height:8,fill:'#e2735a'},g);return g;}
+/* 동그란 번호 배지 */
+const badge=(n,c='#f08a24')=>`<span style="display:inline-flex;width:34px;height:34px;border-radius:50%;background:${c};color:#fff;font-weight:900;align-items:center;justify-content:center;font-size:20px;margin-right:10px;flex:none">${n}</span>`;
+/* 바닥 그림자 */
+function floor(){return null;}
+</script>
+<script>"use strict";
+Object.assign(DUR,{});
+</script>
+<script>"use strict";
+/* ═════════ 11편 · 중재 계획과 치료 기법 ═════════ */
+const ap=(t,a,d=0.45)=>ramp(t,a,a+d);
+const EMO=(e,s=44)=>`<span style="font-size:${s}px;line-height:1">${e}</span>`;
+const KC=(L,o)=>hdiv((o.raw?'':'cd ')+'ov'+(o.b?' b-'+o.b:''),o.html,L,`left:${o.x}px;top:${o.y}px;${o.w?'width:'+o.w+'px;':''}${o.raw?'':'padding:'+(o.pad||'14px 18px')+';'}${o.center?'text-align:center;':''}`);
+const KT=(t,c,f)=>`<span class="tagp tp-${c||'gry'}" style="font-size:${f||17}px">${t}</span>`;
+const KH=(t,c,f)=>`<b class="k-${c||'org'}" style="font-size:${f||22}px">${t}</b>`;
+const KR=(k,v,f)=>`<div style="font-size:${f||17}px;margin-top:5px;line-height:1.45"><b style="color:#8a7558">${k}</b> · ${v}</div>`;
+const KB=(t,c)=>`<span style="display:inline-block;padding:6px 12px;margin:3px 2px;border-radius:10px;background:${c||'#5b8fd6'};color:#fff;font-weight:900;font-size:20px">${t}</span>`;
+const AR='<b style="color:#e8b07a;font-size:20px;margin:0 4px">➜</b>';
+const ROW=(items,c,f)=>`<div style="display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:8px">${items.map(x=>KT(x,c,f||18)).join(AR)}</div>`;
+const C_N='#5b8fd6',C_J='#e8781e',C_V='#23a271',C_M='#2aa7a0';
+function kDraw(X,t,p){X.forEach((cards,si)=>{const last=si===p.scenes.length-1;const on=t>=ST(p,si)&&(t<SE(p,si)||last);const cur=on?curLine(t,p,si):-1;
+ cards.forEach(({c,el})=>{const a=c.sub!=null?sub_(p,si,c.line,c.sub,c.n||2):LS(p,si,c.line)+0.2;const until=c.until!=null?LS(p,si,c.until):1e9;
+  pop(el,on&&t>=a&&t<until?ramp(t,a,a+0.45):0);cls(el,'on',on&&cur===c.line&&!c.noOn&&!c.raw);});});}
+function KP(def){const scenes=def.scenes.map((s,i)=>({name:s.name,pre:s.pre!=null?s.pre:(i===0?0.6:0.3),post:s.post!=null?s.post:(i===def.scenes.length-1?1.2:0.4),lines:s.lines}));
+ return page({id:def.id,label:def.label,title:def.title,scenes,
+  init(L){this.__x=def.scenes.map(s=>(s.cards||[]).map(c=>({c,el:KC(L,c)})));if(def.xi)def.xi.call(this,L);},
+  draw(t,p){kDraw(this.__x,t,p);if(def.xd)def.xd.call(this,t,p);}});}
+const inS=(t,p,i)=>t>=ST(p,i)&&(t<SE(p,i)||i===p.scenes.length-1);
+
+/* ═════════ 11-1 중재의 목적과 고려사항 ═════════ */
+const K1C=[['🌱','전반적 발달 · 성장'],['🧩','언어의 전체성'],['🎯','적절한 목표 · 활동'],['⚠️','문제행동 속 메시지'],['💬','기능적 · 의미 있는 언어'],['🏠','실생활 적용 · 일반화'],['✏️','말과 글의 연결'],['📱','보완대체의사소통(AAC)']];
+const K1D=[['① 근본 원인 제거','blue','원인을 없애거나 줄여 언어 어려움을 예방','9개월 경도 청각장애 → 청력 평가 · 보청기'],['② 보상 전략 가르치기','grn','기능적 의사소통을 위한 보상적 수단','명료도가 낮은 아동 → 보상적 의사소통체계'],['③ 장애 수정','org','특정 말 · 언어 · 화용 행동을 가르침','특정 문법형태소 · 대화기술 지도']];
+KP({id:'e11-1',label:'11-1',title:'언어중재의 목적과 고려사항',scenes:[
+ {name:'중재의 목적',lines:[
+  '언어중재의 목적은 아동이 가진 의사소통 잠재력을 최대한 끌어올려 의사소통 행동에 변화를 주는 것입니다. 행동 하나를 외우게 하기보다 전반적인 의사소통을 높이는 전략을 가르칩니다.',
+  '계획할 때는 아동의 전반적 발달, 언어의 전체성, 적절한 목표와 활동, 문제행동 속 메시지, 기능적이고 의미 있는 언어, 실생활 일반화, 말과 글의 연결을 고려하고, 말이 심하게 제한되면 보완대체의사소통을 씁니다.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'org',center:1,html:KH('🎯 언어중재의 목적','org',25)+`<p style="margin-top:8px">아동의 <b>의사소통 잠재력</b>을 최대한 끌어올려 → <b>의사소통 행동의 변화</b></p><div style="margin-top:8px">${KT('행동 하나 외우기 ✘','red',18)} ${KT('전반적 의사소통을 높이는 전략 ✔','grn',18)}</div>`},
+   ...K1C.map((x,i)=>({line:1,sub:0.1+i*0.21,n:2,x:90+(i%4)*280,y:300+Math.floor(i/4)*110,w:260,center:1,pad:'12px 8px',html:`${EMO(x[0],30)}<div style="font-size:18px;font-weight:800;margin-top:4px">${x[1]}</div>`}))]},
+ {name:'Olswang & Bain의 세 가지 목적',lines:[
+  {tx:'Olswang과 Bain은 중재 목적을 세 가지로 나눴습니다. 첫째는 장애의 근본 원인을 없애거나 줄이는 것으로, 경도 청각장애 영아에게 청력을 평가하고 보청기를 맞추는 것이 예입니다.',say:'올스왕과 베인은 중재 목적을 세 가지로 나눴습니다. 첫째는 장애의 근본 원인을 없애거나 줄이는 것으로, 경도 청각장애 영아에게 청력을 평가하고 보청기를 맞추는 것이 예입니다.'},
+  '둘째는 보상 전략을 가르치는 것으로, 말이 잘 알아들리지 않는 아동에게 보상적 의사소통 체계를 주는 것입니다. 셋째는 장애 수정으로, 특정 문법형태소나 대화 기술처럼 구체적인 행동을 가르칩니다.'],
+  cards:K1D.map((x,i)=>({line:i===0?0:1,sub:i===0?0.2:(i===1?0.1:1.1),n:2,x:90+i*375,y:110,w:350,b:x[1],center:1,html:`${EMO('🚪',46)}<div style="margin-top:6px">${KH(x[0],x[1],23)}</div><p style="font-size:18px;margin-top:8px">${x[2]}</p><div style="font-size:16px;margin-top:10px;background:#faf5ec;border-radius:10px;padding:8px;color:#5a4d3e">예 · ${x[3]}</div>`}))}]});
+
+/* ═════════ 11-2 EBP · 발달적 vs 기능적 접근 ═════════ */
+KP({id:'e11-2',label:'11-2',title:'근거기반실제 · 목표의 방향',scenes:[
+ {name:'근거기반실제(EBP)',lines:[
+  {tx:'근거기반실제(EBP)는 연구 근거, 언어치료사의 임상적 전문성, 대상자와 가족의 가치와 선호를 통합해 중재를 고르는 것입니다.',say:'근거기반실제는 연구 근거, 언어치료사의 임상적 전문성, 대상자와 가족의 가치와 선호를 통합해 중재를 고르는 것입니다.'},
+  '근거가 좋은 방법이라도 모든 아동에게 그대로 맞지는 않습니다. 그래서 중재는 역동적 과정으로 진행하고, 목표를 달성한 뒤에도 유지와 일반화를 주기적으로 확인합니다.'],
+  cards:[{line:0,sub:0.3,n:3,x:515,y:100,w:250,b:'blue',center:1,pad:'10px',html:`${EMO('📚',30)}<div>${KH('연구 근거','blue',21)}</div>`},
+   {line:0,sub:1.2,n:3,x:200,y:380,w:300,b:'grn',center:1,pad:'10px',html:`${EMO('🧑‍⚕️',30)}<div>${KH('임상적 전문성','grn',21)}</div>`},
+   {line:0,sub:2.1,n:3,x:780,y:380,w:300,b:'org',center:1,pad:'10px',html:`${EMO('👪',30)}<div>${KH('대상자 · 가족의 가치와 선호','org',21)}</div>`},
+   {line:0,sub:2.6,n:3,raw:1,x:0,y:290,w:1280,center:1,html:`<b style="font-size:30px;color:#3a2f24">EBP</b><div style="font-size:18px;font-weight:800;color:#8a7558">근거기반실제</div>`},
+   {line:1,raw:1,x:0,y:510,w:1280,center:1,html:KT('근거가 좋아도 모두에게 맞지는 않음 → <b>역동적 과정</b> · 유지 · 일반화를 <b>주기적으로 확인</b>','pur',18)}]},
+ {name:'발달적 vs 기능적 접근',lines:[
+  '목표의 방향은 두 가지입니다. 발달적 접근은 또래의 발달 순서를 따라 아래 단계부터 차례로 훈련하는 상향식으로, 발달이 약간 늦은 아동에게 주로 씁니다.',
+  '기능적 접근은 실생활에서 당장 필요한 기술부터 가르치는 하향식으로, 장애가 심하거나 일탈이 큰 아동에게 주로 씁니다.',
+  '요즘은 둘을 절충해, 목표는 일상에서 쓸 가능성이 높은 것으로 고르고 활동과 발화 수준은 아동의 발달 수준에 맞춥니다.'],
+  cards:[{line:0,x:90,y:100,w:540,b:'blue',html:KH('⬆️ 발달적 접근 (상향식)','blue',23)+KR('방법','또래 <b>발달 순서</b>대로 결함 단계를 차례로')+KR('근거','앞 단계를 익혀야 다음 단계 (Piaget)')+KR('주로','<b>약간의 발달지체</b> 아동')},
+   {line:1,x:650,y:100,w:540,b:'org',html:KH('⬇️ 기능적 접근 (하향식)','org',23)+KR('방법','실생활에 <b>당장 필요한</b> 기술부터')+KR('근거','발달 순서대로면 기능적 의사소통에 못 닿을 수도')+KR('주로','장애가 <b>심하거나 일탈이 큰</b> 아동')},
+   {line:2,x:190,y:330,w:900,b:'grn',center:1,html:KH('🤝 요즘은 절충','grn',23)+`<div style="display:flex;gap:12px;justify-content:center;margin-top:10px">${KT('목표 = 일상에서 <b>쓸 가능성이 높은</b> 것','grn',18)}${KT('활동 · 발화 수준 = <b>발달 수준</b>에 맞게','blue',18)}</div>`}]}],
+ xi(L){const s=SVGROOT(L);L.insertBefore(s,L.firstChild);this.tri=sv('g',{opacity:0},s);sv('polygon',{points:'640,175 350,415 930,415',fill:'#fff5e8',stroke:'#e8b07a','stroke-width':4,'stroke-dasharray':'10 8'},this.tri);},
+ xd(t,p){op(this.tri,t<ST(p,1)?ap(t,LS(p,0,0)+0.3):0);}});
+
+/* ═════════ 11-3 Fey의 목표 우선순위 · 선정 기준 ═════════ */
+KP({id:'e11-3',label:'11-3',title:'무엇부터 가르칠까 · Fey의 우선순위',scenes:[
+ {name:'Fey의 목표 우선순위',lines:[
+  {tx:'어떤 목표부터 가르칠까요? Fey는 꼭 써야 하는 맥락에서 아동이 그 형식을 얼마나 쓰는지로 순위를 정했습니다.',say:'어떤 목표부터 가르칠까요? 페이는 꼭 써야 하는 맥락에서 아동이 그 형식을 얼마나 쓰는지로 순위를 정했습니다.'},
+  '10에서 50퍼센트 쓰는 것, 즉 막 나타나 불안정하게 쓰는 것이 최우선 순위입니다. 1에서 10퍼센트는 우선 순위, 50에서 90퍼센트는 이미 상당히 익혀서 낮은 순위입니다.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'blue',center:1,noOn:1,html:KH('Fey의 목표 우선순위 ★','blue',24)+`<p style="margin-top:6px">필수 맥락에서 아동이 그 형식 · 기능을 <b>얼마나 쓰는가</b></p>`},
+   {line:1,sub:0.9,n:2,x:90,y:250,w:300,b:'org',center:1,html:`<div style="font-size:30px;font-weight:900;color:#c4621a">1~10%</div>${KH('우선 순위','org',22)}<div style="font-size:16px;margin-top:4px">아직 거의 안 씀</div>`},
+   {line:1,sub:0.1,n:2,x:410,y:235,w:420,b:'red',center:1,html:`<div style="font-size:38px;font-weight:900;color:#c43f2c">10~50% 🔥</div>${KH('최우선 순위','red',26)}<div style="font-size:17px;margin-top:4px">막 나타나 <b>불안정하게</b> 쓰는 것</div>`},
+   {line:1,sub:1.3,n:2,x:850,y:250,w:340,b:'grn',center:1,html:`<div style="font-size:30px;font-weight:900;color:#1f8a5f">50~90%</div>${KH('낮은 순위','grn',22)}<div style="font-size:16px;margin-top:4px">이미 상당히 습득</div>`},
+   {line:1,sub:1.7,n:2,raw:1,x:0,y:440,w:1280,center:1,html:KT('🔥 지금 가르칠 때 = 이미 나타나기 시작한 것','red',20)}]},
+ {name:'목표 선정 기준',lines:[
+  '목표를 고를 때는 의사소통 효과가 큰지, 그림이나 자료로 가르치기 쉬운지, 아동이 낼 수 있는 말소리인지, 그리고 새로운 것은 한 번에 하나씩 주는 용량을 고려합니다.'],
+  cards:[['💬','의사소통 효과','효율적이고 사회적 목표를 빨리 이룸','blue'],['🧑‍🏫','교수 가능성','그림으로 보여 주기 쉽고 자료가 있으며 일상에서 자주 쓰임','grn'],['👄','아동의 음운 능력','산출 가능한 말소리로 된 목표 낱말','org'],['📦','용량','새로운 것은 가능한 한 <b>하나씩</b>','pur']].map((x,i)=>({line:0,sub:0.1+i*0.45,n:2,x:90+(i%2)*560,y:110+Math.floor(i/2)*170,w:540,b:x[3],html:`<div style="display:flex;gap:14px;align-items:center">${EMO(x[0],38)}<div>${KH(x[1],x[3],23)}<div style="font-size:18px;margin-top:4px">${x[2]}</div></div></div>`}))}]});
+
+/* ═════════ 11-4 목표 언어 고르기 ═════════ */
+const K4C=[['공존격','누구랑?'],['장소격','어디?'],['주격','누가?'],['목적격','무얼?'],['도구격','무엇으로?']];
+KP({id:'e11-4',label:'11-4',title:'목표 언어 고르기',scenes:[
+ {name:'첫 낱말 · 낱말 조합',lines:[
+  '첫 낱말 단계에서는 자주 듣고 또래가 많이 쓰는 고빈도 어휘, 직접 만질 수 있는 사물, 가족 호칭, 먹기와 씻기 같은 일상 어휘를 먼저 고르고, 문장으로 늘리기 좋은 동사와 형용사도 넣습니다.',
+  '위, 아래 같은 위치어나 큰, 작은 같은 관형어, 슬픈, 기쁜 같은 상태어는 관계를 인지적으로 이해했는지 먼저 확인합니다. 낱말 조합 단계에서는 또래가 자주 쓰는 두세 낱말 의미관계를 목표로 합니다.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'blue',html:KH('🍼 첫 낱말 단계','blue',23)+`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">${['고빈도 어휘','직접 만지고 조작하는 사물','가족 호칭','옷 입기 · 씻기 · 먹기 · 자기','문장으로 늘리기 좋은 동사 · 형용사'].map(x=>KT(x,'blue',18)).join('')}</div>`},
+   {line:1,x:90,y:268,w:540,b:'org',html:KH('🧠 먼저 확인할 것','org',22)+`<div style="margin-top:8px">${KT('위 · 아래 (위치어)','org')}${KT('큰 · 작은 (관형어)','org')}${KT('슬픈 · 기쁜 (상태어)','org')}</div><div style="font-size:18px;margin-top:8px">→ 관계를 <b>인지적으로 이해</b>했나?</div>`},
+   {line:1,sub:1.3,n:2,x:650,y:268,w:540,b:'grn',html:KH('🧱 낱말 조합 단계','grn',22)+`<div style="font-size:18px;margin-top:8px">또래가 자주 쓰는 <b>2~3낱말 의미관계</b></div><div style="margin-top:8px">${KB('엄마','#5b8fd6')}${KB('물','#5b8fd6')}${KB('줘','#23a271')}</div>`}]},
+ {name:'문법형태소 · 시제',lines:[
+  '격조사는 대체로 공존격, 장소격, 주격, 목적격, 도구격 순으로 가르칩니다. 누구랑, 어디, 누가, 무얼, 무엇으로 같은 의문사로 조사를 끌어낼 수 있습니다.',
+  '시제는 개념부터 확인하고, 미래형은 활동을 시작하기 전에, 진행형은 함께 하면서, 과거형은 활동을 끝낸 직후에 묻습니다. 회기 목표가 아닌 오류는 바로 고치지 않고 기록해 둡니다.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'org',center:1,html:KH('격조사 지도 순서 · 의문사로 유도하기','org',23)+`<div style="display:flex;gap:6px;justify-content:center;align-items:center;margin-top:10px">${K4C.map(x=>`<div style="background:#fff1e0;border-radius:12px;padding:8px 12px"><b style="font-size:19px;color:#c4621a">${x[0]}</b><div style="font-size:17px">${x[1]}</div></div>`).join(AR)}</div>`},
+   {line:1,x:90,y:285,w:1100,b:'blue',html:`<div style="text-align:center">${KH('⏱️ 시제는 활동 시간에 맞춰 묻기','blue',23)}</div><div style="display:flex;gap:12px;margin-top:10px">${[['활동 시작 전','미래형','뭐 할 거야?'],['활동하면서','진행형','뭐 하고 있어?'],['활동 끝난 직후','과거형','뭐 했어?']].map(x=>`<div style="flex:1;background:#eef4fd;border-radius:12px;padding:8px;text-align:center"><div style="font-size:16px;color:#8a7558">${x[0]}</div><b style="font-size:21px;color:#2f6fc4">${x[1]}</b><div style="font-size:18px">"${x[2]}"</div></div>`).join('')}</div>`},
+   {line:1,sub:1.5,n:2,raw:1,x:0,y:480,w:1280,center:1,html:KT('회기 목표가 아닌 오류 → 바로 고치지 않고 <b>기록</b>','gry',18)}]}]});
+
+/* ═════════ 11-5 목표 달성 전략 ═════════ */
+const ICO={stair:`<svg width="120" height="64"><path d="M10,58 H40 V40 H70 V22 H100 V6" fill="none" stroke="#2f7bd8" stroke-width="6" stroke-linejoin="round"/></svg>`,
+ lines:`<svg width="120" height="64">${[12,32,52].map(y=>`<path d="M10,${y} H100" stroke="#23a271" stroke-width="6" stroke-linecap="round"/><path d="M96,${y-7} L110,${y} L96,${y+7}Z" fill="#23a271"/>`).join('')}</svg>`,
+ cycle:`<svg width="120" height="64"><circle cx="60" cy="32" r="24" fill="none" stroke="#e8781e" stroke-width="6" stroke-dasharray="120 31"/><path d="M78,6 L90,16 L76,22Z" fill="#e8781e"/></svg>`};
+const K5=[['수직적 전략','blue','stair','한 목표가 <b>습득 기준</b>에 도달하면 다음 단계로','단계적 · 위계적','기준이 너무 높으면 반복이 많아 흥미 ↓'],
+ ['수평적 전략','grn','lines','<b>한 회기에 2개 이상</b>, 위계 없는 비슷한 수준','일상 자극과 비슷 · <b>일반화</b>에 유리','주의 산만 · 인지가 낮으면 혼란'],
+ ['주기적 전략','org','cycle','반응이 아니라 <b>기간(회기 수)</b>이 지나면 다음 목표 · 주기 반복','짧게 여러 목표 경험','처음엔 정확도가 낮아 좌절 가능']];
+KP({id:'e11-5',label:'11-5',title:'목표 달성 전략 (Fey)',scenes:[
+ {name:'세 가지 전략',lines:[
+  '목표 달성 전략은 세 가지입니다. 수직적 전략은 한 목표가 습득 기준에 도달해야 다음 목표로 올라가는 계단식입니다. 단계적이지만 기준이 너무 높으면 반복이 많아 흥미가 떨어집니다.',
+  '수평적 전략은 한 회기에 위계가 없는 비슷한 수준의 목표 두 가지 이상을 함께 다룹니다. 일상 자극과 비슷해 일반화에 유리하지만, 주의가 산만한 아동은 혼란스러울 수 있습니다.',
+  '주기적 전략은 아동의 반응이 아니라 정해진 기간이 지나면 다음 목표로 넘어가고, 주기를 돌며 반복합니다. 여러 목표를 짧게 경험하지만 처음엔 정확도가 낮아 좌절할 수 있습니다.'],
+  cards:K5.map((x,i)=>({line:i,x:90+i*375,y:100,w:350,b:x[1],html:`<div style="text-align:center">${ICO[x[2]]}<div>${KH(x[0],x[1],24)}</div></div>${KR('방식',x[3])}${KR('✔ 장점',x[4])}${KR('⚠ 주의',x[5])}`}))
+   .concat([{line:0,sub:1.6,n:2,raw:1,x:0,y:470,w:1280,center:1,html:KT('습득 기준 예 · 정확도 90% · 연속 3회기 (과제 난이도에 따라 조절)','gry',17)}])},
+ {name:'예로 보기',lines:[
+  '예를 들어 수직적 전략은 행위자와 행위 조합을 모방하고, 행위자만 주면 완성하고, 무엇을 하는지 물으면 스스로 말하는 순서로 올라갑니다.',
+  '수평적 전략은 그림책을 보며 행위자와 행위, 대상과 행위, 실체와 서술 조합을 함께 연습합니다. 주기적 전략은 1주 명사, 2주 동사, 3주 형용사를 돌고 다음 주기에 다시 반복합니다.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'blue',html:KH('수직적','blue',21)+ROW(['완전 모델링 모방','행위자만 주면 완성','"OO가 뭐해?"에 자발 산출'],'blue')},
+   {line:1,sub:0.1,n:2,x:90,y:235,w:1100,b:'grn',html:KH('수평적','grn',21)+`<div style="display:flex;gap:10px;justify-content:center;margin-top:8px">${['행위자-행위','대상-행위','실체-서술'].map(x=>KT(x,'grn',18)).join('')}<span style="font-size:18px;font-weight:800;align-self:center">→ 한 회기에 함께</span></div>`},
+   {line:1,sub:1.2,n:2,x:90,y:370,w:1100,b:'org',html:KH('주기적','org',21)+`<div style="display:flex;gap:6px;justify-content:center;align-items:center;margin-top:8px">${['1주 명사 10개','2주 동사 7개','3주 형용사 5개'].map(x=>KT(x,'org',18)).join(AR)}${AR}${KT('🔁 2주기에 다시','org',18)}</div>`}]}]});
+
+/* ═════════ 11-6 장단기 목표와 행동목표 ═════════ */
+KP({id:'e11-6',label:'11-6',title:'장단기 목표와 행동목표',scenes:[
+ {name:'장기목표와 단기목표',lines:[
+  '장기목표는 평가 결과를 바탕으로 넓은 의사소통 영역의 목표를 보통 6개월에서 1년 단위로 세우고, 달성하면 치료를 마칩니다. 장기목표 하나에 단기목표를 서너 개 둡니다.'],
+  cards:[{line:0,x:390,y:100,w:500,b:'org',center:1,noOn:1,html:KH('🏁 장기목표','org',25)+`<div style="font-size:18px;margin-top:6px">넓은 의사소통 영역 · <b>6개월~1년</b></div><div style="font-size:17px;margin-top:4px">달성 = <b>치료 종료</b> · 일반화 목표도 포함</div>`},
+   ...[1,2,3,4].map(i=>({line:0,sub:0.9+i*0.2,n:2,x:110+(i-1)*275,y:330,w:240,b:'blue',center:1,pad:'10px',html:`${KH('단기목표 '+i,'blue',20)}<div style="font-size:15px;margin-top:2px">행동목표</div>`})),
+   {line:0,sub:1.0,n:2,raw:1,x:0,y:262,w:1280,center:1,html:'<b style="font-size:30px;color:#e8b07a">⬇ ⬇ ⬇ ⬇</b>'}]},
+ {name:'행동목표 세 요소',lines:[
+  '단기목표인 행동목표는 세 요소로 씁니다. 관찰하고 측정할 수 있는 목표 행동, 단서나 장소 같은 조건, 그리고 얼마나 잘해야 하는지의 준거입니다.',
+  {tx:'예를 들어 그림카드를 제시했을 때, 1음절 낱말 어두 초성 /ㅅ/을, 90퍼센트 정확하게 조음한다처럼 씁니다.',say:'예를 들어 그림카드를 제시했을 때, 1음절 낱말 어두 초성 시옷을, 90퍼센트 정확하게 조음한다처럼 씁니다.'},
+  '이해한다, 안다, 배운다, 기억한다는 관찰할 수 없어서 쓰지 않습니다. 이해한다는 지적한다로, 안다는 말한다로 바꿉니다.',
+  '검사 점수나 검사 문항을 목표로 삼아서도 안 됩니다. 구문의미 이해력검사 60퍼센타일로 향상, 어휘력검사의 형용사 20개 습득 같은 목표는 잘못입니다.'],
+  cards:[...[['조건','#5b8fd6','단서 · 장소 · 활동 · 사람'],['목표 행동','#23a271','관찰 · 측정 가능한 동사'],['준거','#e8781e','얼마나 잘 · 몇 번 · 몇 회기']].map((x,i)=>({line:0,sub:0.2+i*0.5,n:2,x:90+i*375,y:100,w:350,center:1,pad:'12px',html:`<div style="background:${x[1]};color:#fff;border-radius:12px;padding:8px;font-size:24px;font-weight:900">${x[0]}</div><div style="font-size:17px;margin-top:8px">${x[2]}</div>`})),
+   {line:1,x:90,y:240,w:1100,b:'grn',center:1,html:`<div>${KB('그림카드를 제시했을 때','#5b8fd6')} ${KB('1음절 낱말 어두 초성 /ㅅ/을','#23a271')} ${KB('90% 정확하게','#e8781e')} ${KB('조음한다','#23a271')}</div><div style="font-size:16px;margin-top:6px;color:#8a7558">조건 + 행동 + 준거</div>`},
+   {line:2,x:90,y:370,w:540,b:'red',html:KH('✘ 관찰할 수 없는 동사','red',21)+`<div style="margin-top:6px">${['이해한다','안다','배운다','기억한다'].map(x=>`<span style="display:inline-block;padding:4px 10px;margin:3px;border-radius:10px;background:#fde2dc;color:#c43f2c;font-weight:800;text-decoration:line-through">${x}</span>`).join('')}</div><div style="font-size:18px;margin-top:6px">→ ${KT('지적한다','grn')} ${KT('말한다','grn')}</div>`},
+   {line:3,x:650,y:370,w:540,b:'red',html:KH('✘ 검사 점수 · 문항을 목표로','red',21)+`<div style="font-size:17px;margin-top:6px;line-height:1.6"><s>구문의미 이해력검사 60%ile로 향상</s><br><s>MLU-w를 3.5로 향상</s><br><s>REVT 형용사 20개 습득</s></div>`}]}]});
+</script>
+<script>"use strict";
+/* ═════════ 11-7 단기목표 세분화 · 일반화 ═════════ */
+KP({id:'e11-7',label:'11-7',title:'단기목표 세분화와 일반화',scenes:[
+ {name:'세분화 세 축',lines:[
+  '단기목표는 세 축으로 잘게 나눕니다. 자극은 실제 사물에서 사진과 그림, 말과 글로, 도움은 모방에서 단서, 자발로, 반응은 음소에서 음절, 낱말, 구, 문장으로 올라갑니다.',
+  '전체 방향은 간단한 것에서 복잡한 것으로, 계속 강화에서 간헐 강화로, 구조화된 상황에서 덜 구조화된 상황으로 갑니다.'],
+  cards:[{line:0,sub:0.1,n:3,x:90,y:100,w:1100,b:'blue',pad:'10px 18px',html:`<div style="display:flex;align-items:center;gap:12px">${KH('🧸 자극','blue',21)}<div style="flex:1">${ROW(['실제 사물','모형 · 사진 · 그림 · 선그림','말 · 글'],'blue')}</div></div>`},
+   {line:0,sub:1.2,n:3,x:90,y:195,w:1100,b:'grn',pad:'10px 18px',html:`<div style="display:flex;align-items:center;gap:12px">${KH('🤲 도움','grn',21)}<div style="flex:1">${ROW(['모방','단서 (시각 · 청각)','자발'],'grn')}</div></div>`},
+   {line:0,sub:2.1,n:3,x:90,y:290,w:1100,b:'org',pad:'10px 18px',html:`<div style="display:flex;align-items:center;gap:12px">${KH('🗣️ 반응','org',21)}<div style="flex:1">${ROW(['음소','음절','낱말','구','문장'],'org')}</div></div>`},
+   {line:1,x:90,y:400,w:1100,b:'pur',center:1,html:KH('치료의 일반적 방향','pur',21)+`<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px">${['간단 → 복잡','모방 → 촉진 → 자발','계속 강화 → 간헐 강화','구조화 → 덜 구조화'].map(x=>KT(x,'pur',18)).join('')}</div>`}]},
+ {name:'일반화 세 가지',lines:[
+  '일반화는 처음부터 계획에 넣습니다. 자극 일반화는 사물로 배운 요구하기를 훈련하지 않은 그림에서도 쓰는 것입니다.',
+  '상황 일반화는 치료실에서 배운 것을 유치원에서 쓰는 것, 대상 일반화는 선생님에게 하던 말을 친구에게도 쓰는 것입니다. 습득, 일반화, 유지 순으로 확인합니다.'],
+  cards:[{line:0,x:90,y:110,w:350,b:'blue',center:1,html:`${EMO('🖼️',40)}<div>${KH('자극 일반화','blue',23)}</div><div style="font-size:18px;margin-top:8px">사물로 배운 요구하기<br>→ <b>그림</b>에서도</div>`},
+   {line:1,sub:0.1,n:2,x:465,y:110,w:350,b:'grn',center:1,html:`${EMO('🏫',40)}<div>${KH('상황(장면) 일반화','grn',23)}</div><div style="font-size:18px;margin-top:8px">치료실 놀이에서 배운 것<br>→ <b>유치원</b>에서</div>`},
+   {line:1,sub:0.8,n:2,x:840,y:110,w:350,b:'org',center:1,html:`${EMO('👫',40)}<div>${KH('대상 일반화','org',23)}</div><div style="font-size:18px;margin-top:8px">선생님에게 하던 요구<br>→ <b>친구</b>에게도</div>`},
+   {line:1,sub:1.5,n:2,raw:1,x:0,y:400,w:1280,center:1,html:`<div style="display:flex;gap:8px;justify-content:center;align-items:center">${['습득','일반화','유지'].map(x=>KT(x,'pur',22)).join(AR)}</div><div style="margin-top:10px">${KT('우연에 맡기지 않고 <b>처음부터 계획</b>','gry',18)}</div>`}]}]});
+
+/* ═════════ 11-8 행동주의 학습원리 ═════════ */
+const K8=[[0,0.2,290,140,'정적 강화','grn','좋아하는 것을 <b>주어서</b> → 행동 ⬆','정반응 뒤 칭찬 · 원하는 장난감'],
+ [0,1.1,750,140,'부적 강화','blue','싫은 것을 <b>없애서</b> → 행동 ⬆','바른 요청을 하면 싫은 과제를 빼 줌'],
+ [1,0.1,290,300,'처벌','red','혐오 자극을 <b>주어서</b> → 행동 ⬇','벽에 낙서하면 후식이 없음'],
+ [2,0.1,750,300,'소거 · 타임아웃','pur','강화를 <b>없애서</b> → 행동 ⬇','분노발작에 요구를 들어주지 않음 · 잠깐 격리']];
+KP({id:'e11-8',label:'11-8',title:'행동주의 학습원리',scenes:[
+ {name:'강화와 처벌',lines:[
+  '행동을 늘리는 것이 강화입니다. 정적 강화는 좋아하는 것을 주어서, 부적 강화는 싫은 것을 없애 주어서 행동을 늘립니다.',
+  '처벌은 행동 뒤에 싫은 자극을 주어 행동을 줄입니다. 부적 강화는 무언가를 빼서 행동을 늘리는 것이라 처벌과 다릅니다.',
+  '소거는 행동을 유지시키던 강화를 없애는 것이고, 타임아웃은 잠깐 강화를 받을 수 없는 곳에 두는 것입니다. 분노발작 때 요구를 들어주지 않는 것이 소거입니다.'],
+  cards:[{line:0,raw:1,x:290,y:96,w:440,center:1,html:KT('➕ 주기','gry',20)},{line:0,raw:1,x:750,y:96,w:440,center:1,html:KT('➖ 빼기','gry',20)},
+   {line:0,raw:1,x:90,y:185,w:180,center:1,html:KT('행동 ⬆','grn',20)},{line:1,raw:1,x:90,y:345,w:180,center:1,html:KT('행동 ⬇','red',20)},
+   ...K8.map(x=>({line:x[0],sub:x[1],n:2,x:x[2],y:x[3],w:440,b:x[5],pad:'12px 16px',html:KH(x[4],x[5],23)+`<div style="font-size:18px;margin-top:4px">${x[6]}</div><div style="font-size:16px;margin-top:4px;color:#8a7558">예 · ${x[7]}</div>`})),
+   {line:1,sub:1.2,n:2,raw:1,x:0,y:470,w:1280,center:1,html:KT('⚠ 부적 강화 ≠ 처벌 · 부적 강화는 빼서 <b>늘림</b>, 처벌은 <b>줄임</b>','red',19)}]},
+ {name:'강화의 종류와 계획',lines:[
+  '강화에는 음식이나 스티커 같은 물질적 강화, 칭찬 같은 사회적 강화, 좋아하는 활동을 허락하는 활동적 강화가 있습니다. 물질적 강화는 강력하지만 의존과 일반화 문제가 있습니다.',
+  '처음 배울 때는 반응마다 강화하는 고정비율 1대 1로 하다가, 점차 비율을 늘리거나 불규칙한 변동비율로 바꿉니다.',
+  '가장 좋은 것은 상황과 연결된 자연스러운 강화입니다. 붕붕 하고 차를 요구한 아이에게는 칭찬만 하기보다 차를 주는 것이 진짜 강화입니다.'],
+  cards:[...[['🍬','물질적','음식 · 스티커 · 토큰','강력하지만 의존 · 일반화 제한'],['👏','사회적','칭찬',''],['🎮','활동적','좋아하는 활동 허락','']].map((x,i)=>({line:0,sub:0.2+i*0.5,n:2,x:90+i*375,y:100,w:350,center:1,pad:'10px',html:`${EMO(x[0],32)} ${KH(x[1]+' 강화','org',21)}<div style="font-size:17px;margin-top:4px">${x[2]}</div>${x[3]?`<div style="font-size:15px;color:#c43f2c;margin-top:4px">${x[3]}</div>`:''}`})),
+   {line:1,x:90,y:240,w:1100,b:'blue',center:1,html:KH('강화 계획','blue',21)+`<div style="display:flex;gap:8px;justify-content:center;align-items:center;margin-top:8px">${KT('고정비율 1:1 · ✔✔✔✔','blue',18)}${AR}${KT('2:1 · 3:1 · ✔ · ✔ ·','blue',18)}${AR}${KT('변동비율 · ✔ · · ✔ ✔ ·','blue',18)}</div>`},
+   {line:2,x:90,y:370,w:1100,b:'grn',html:`<div style="display:flex;gap:16px;align-items:center;justify-content:center">${EMO('🧒',40)}<span style="font-size:24px;font-weight:900">"붕붕!" 🚗</span>${AR}<span style="font-size:19px"><s style="color:#c43f2c">칭찬만</s> ✘</span><span style="font-size:19px;font-weight:900;color:#1f8a5f">차를 준다 ✔ = 자연스러운 강화</span></div>`}]}]});
+
+/* ═════════ 11-9 치료의 구조화 ═════════ */
+KP({id:'e11-9',label:'11-9',title:'치료의 구조화 · 누가 이끄는가',scenes:[
+ {name:'치료사중심 · 절충 · 아동중심',lines:[
+  {tx:'Fey는 치료사가 얼마나 개입하는지에 따라 접근법을 하나의 연속선으로 봤습니다. 치료사중심 접근은 치료사가 목표, 활동, 강화를 모두 정하고 훈련, 훈련놀이, 모델링을 씁니다.',say:'페이는 치료사가 얼마나 개입하는지에 따라 접근법을 하나의 연속선으로 봤습니다. 치료사중심 접근은 치료사가 목표, 활동, 강화를 모두 정하고 훈련, 훈련놀이, 모델링을 씁니다.'},
+  '치료사중심은 효율적이라 새 행동을 익히기 좋지만 일반화가 어렵습니다. 아동중심 접근은 아동이 활동을 고르고 치료사는 따라가며 혼잣말, 평행발화, 확장 같은 기법을 씁니다. 일반화는 쉽지만 새 행동 습득은 어렵습니다.',
+  '절충법은 치료사가 목표와 활동을 정하되 아동이 스스로 목표 발화를 쓰도록 유도합니다. 집중적 자극, 선반응요구 후시범, 시간지연, 우발교수, 스크립트가 여기에 속합니다.'],
+  cards:[{line:0,raw:1,x:90,y:100,w:1100,html:`<div style="display:flex;justify-content:space-between;font-size:19px;font-weight:900"><span class="k-blue">◀ 치료사가 이끔</span><span class="k-gry">개입 정도의 연속선</span><span class="k-grn">아동이 이끔 ▶</span></div><div style="height:12px;border-radius:6px;margin-top:6px;background:linear-gradient(90deg,#8fbaf0,#f5bd84,#88d6b5)"></div>`},
+   {line:0,x:90,y:160,w:350,b:'blue',html:KH('🧑‍🏫 치료사중심','blue',22)+KR('주도','목표 · 활동 · 장난감 · 강화 모두 치료사')+KR('기법','훈련 · 훈련놀이 · 모델링')+`<div style="margin-top:8px">${KT('✔ 새 행동 습득','grn')}${KT('✘ 일반화','red')}</div>`},
+   {line:2,x:465,y:160,w:350,b:'org',html:KH('🤝 절충법','org',22)+KR('주도','목표 · 활동은 치료사, 발화는 아동이 <b>자발적으로</b>')+KR('기법','집중적 자극 · 선반응요구-후시범 · 시간지연 · 우발교수 · 스크립트')},
+   {line:1,sub:0.8,n:2,x:840,y:160,w:350,b:'grn',html:KH('🧒 아동중심','grn',22)+KR('주도','아동이 활동 · 자료 선택, 치료사는 따라감')+KR('기법','혼잣말 · 평행발화 · 확장 · 확대 · 분리합성 · 재구성 · 모방')+`<div style="margin-top:8px">${KT('✔ 일반화','grn')}${KT('✘ 새 행동 습득','red')}</div>`}]},
+ {name:'자연스러움 · 형식과 기능',lines:[
+  '자연스러움도 연속선입니다. 사람은 치료사에서 교사, 부모로, 장소는 치료실에서 교실, 가정으로, 활동은 연습에서 구조화된 활동, 일상활동으로 갈수록 자연스럽습니다.',
+  '활동중심중재는 아동이 고르거나 즐기는 활동 안에서 목표를 달성하게 하는 절충법으로, 습득보다 일반화 단계에서 더 효과적입니다.',
+  '형식주의 접근은 언어 구조를 모방과 반복으로 가르치고, 기능주의 접근은 자연스러운 대화에서 메시지 전달과 사용을 강조합니다.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'pur',pad:'10px 18px',html:`<div style="text-align:center">${KH('자연스러움의 연속선 → 오른쪽일수록 자연스러움','pur',21)}</div>${[['사람',['치료사','교사','부모']],['장소',['치료실','교실','가정']],['활동',['연습','구조화 활동','일상활동']]].map(r=>`<div style="display:flex;align-items:center;gap:10px;margin-top:4px"><b style="width:60px;font-size:18px;color:#8a7558">${r[0]}</b><div style="flex:1">${ROW(r[1],'pur',17)}</div></div>`).join('')}`},
+   {line:1,x:90,y:300,w:1100,b:'org',pad:'10px 18px',html:`${KH('활동중심중재(ABI)','org',21)} <span style="font-size:18px">아동이 고르거나 즐기는 활동 안에서 목표 달성 · 집단 · 사회성 · 자조 · 운동도 목표 · <b>일반화 단계</b>에서 효과적</span>`},
+   {line:2,x:90,y:395,w:540,b:'blue',pad:'10px 16px',html:KH('형식주의','blue',21)+`<div style="font-size:17px;margin-top:4px">치료사가 구조화 · <b>언어 구조</b> 강조 · 모방 · 반복 연습</div>`},
+   {line:2,sub:0.9,n:2,x:650,y:395,w:540,b:'grn',pad:'10px 16px',html:KH('기능주의','grn',21)+`<div style="font-size:17px;margin-top:4px">맥락에 맞는 환경 · <b>자연스러운 대화</b> · 메시지 전달과 사용</div>`}]}]});
+
+/* ═════════ 11-10 아동중심 기법 ① ═════════ */
+const K10=[[0,0.1,0,'차가 가네.','혼잣말 · 어른이 <b>자기 행동</b>을 자기 입장에서','blue'],[1,0.1,0,'차 주세요.','평행발화 · <b>아이 입장</b>에서 대신 말해 줌','grn'],[2,0.1,1,'차!','모방 · 아이 말을 그대로 따라 해 전달됐음을 알림','org'],[2,0.7,0,'차! 맞아.','','org']];
+KP({id:'e11-10',label:'11-10',title:'아동중심 기법 ① 혼잣말 · 평행발화 · 모방',scenes:[
+ {name:'혼잣말 · 평행발화 · 모방',lines:[
+  '아동중심 기법은 아이에게 말을 시키지 않고 들려주는 간접 언어자극입니다. 혼잣말은 어른이 자기 행동을 자기 입장에서 말하는 것으로, 어른이 차를 밀며 차가 가네 하고 말합니다.',
+  '평행발화는 아이가 하는 행동이나 아이가 할 만한 말을 아이 입장에서 대신 말해 주는 것입니다. 아이에게 차를 건네며 차 주세요 하고 말해 줍니다.',
+  '모방은 아이 말을 그대로 따라 해서 잘 전달됐다고 알려 주는 것입니다. 혼잣말은 어른 자신의 행동, 평행발화는 아이의 행동과 입장이라는 점을 구분하세요.'],
+  cards:[{line:0,raw:1,x:0,y:470,w:1280,center:1,noOn:1,html:''},
+   {line:2,sub:1.4,n:2,raw:1,x:0,y:160,w:1280,center:1,html:KT('★ 혼잣말 = 어른 <b>자신</b>의 행동 · 평행발화 = <b>아이</b>의 행동 · 입장','red',20)}]}],
+ xi(L){const s=SVGROOT(L);this.g=sv('g',{},s);this.th=person(this.g,{kind:'ther',x:380,y:575,s:0.95});this.kid=person(this.g,{kind:'kid',x:880,y:575,s:0.95,flip:true});
+  this.car=hdiv('ov','<span style="font-size:56px">🚗</span>',L,'position:absolute;left:600px;top:480px');
+  this.bt=bubble(L,380,330,'');this.bk=bubble(L,880,400,'');this.lb=hdiv('ov','',L,'position:absolute;left:0;width:1280px;top:100px;text-align:center');},
+ xd(t,p){op(this.g,ap(t,ST(p,0)+0.1));op(this.car,ap(t,ST(p,0)+0.3));const k=curLine(t,p,0);
+  const cx=k===0?560:(k===1?700:720);this.car.style.left=cx+'px';
+  let lt=null,lk=null,lab='';for(const x of K10){if(x[0]===k&&t>=sub_(p,0,x[0],x[1],2)){if(x[2]===0)lt=x;else lk=x;if(x[4])lab=KT(x[4],x[5],21);}}
+  if(lt){this.bt.set(lt[3]);pop(this.bt,ap(t,sub_(p,0,lt[0],lt[1],2)));this.th.face('open');}else{op(this.bt,0);this.th.face('smile');}
+  if(lk){this.bk.set(lk[3]);pop(this.bk,ap(t,sub_(p,0,lk[0],lk[1],2)));this.kid.face('open');}else{op(this.bk,0);this.kid.face('smile');}
+  this.th.arm(1,k===0?40:(k===1?70:0));setH(this.lb,lab);op(this.lb,lab?1:0);}});
+
+/* ═════════ 11-11 아동중심 기법 ② ═════════ */
+KP({id:'e11-11',label:'11-11',title:'아동중심 기법 ② 확장 · 확대 · 분리합성 · 재구성',scenes:[
+ {name:'확장 vs 확대',lines:[
+  '확장은 아이 말의 구조는 그대로 두고 문법을 바르게 다듬어 들려주는 것입니다. 아이가 공 던져 하면 공을 던져 하고 조사를 채워 줍니다.',
+  '확대는 아이의 주제는 유지하면서 의미 정보를 더해 주는 것입니다. 아이가 공 하면 큰 공, 축구공처럼 뜻을 넓혀 줍니다. 확장은 형식, 확대는 의미라고 기억하세요.'],
+  cards:[{line:0,x:90,y:100,w:540,b:'org',html:KH('🔧 확장 (expansion) · 형식','org',23)+`<div style="margin-top:12px;font-size:18px">🧒 ${KB('공',C_N)}${KB('던져',C_V)}</div><div style="margin-top:6px;font-size:18px">🧑‍🏫 ${KB('공',C_N)}${KB('을',C_J)}${KB('던져',C_V)}</div><div style="font-size:17px;margin-top:10px">구조(어순)는 그대로 · <b>문법을 바르게</b><br>예 · "누나" → "누나<b>가</b>"</div>`},
+   {line:1,x:650,y:100,w:540,b:'grn',html:KH('🌱 확대 (extension) · 의미','grn',23)+`<div style="margin-top:12px;font-size:18px">🧒 ${KB('공',C_N)}</div><div style="margin-top:6px;font-size:18px">🧑‍🏫 ${KB('큰',C_M)}${KB('공',C_N)} &nbsp; ${KB('축구',C_M)}${KB('공',C_N)}</div><div style="font-size:17px;margin-top:10px">주제는 그대로 · <b>의미 정보를 더함</b></div>`},
+   {line:1,sub:1.5,n:2,raw:1,x:0,y:430,w:1280,center:1,html:KT('★ 확장 = 문법(형식) · 확대 = 의미(내용)','red',21)}]},
+ {name:'분리합성 · 문장 재구성',lines:[
+  '분리 합성은 문장을 작은 단위로 쪼개 들려준 뒤 다시 합칩니다. 형이 찔렸구나, 유리에 찔렸구나, 발이 찔렸구나, 그리고 형이 유리에 발이 찔렸구나 하는 식입니다.',
+  '문장 재구성은 뜻은 그대로 두고 문장 형태를 바꿔 들려줍니다. 미영이가 민이를 찼다를 민이가 미영이한테 맞았어 하고 바꿔 말하는 식입니다.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'blue',html:KH('✂️ 분리 · 합성 (breakdown & buildup)','blue',22)+`<div style="display:flex;gap:6px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:10px">${['형이 찔렸구나.','유리에 찔렸구나.','발이 찔렸구나.'].map(x=>KT(x,'blue',18)).join('')}${AR}${KT('<b>형이 유리에 발이 찔렸구나.</b>','org',19)}</div><div style="display:flex;justify-content:space-around;font-size:16px;color:#8a7558;margin-top:4px"><span>쪼개기</span><span>합치기</span></div>`},
+   {line:1,x:90,y:290,w:1100,b:'pur',html:KH('🔄 문장 재구성 (recast)','pur',22)+`<div style="display:flex;gap:8px;align-items:center;justify-content:center;margin-top:10px">${KT('미영이가 민이를 찼다.','gry',19)}${AR}${KT('민이가 미영이한테 맞았어?','pur',19)}</div><div style="font-size:17px;margin-top:8px;text-align:center"><b>뜻은 그대로</b> · 문장 <b>형태</b>를 바꿈 (능동 → 피동)</div>`}]}]});
+
+/* ═════════ 11-12 맥락 만들기 · 단서 주기 ═════════ */
+const K12=[[0,0.1,'💇','빗을 <b>하나만</b>','주고받기 · 물건 요구하기'],[0,0.9,'🧴','혼자 못 여는 <b>풀 뚜껑</b>','도움 요청하기'],[0,1.5,'🌱','씨 뿌리기 · 지시 주고받기','지시 따르기 · 지시하기'],
+ [1,0.1,'🎁','신기한 물건 · <b>물을 때까지</b> 설명 안 함','정보 요청하기'],[1,0.8,'🔪','플라스틱 칼로 과일 깎기','저항하기'],[1,1.4,'🎨','아이 작품에 궁금한 태도로 질문','정보 제공하기']];
+KP({id:'e11-12',label:'11-12',title:'맥락 만들기 · 단서 주기',scenes:[
+ {name:'상황을 설계하기',lines:[
+  '말을 끌어내려면 상황을 설계합니다. 빗을 하나만 두면 주고받기와 요구하기가, 혼자 못 여는 풀 뚜껑에서는 도움 요청이, 씨 뿌리기에서 지시를 주고받으면 지시 따르기와 지시하기가 나옵니다.',
+  '신기한 물건을 보여 주고 아이가 물을 때까지 설명하지 않으면 정보 요청이, 플라스틱 칼로 과일을 깎으라고 하면 저항하기가, 아이 작품에 궁금해하면 정보 제공이 나옵니다.'],
+  cards:K12.map((x,i)=>({line:x[0],sub:x[1],n:2,x:90+(i%3)*375,y:100+Math.floor(i/3)*185,w:350,center:1,pad:'12px',html:`${EMO(x[2],34)}<div style="font-size:18px;margin-top:6px">${x[3]}</div><div style="margin-top:8px">${KT('→ '+x[4],['blue','grn','org','pur','red','grn'][i],17)}</div>`}))},
+ {name:'말로 주는 단서',lines:[
+  '말로 주는 단서도 있습니다. 시범으로는 혼잣말과 평행발화를 쓰고, 직접 단서는 질문, 문장 완성, 대치요청, 선반응요구 후시범처럼 반응을 직접 요구합니다.',
+  '간접 단서 중 반응을 요구하는 것은 응 하고 못 알아들은 척하기, 고쳐 말하기나 확장을 요청하기 같은 것이고, 반응을 요구하지 않는 것은 요구 들어주기, 그랬어 하는 수긍, 모방, 확장과 확대 같은 것입니다.'],
+  cards:[{line:0,x:90,y:100,w:350,b:'blue',html:KH('시범 · 직접 단서','blue',21)+KR('시범','혼잣말 · 평행발화')+KR('직접 단서','질문(단답 · 선택 · 개방) · 문장 완성 · <b>대치요청</b> · 선반응요구-후시범')},
+   {line:1,sub:0.1,n:2,x:465,y:100,w:350,b:'org',html:KH('간접 · 반응 요구함','org',21)+`<div style="font-size:17px;margin-top:6px;line-height:1.55">수정모델 후 재시도 · 오류반복 후 재시도 · 자기교정 요청 · <b>"응?"</b> (이해 못했음 표현) · 확장 요청 · 반복 요청 · 주제 확대</div>`},
+   {line:1,sub:1.1,n:2,x:840,y:100,w:350,b:'grn',html:KH('간접 · 반응 요구 안 함','grn',21)+`<div style="font-size:17px;margin-top:6px;line-height:1.55">요구 들어주기 · <b>"그랬어?"</b> (이해했음 표현) · 모방 · 구문 확장 · 어휘 확대 · 분리합성 · 재구성</div>`}]}]});
+</script>
+<script>"use strict";
+/* ═════════ 11-13 절충 기법 ① ═════════ */
+const SAY=(who,t,c)=>`<span style="display:inline-block;padding:6px 12px;margin:3px;border-radius:14px;border:2px solid ${c||'#3f3326'};background:#fff;font-size:18px;font-weight:800">${who} ${t}</span>`;
+KP({id:'e11-13',label:'11-13',title:'절충 기법 ① 집중적 자극 · 수직적 구조화',scenes:[
+ {name:'집중적 자극 · 수직적 구조화',lines:[
+  '집중적 자극은 목표 형태를 아주 자주 들려주도록 상황을 짭니다. 말을 강요하지는 않습니다. 시소를 타요, 그네를 타요, 미끄럼틀을 타요 하다 보면 아이가 자전거를 타요 하고 말합니다.',
+  '수직적 구조화는 아이의 두 발화를 합쳐 들려주는 확장의 한 형태입니다. 이게 뭐야에 사자, 사자가 뭐 하지에 어흥 하면, 그래, 사자가 어흥 하고 있구나 하고 합쳐 줍니다.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'org',html:KH('🔁 집중적 자극 (focused stimulation)','org',22)+`<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:8px">${['시소를 타요.','그네를 타요.','미끄럼틀을 타요.','자전거를…'].map(x=>SAY('🧑‍🏫',x)).join('')}${AR}${SAY('🧒','<b class="k-org">자전거를 타요!</b>','#e8781e')}</div><div style="text-align:center;margin-top:6px">${KT('목표 형태를 <b>높은 빈도</b>로 들려줌','org')}${KT('산출 강요 ✘','gry')}</div>`},
+   {line:1,x:90,y:300,w:1100,b:'blue',html:KH('🧱 수직적 구조화','blue',22)+`<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:8px">${SAY('🧑‍🏫','이게 뭐야?')}${SAY('🧒','사자','#5b8fd6')}<span style="width:14px"></span>${SAY('🧑‍🏫','사자가 뭐 하지?')}${SAY('🧒','어흥','#5b8fd6')}${AR}${SAY('🧑‍🏫','그래, <b class="k-blue">사자가 어흥</b> 하고 있구나.','#5b8fd6')}</div><div style="text-align:center;margin-top:6px">${KT('아이의 <b>두 발화를 합쳐</b> 들려줌 = 확장의 한 형태','blue')}</div>`}]}]});
+
+/* ═════════ 11-14 환경중심 언어중재 ═════════ */
+KP({id:'e11-14',label:'11-14',title:'환경중심 언어중재',scenes:[
+ {name:'환경중심 언어중재란',lines:[
+  '환경중심 언어중재는 아이의 관심을 따라 일상 환경에서 기능적인 의사소통을 끌어내는 기법입니다. 아동중심 시범, 선반응요구 후시범, 시간지연, 우발교수의 네 가지가 있습니다.',
+  '아동중심 시범은 아이가 관심 보이는 것에 함께 주목하며 목표 말을 시범하고, 아이가 따라 하면 칭찬하며 원하는 것을 줍니다.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'grn',center:1,html:KH('🏡 환경중심 언어중재 (milieu teaching)','grn',24)+`<p style="margin-top:6px">아이의 <b>관심</b>을 따라 <b>일상 환경</b>에서 기능적 의사소통 유도</p><div style="margin-top:8px">${['아동중심 시범','선반응요구-후시범','시간지연','우발교수'].map(x=>KT(x,'grn',19)).join('')}</div>`},
+   {line:1,x:90,y:300,w:1100,b:'blue',html:KH('아동중심 시범','blue',22)+ROW(['아이가 관심 보이는 것에 함께 주목','목표 말 시범','따라 하면 칭찬 + 원하는 것'],'blue')}]},
+ {name:'세 장면으로 보기',lines:[
+  '선반응요구 후시범은 어른이 먼저 뭐 줄까 하고 말로 반응을 요구하고, 대답이 없거나 틀리면 시범을 보입니다.',
+  '시간지연은 함께 활동하다가 아무 말 없이 기다려 줍니다. 아이가 말해야 할 때임을 알아차리고 말하면 반응하고, 아니면 시범을 보입니다.',
+  '우발교수는 아이가 먼저 시작한 요구를 기회로 씁니다. 컵을 높은 선반에 두었더니 아이가 손을 뻗을 때, 그 순간 더 정교한 말을 가르칩니다.'],
+  cards:[{line:0,raw:1,x:0,y:100,w:1280,center:1,html:KT('① 선반응요구-후시범 · 먼저 <b>말로 요구</b> → 없으면 시범','org',21),until:1},
+   {line:1,raw:1,x:0,y:100,w:1280,center:1,html:KT('② 시간지연 · <b>말없이 기다리기</b>','blue',21),until:2},
+   {line:2,raw:1,x:0,y:100,w:1280,center:1,html:KT('③ 우발교수 · 아이가 <b>먼저 시작한 요구</b>를 기회로','grn',21)}]},
+ {name:'구별 요령',lines:[
+  '헷갈리면 이렇게 구별하세요. 아무 말 없이 기다리면 시간지연, 먼저 뭐 줄까 하고 물으면 선반응요구 후시범, 아이가 먼저 시작한 요구를 잡으면 우발교수입니다.'],
+  cards:[['⏳','아무 말 없이 기다림','시간지연','blue'],['❓','먼저 "뭐 줄까?"','선반응요구-후시범','org'],['🙋','아이가 먼저 요구 (손 뻗기)','우발교수','grn']].map((x,i)=>({line:0,sub:0.1+i*0.55,n:2,x:90+i*375,y:130,w:350,b:x[3],center:1,html:`${EMO(x[0],44)}<div style="font-size:19px;margin-top:8px">${x[1]}</div><div style="font-size:26px;margin:6px 0">⬇</div>${KH(x[2],x[3],24)}`}))}],
+ xi(L){const s=SVGROOT(L);this.g=sv('g',{opacity:0},s);
+  sv('rect',{x:1045,y:330,width:200,height:14,rx:5,fill:'#b98b5a'},this.g);sv('rect',{x:1060,y:344,width:10,height:230,fill:'#b98b5a'},this.g);sv('rect',{x:1220,y:344,width:10,height:230,fill:'#b98b5a'},this.g);
+  this.cup=iconCup(this.g,1150,328,1.1);
+  this.th=person(this.g,{kind:'ther',x:330,y:575,s:0.95});this.kid=person(this.g,{kind:'kid',x:960,y:575,s:0.95});
+  this.juice=hdiv('ov','<span style="font-size:44px">🧃</span>',L,'position:absolute;left:420px;top:400px');
+  this.bt=bubble(L,330,330,'');this.bk=bubble(L,960,400,'');},
+ xd(t,p){const on=t>=ST(p,1)&&t<SE(p,1);op(this.g,on?ap(t,ST(p,1)+0.1):0);op(this.juice,on&&curLine(t,p,1)<2?1:0);
+  if(!on){op(this.bt,0);op(this.bk,0);return;}const k=curLine(t,p,1);const s=(j,f)=>t>=sub_(p,1,j,f,2);
+  let bt='',bk='',th=false;
+  if(k===0){bt=s(0,1.0)?'주스 주세요 해 봐.':(s(0,0.1)?'뭐 줄까?':'');bk=s(0,0.6)&&!s(0,1.0)?'…':'';}
+  if(k===1){bt=s(1,0.1)&&!s(1,1.2)?'(말없이 기다림)':'';th=true;bk=s(1,1.2)?'주스!':'';}
+  if(k===2){bk=s(2,0.2)?'어! 어!':'';bt=s(2,1.0)?'컵 주세요.':'';}
+  cls(this.bt,'th',th&&k===1);
+  if(bt){this.bt.set(bt);op(this.bt,1);this.th.face(th?'smile':'open');}else{op(this.bt,0);this.th.face('smile');}
+  if(bk){this.bk.set(bk);op(this.bk,1);this.kid.face('open');}else{op(this.bk,0);this.kid.face('smile');}
+  this.kid.arm(1,k===2&&s(2,0.1)?150:0);this.kid.look(k===2?6:-4);}});
+
+/* ═════════ 11-15 EMT ═════════ */
+KP({id:'e11-15',label:'11-15',title:'강화된 환경중심 교수 (EMT)',scenes:[
+ {name:'EMT의 세 층',lines:[
+  {tx:'강화된 환경중심 교수(EMT)는 환경중심 언어중재를 넓힌 통합 중재로, 초기 언어 단계 아동에게 씁니다. 세 층으로 이루어집니다.',say:'강화된 환경중심 교수는 환경중심 언어중재를 넓힌 통합 중재로, 초기 언어 단계 아동에게 씁니다. 세 층으로 이루어집니다.'},
+  '첫째는 환경 조성입니다. 흥미로운 자료를 손이 닿지 않는 곳에 두고, 조금씩만 주고, 도움이 필요한 상황과 선택할 기회, 예상 밖의 상황을 만듭니다.',
+  '둘째는 반응적 상호작용입니다. 아이 주도를 따르고, 아이의 시작에 반응하고, 차례를 맞추며, 아이 수준보다 약간 높은 말을 시범하고 확장합니다.',
+  '셋째는 환경중심 교수 기법인 시범, 선반응요구 후시범, 시간지연, 우발교수입니다. 습득에서 일반화와 유지까지를 강조합니다.'],
+  cards:[{line:0,raw:1,x:0,y:96,w:1280,center:1,noOn:1,html:KT('🎂 EMT = 환경중심 언어중재 + α · 초기 언어 단계 아동','pur',21)},
+   {line:1,x:140,y:390,w:1000,b:'org',center:1,pad:'12px',html:KH('① 환경 조성 (바닥층)','org',22)+`<div style="margin-top:6px">${['흥미로운 자료','손이 닿지 않는 곳','조금씩만','도움이 필요한 상황','선택하기','예상 밖 상황'].map(x=>KT(x,'org',17)).join('')}</div>`},
+   {line:2,x:210,y:270,w:860,b:'blue',center:1,pad:'12px',html:KH('② 반응적 상호작용','blue',22)+`<div style="margin-top:6px">${['아동 주도 따르기','시작에 반응','차례 맞추기','약간 높은 수준 시범','확장'].map(x=>KT(x,'blue',17)).join('')}</div>`},
+   {line:3,x:280,y:150,w:720,b:'grn',center:1,pad:'12px',html:KH('③ 환경중심 교수 기법','grn',22)+`<div style="margin-top:6px">${['시범','선반응요구-후시범','시간지연','우발교수'].map(x=>KT(x,'grn',17)).join('')}</div>`},
+   {line:3,sub:1.4,n:2,raw:1,x:0,y:510,w:1280,center:1,html:`<div style="display:flex;gap:8px;justify-content:center;align-items:center">${['습득','일반화','유지'].map(x=>KT(x,'pur',19)).join(AR)}</div>`}]}]});
+
+/* ═════════ 11-16 DTT와 PRT ═════════ */
+const K16=[['①','변별자극','지시 · 질문 "컵 줘"'],['②','반응','아이의 행동'],['③','후속결과','정반응 강화 · 오반응 교정'],['④','시도 간 간격','잠깐 쉼 → 다음 시도']];
+KP({id:'e11-16',label:'11-16',title:'DTT와 PRT',scenes:[
+ {name:'비연속 개별 시도 교수(DTT)',lines:[
+  {tx:'비연속 개별 시도 교수(DTT)는 응용행동분석(ABA)을 구조화된 1대1 환경에 적용해, 목표 기술을 작은 단계로 나눠 반복하는 치료사 주도 방법입니다.',say:'비연속 개별 시도 교수는 응용행동분석을 구조화된 1대1 환경에 적용해, 목표 기술을 작은 단계로 나눠 반복하는 치료사 주도 방법입니다.'},
+  '한 번의 시도는 지시나 질문인 변별자극, 아이의 반응, 정반응엔 강화하고 오반응엔 교정하는 후속결과, 그리고 시도 사이의 간격으로 이루어집니다. 특정 단서에 반응하게 하는 데 효과적이지만 일반화가 어렵습니다.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'blue',center:1,noOn:1,html:KH('🪑 DTT · 비연속 개별 시도 교수','blue',23)+`<div style="margin-top:6px">${['응용행동분석(ABA)','구조화된 1:1','작은 단계로 나눠 반복','치료사 주도'].map(x=>KT(x,'blue',18)).join('')}</div>`},
+   ...K16.map((x,i)=>({line:1,sub:0.1+i*0.3,n:2,x:90+i*282,y:250,w:250,center:1,pad:'12px 8px',html:`<b style="font-size:26px;color:#2f7bd8">${x[0]}</b><div>${KH(x[1],'blue',21)}</div><div style="font-size:16px;margin-top:4px">${x[2]}</div>`})),
+   {line:1,sub:1.0,n:2,raw:1,x:0,y:385,w:1280,center:1,html:'<b style="font-size:22px;color:#8fbaf0">↻ 한 번의 시도 = 네 요소가 한 바퀴</b>'},
+   {line:1,sub:1.6,n:2,raw:1,x:0,y:440,w:1280,center:1,html:KT('✔ 특정 단서에 반응','grn',19)+KT('✘ 일반화 어려움','red',19)}]},
+ {name:'중심축 반응 훈련(PRT)',lines:[
+  {tx:'중심축 반응 훈련(PRT)은 같은 원리를 쓰지만 놀이 기반, 아동 주도의 자연적 중재입니다. 여러 행동에 넓게 영향을 주는 동기, 다중 단서 반응, 자기관리, 자기 시작을 중재하며, 그중 동기가 가장 핵심입니다.',say:'중심축 반응 훈련은 같은 원리를 쓰지만 놀이 기반, 아동 주도의 자연적 중재입니다. 여러 행동에 넓게 영향을 주는 동기, 다중 단서 반응, 자기관리, 자기 시작을 중재하며, 그중 동기가 가장 핵심입니다.'},
+  '동기를 높이려고 선택권을 주고, 아는 과제와 새 과제를 섞고, 과제를 자주 바꾸고, 시도만 해도 강화하며, 활동과 직접 연결된 자연적 강화를 씁니다.',
+  '정리하면 비연속 개별 시도 교수는 치료사 주도, 정반응만 강화, 개별 기술 하나씩이고, 중심축 반응 훈련은 아동 주도, 시도에도 자연적 강화, 넓은 일반화를 노립니다.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'grn',center:1,noOn:1,html:KH('🧸 PRT · 중심축 반응 훈련','grn',23)+`<div style="margin-top:8px">${KT('<b>동기 ★</b>','red',19)}${['다중 단서에 대한 반응','자기관리','자기 시작'].map(x=>KT(x,'grn',18)).join('')}</div>`},
+   {line:1,x:90,y:255,w:1100,b:'org',center:1,until:2,html:KH('동기 높이기','org',22)+`<div style="margin-top:8px">${['선택권 주기','아는 과제 + 새 과제','과제 자주 바꾸기','시도에도 강화','자연적 강화'].map(x=>KT(x,'org',18)).join('')}</div>`},
+   {line:2,x:90,y:240,w:1100,b:'pur',pad:'12px 18px',html:`<table style="width:100%;border-collapse:collapse;font-size:18px;text-align:center"><tr style="font-weight:900"><td></td><td class="k-blue">DTT</td><td class="k-grn">PRT</td></tr>${[['주도','치료사','아동 (선택권)'],['환경','구조화된 1:1','자연스러운 놀이 · 일상'],['강화','정반응에만 · 과제와 무관해도','<b>시도에도</b> · 활동과 관련된 자연적 강화'],['목표','개별 기술 하나씩','중심축 → <b>넓은 일반화</b>']].map(r=>`<tr style="border-top:1px solid #ead9bd"><td style="font-weight:900;color:#8a7558;padding:6px">${r[0]}</td><td style="padding:6px">${r[1]}</td><td style="padding:6px">${r[2]}</td></tr>`).join('')}</table>`}]}]});
+
+/* ═════════ 11-17 언어이전기 기능적 중재 ═════════ */
+const K17=[[0,0.1,'👀','함께 주목하기','노는 물건에 끼어들어 과장된 소리 · 몸짓'],[0,1.2,'🥁','공동활동','아이 활동에 참여 → 다른 활동으로'],
+ [1,0.1,'⚡','연계 반응','의도가 보이면 <b>즉시</b> 반응'],[1,0.7,'👉','지칭하기','보여 주기 · 가리키기 · 이름 부르기'],[1,1.3,'👏','사회성 게임','짝짜꿍 · 까꿍: 어른 → 교대 → 아이 주도'],
+ [2,0.1,'🧸','인지적 도식 확대','기능놀이 → 가상놀이, 약간 높은 수준 시범'],[2,1.0,'✋','의사소통 수단 확대','손 뻗기 → 가리키기 · 집어 줌'],
+ [3,0.1,'🔊','아동 모방하기','아이가 낸 소리 따라 하기'],[3,0.6,'🔄','차례 지키기','공 굴리기 차례 → 말 차례'],[3,1.1,'🛠️','초기 기능 확립','도구적 · 조정적 기능부터']];
+KP({id:'e11-17',label:'11-17',title:'언어이전기 기능적 중재',scenes:[
+ {name:'말 이전 단계의 중재',lines:[
+  '말이 나오기 전 단계에서는 의사소통의 기초를 다집니다. 함께 주목하기는 아이가 노는 물건에 끼어들어 과장된 소리와 몸짓으로 관심을 나누는 것이고, 공동활동은 아이 활동에 참여했다가 다른 활동으로 함께 넓히는 것입니다.',
+  '아이 행동에 의도가 보이면 즉시 반응하는 연계 반응으로 자기 행동이 환경을 바꾼다는 것을 알게 하고, 지칭하기로 사물에 관심을 모읍니다. 짝짜꿍, 까꿍 같은 사회성 게임은 어른 주도에서 교대, 아이 주도로 옮겨 갑니다.',
+  '놀이는 아이보다 약간 높은 수준으로 시범해 기능놀이와 가상놀이로 이끌고, 손 뻗기 같은 비의도적 행동도 의사소통으로 받아 줘서 의사소통 수단을 넓힙니다.',
+  '아이가 낸 소리를 따라 하고 차례 지키기를 연습하며, 의사소통 기능은 즉각 효과가 있는 도구적, 조정적 기능부터 세웁니다.'],
+  cards:K17.map((x,i)=>({line:x[0],sub:x[1],n:2,x:70+(i%5)*232,y:100+Math.floor(i/5)*200,w:212,center:1,pad:'10px 8px',html:`${EMO(x[2],32)}<div>${KH(x[3],'org',19)}</div><div style="font-size:15px;margin-top:4px;line-height:1.4">${x[4]}</div>`}))},
+ {name:'언어기 기능적 중재의 원칙',lines:[
+  '언어기 기능적 중재는 네 원칙을 따릅니다. 요구한 물건을 주는 자연스러운 강화, 정상발달을 고려한 계획, 아동 주도 따르기, 그리고 맥락의 활용입니다.'],
+  cards:[['🎁','자연스러운 강화','요구한 물건 주기','grn'],['📈','정상발달 고려','비구어 → 구어 · 사회 · 인지 기초 먼저','blue'],['🧒','아동 주도 따르기','교재 · 주제 선택 (치료사가 소극적이라는 뜻 아님)','org'],['🧩','맥락의 활용','상황 설계 · 구어 단서','pur']].map((x,i)=>({line:0,sub:0.3+i*0.4,n:2,x:90+(i%2)*560,y:120+Math.floor(i/2)*165,w:540,b:x[3],html:`<div style="display:flex;gap:14px;align-items:center">${EMO(x[0],38)}<div>${KH(x[1],x[3],23)}<div style="font-size:17px;margin-top:4px">${x[2]}</div></div></div>`}))}]});
+
+/* ═════════ 11-18 확인 문제 (무음) ═════════ */
+const E11Q=[
+ ['필수 맥락에서 10~50% 사용하는 형식에 대한 Fey의 판단은?',['낮은 순위','우선 순위','최우선 순위','목표에서 제외','일반화 단계'],2,'막 나타나 불안정하게 쓰는 것부터'],
+ ['한 회기에 위계가 없는 비슷한 수준의 목표 여러 개를 함께 다루는 전략은?',['수직적 전략','수평적 전략','주기적 전략','발달적 접근','하향식 접근'],1,'일반화에 유리 · 주의가 산만하면 혼란 가능'],
+ ['행동목표로 알맞은 것은?',['동물 낱말을 이해한다','구문의미 이해력검사 60%ile로 향상','그림을 보고 "~를 타요"를 10번 중 8번 말한다','색 이름을 안다','REVT 형용사 20개 습득'],2,'조건 + 관찰 가능한 행동 + 준거'],
+ ['분노발작 때 요구를 들어주지 않아 행동을 줄이는 것은?',['정적 강화','부적 강화','처벌','소거','간헐 강화'],3,'행동을 유지시키던 강화를 없앰'],
+ ['아동 "공" → 성인 "큰 공"에 해당하는 기법은?',['확장','확대','혼잣말','평행발화','문장 재구성'],1,'의미 정보를 더함 = 확대 · 문법을 다듬음 = 확장'],
+ ['성인이 차를 건네며 아동 입장에서 "차 주세요"라고 말해 주는 기법은?',['혼잣말','평행발화','모방','확장','집중적 자극'],1,'혼잣말은 성인 자신의 행동'],
+ ['함께 놀다가 아무 말 없이 기다려 아동이 말하도록 하는 기법은?',['우발교수','선반응요구-후시범','시간지연','아동중심 시범','수직적 구조화'],2,'먼저 "뭐 줄까?" = 선반응요구-후시범'],
+ ['DTT와 비교한 PRT의 특징은?',['치료사 주도','정반응에만 강화','구조화된 1:1 책상 환경','선택권 · 시도에도 자연적 강화','개별 기술 하나씩'],3,'동기가 가장 핵심인 중심축']];
+page({id:'e11-18',label:'11-18',title:'확인 문제',mute:true,scenes:[
+ {name:'확인 문제',pre:0.8,post:2,lines:E11Q.flatMap(q=>[{tx:'Q',d:9,gap:0.2},{tx:'A',d:7,gap:0.6}])}],
+ init(L){this.q=hdiv('quiz ov','',L);this.cur='';},
+ draw(t,p){const k=curLine(t,p,0);const qi=Math.max(0,Math.floor(k/2)),rev=k>=0&&k%2===1;const q=E11Q[qi];
+  const key=qi+'|'+rev;if(this.cur!==key){this.cur=key;
+   this.q.innerHTML=`<div class="qn">확인 문제 ${qi+1} / ${E11Q.length}</div><div class="qt">${q[0]}</div>`+q[1].map((o,i)=>`<div class="op${rev&&i===q[2]?' ok':''}">${'①②③④⑤'[i]} ${o}</div>`).join('')+(rev?`<div class="ex">💡 ${q[3]}</div>`:'');}
+  op(this.q,ap(t,ST(p,0)+0.2));
+ }});
+
+/* 음성 없는 줄 표시 */
+PAGES.forEach(p=>{const oi=p.init,od=p.draw;p.init=function(L){oi.call(this,L);this.__nv=hdiv('ov','<span class="tagp tp-gry" style="font-size:15px">🔇 음성 추가 예정 · 자막으로 봐 주세요</span>',L,'right:24px;top:56px;position:absolute');};
+ p.draw=function(t,pp){od.call(this,t,pp);const l=ALL.find(x=>t>=x.t0&&t<x.t1);op(this.__nv,l&&!l.has&&!l.mute&&t>=pp.t0&&t<pp.t1?1:0);};});
+</script>
+<script>"use strict";
+/* ───────── 시작 ───────── */
+for(const p of PAGES){p.layer=hdiv('page','',$('layers'));p.layer.style.display='none';p.init(p.layer);}
+buildTimeline();
+for(const l of ALL){if(l.has){l.a=new Audio((window.AUD&&AUD[l.src])||l.src);l.a.preload='auto';}}
+$('titleNm').textContent=EP.name;$('titleSb').textContent=EP.sub||'';
+
+let rate=1,t=0,playing=false,last=performance.now(),dragging=false,wasPlaying=false,curA=null;
+const fmt=s=>{s=Math.max(0,Math.floor(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
+const icoPlay='<svg width="24" height="24" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="#fff"/></svg>',icoPause='<svg width="24" height="24" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1" fill="#fff"/><rect x="14" y="4" width="4" height="16" rx="1" fill="#fff"/></svg>';
+const icoFull='<path d="M4 9V4h5v2H6v3zm11-5h5v5h-2V6h-3zM4 15h2v3h3v2H4zm14 0h2v5h-5v-2h3z" fill="#fff"/>',icoExit='<path d="M9 4v5H4V7h3V4zm6 0h2v3h3v2h-5zM4 15h5v5H7v-3H4zm11 0h5v2h-3v3h-2z" fill="#fff"/>';
+let SCALE=1,hideT=null;const CTL=$('ctl'),VP=$('vp');
+function subShift(){const vis=!CTL.classList.contains('hide');$('sub').style.bottom=(vis?26+Math.max(0,CTL.offsetHeight-30)/SCALE:26)+'px';}
+let overCtl=false;
+function showCtl(){CTL.classList.remove('hide');VP.classList.remove('nocur');clearTimeout(hideT);if(playing&&!dragging&&!overCtl&&$('menu').style.display!=='block')hideT=setTimeout(()=>{CTL.classList.add('hide');VP.classList.add('nocur');subShift();},2600);subShift();}
+VP.addEventListener('pointermove',showCtl);VP.addEventListener('pointerdown',showCtl);
+CTL.addEventListener('pointerenter',()=>{overCtl=true;clearTimeout(hideT);CTL.classList.remove('hide');VP.classList.remove('nocur');});CTL.addEventListener('pointerleave',()=>{overCtl=false;showCtl();});
+function stopAudio(){for(const l of ALL)if(l.a&&!l.a.paused)l.a.pause();curA=null;}
+function syncAudio(){if(!playing||dragging){stopAudio();return;}
+ const l=ALL.find(l=>l.a&&t>=l.t0&&t<l.t1);
+ if(!l){if(curA)stopAudio();return;}
+ if(curA!==l){stopAudio();curA=l;l.a.playbackRate=rate;l.a.currentTime=Math.max(0,t-l.t0);l.a.play().catch(()=>{});}
+ else if(!l.a.paused&&Math.abs(l.a.currentTime-(t-l.t0))>0.3)l.a.currentTime=Math.max(0,t-l.t0);}
+function ui(){$('fill').style.width=(t/TOTAL*100)+'%';$('knob').style.left=(t/TOTAL*100)+'%';$('time').textContent=fmt(t)+' / '+fmt(TOTAL);
+ const bp=$('bplay'),st=playing?'pause':'play';if(bp.dataset.st!==st){bp.dataset.st=st;bp.innerHTML=playing?icoPause:icoPlay;}op($('bigplay'),playing||t>0.01?0:1);}
+function setPlay(v){if(v&&t>=TOTAL-0.05)t=0;playing=v;last=performance.now();if(v){const n=$('nextEp');if(n)n.style.display='none';}if(!v)stopAudio();else syncAudio();ui();showCtl();}
+function seek(x){t=cl(x,0,TOTAL);stopAudio();frame(t);ui();if(playing)syncAudio();}
+function flash(txt,left){const f=$('flash');f.textContent=txt;f.style.left=left?'80px':'';f.style.right=left?'':'80px';f.style.opacity=1;clearTimeout(flash.h);flash.h=setTimeout(()=>f.style.opacity=0,500);}
+function loop(now){const dt=Math.min(0.5,(now-last)/1000);last=now;
+ if(playing&&!dragging){
+  if(curA&&!curA.a.paused&&curA.a.currentTime>0&&!curA.a.ended)t=curA.t0+curA.a.currentTime;else t+=dt*rate;
+  if(t>=TOTAL){t=TOTAL;playing=false;stopAudio();const n=$('nextEp');if(n)n.style.display='flex';}
+  syncAudio();frame(t);ui();}
+ requestAnimationFrame(loop);}
+for(const p of PAGES){for(const s of p.scenes){if(s.t0<=0)continue;const k=hdiv('tick'+(s===p.scenes[0]?' pg':''),'',$('ticks'));k.style.left=(s.t0/TOTAL*100)+'%';k.title=(p.label||p.id)+' '+s.name;}}
+$('menu').innerHTML=PAGES.map((p,i)=>`<div data-i="${i}"><b>${p.label||p.id}</b>${p.title} <span style="color:#a8988a;font-size:15px">${fmt(p.t0)}</span></div>`).join('');
+$('menu').addEventListener('pointerup',e=>{e.stopPropagation();const d=e.target.closest('[data-i]');if(!d)return;seek(PAGES[+d.dataset.i].t0+0.01);$('menu').style.display='none';});
+$('bmenu').onclick=()=>{const m=$('menu');m.style.display=m.style.display==='block'?'none':'block';showCtl();};
+function toggleFull(){if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen().catch(()=>{});}
+$('bfull').onclick=toggleFull;
+document.addEventListener('fullscreenchange',()=>{const ic=document.getElementById('icoFull');if(ic)ic.innerHTML=document.fullscreenElement?icoExit:icoFull;setTimeout(fit,100);});
+$('bplay').onclick=()=>setPlay(!playing);
+$('bback').onclick=()=>{seek(t-10);flash('◀◀ 10초',true);};
+$('bfwd').onclick=()=>{seek(t+10);flash('10초 ▶▶',false);};
+const prog=$('prog');const px=e=>{const r=prog.getBoundingClientRect();return cl((e.clientX-r.left)/r.width)*TOTAL;};
+prog.addEventListener('pointerdown',e=>{dragging=true;CTL.classList.add('drag');wasPlaying=playing;playing=false;prog.setPointerCapture(e.pointerId);seek(px(e));});
+prog.addEventListener('pointermove',e=>{if(dragging)seek(px(e));});
+prog.addEventListener('pointerup',e=>{if(!dragging)return;dragging=false;CTL.classList.remove('drag');seek(px(e));setPlay(wasPlaying);});
+const stage=$('stage');let tapT=0,tapH=null;
+stage.addEventListener('pointerup',e=>{if(e.target.closest('#nextEp'))return;if($('menu').style.display==='block'){$('menu').style.display='none';return;}
+ if(e.pointerType==='mouse'){setPlay(!playing);return;}
+ const now=performance.now();const r=stage.getBoundingClientRect();const left=(e.clientX-r.left)<r.width/2;
+ if(now-tapT<300){clearTimeout(tapH);tapT=0;if(left){seek(t-10);flash('◀◀ 10초',true);}else{seek(t+10);flash('10초 ▶▶',false);}return;}
+ tapT=now;tapH=setTimeout(()=>setPlay(!playing),300);});
+const VOICED=()=>ALL.filter(l=>!l.nosub||l.mute);
+function nextLine(d){const L=VOICED();if(d>0){const n=L.find(l=>l.t0>t+0.05);if(n)seek(n.t0);}else{const ps=L.filter(l=>l.t0<t-0.8);if(ps.length)seek(ps[ps.length-1].t0);else seek(0);}}
+function setRate(r){rate=Math.round(cl(r,0.5,2)*100)/100;for(const l of ALL)if(l.a)l.a.playbackRate=rate;$('bspd').textContent=rate.toFixed(rate*10%1?2:1)+'×';flash('속도 '+rate+'×',false);}
+const RATES=[0.5,0.75,0.9,1,1.1,1.25,1.5,1.75,2];
+addEventListener('keydown',e=>{const k=e.key,c=e.code;if(e.ctrlKey||e.metaKey||e.altKey)return;
+ if(c==='Space'||k==='k'||k==='K'){e.preventDefault();setPlay(!playing);}
+ else if(k==='j'||k==='J'||(e.shiftKey&&c==='ArrowLeft')){seek(t-10);flash('◀◀ 10초',true);}
+ else if(k==='l'||k==='L'||(e.shiftKey&&c==='ArrowRight')){seek(t+10);flash('10초 ▶▶',false);}
+ else if(c==='ArrowLeft'){nextLine(-1);flash('◀ 이전 대사',true);}
+ else if(c==='ArrowRight'){nextLine(1);flash('다음 대사 ▶',false);}
+ else if(/^[0-9]$/.test(k)){seek(TOTAL*(+k)/10);}
+ else if(k==='<'||k===','){setRate(RATES[Math.max(0,RATES.findIndex(r=>r>=rate)-1)]);}
+ else if(k==='>'||k==='.'){setRate(RATES[Math.min(RATES.length-1,RATES.findIndex(r=>r>rate))]||2);}
+ else if(k==='r'||k==='R'){seek(0);setPlay(true);}
+ else if(k==='Escape'){if($('menu').style.display==='block')$('menu').style.display='none';else location.href='index.html';}
+ else if(k==='f'||k==='F'){toggleFull();}
+ showCtl();});
+$('bspd').onclick=()=>{const i=RATES.indexOf(rate);setRate(RATES[(i+1)%RATES.length]);};
+$('bhome').onclick=()=>{location.href='index.html';};
+function fit(){const vp=$('vp');const s=Math.min(vp.clientWidth/1280,vp.clientHeight/720);SCALE=s;stage.style.transform=`translate(-50%,-50%) scale(${s})`;frame(t);}
+addEventListener('resize',fit);fit();ui();showCtl();requestAnimationFrame(loop);
+{const h=decodeURIComponent(location.hash.slice(1));const pg=PAGES.find(p=>p.id===h||p.label===h);if(pg)seek(pg.t0+0.01);}
+window.DBG={seek,get TOTAL(){return TOTAL},PAGES,get t(){return t},ALL};
+</script>
+</body>
+</html>
