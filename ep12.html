@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>언어발달장애 12편 · 특정 언어치료 프로그램 (voice: elevenlabs.io)</title>
+<style>*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#1d1a16;color:#2f2a24;font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",sans-serif;overflow:hidden}
+#wrap{position:fixed;inset:0;display:flex;flex-direction:column}
+#vp{flex:1;position:relative;overflow:hidden;background:#1d1a16}
+#stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;transform-origin:center center;overflow:hidden;
+ background:radial-gradient(ellipse at 50% 30%,#fffaf0 0%,#fbf1df 60%,#f4e4c8 100%);cursor:pointer;user-select:none}
+#bgdeco{position:absolute;inset:0;pointer-events:none}
+#layers{position:absolute;inset:0}
+.page{position:absolute;inset:0;pointer-events:none}
+.ov{position:absolute;opacity:0;pointer-events:none}
+svg text{font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+#tag{left:28px;top:20px;font-size:19px;color:#8a7558;letter-spacing:.02em;z-index:5}
+#tag b{color:#3f3326;font-weight:800}
+#title{inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(255,248,234,.94);z-index:8}
+#title .ep{font-size:26px;color:#e07a3f;letter-spacing:.14em;font-weight:800}
+#title .nm{font-size:62px;font-weight:900;margin-top:14px;color:#3a2f24}
+#title .sb{font-size:24px;color:#8a7558;margin-top:14px;font-weight:600}
+#sub{position:absolute;left:40px;right:40px;bottom:26px;text-align:center;font-size:27px;line-height:1.45;font-weight:600;pointer-events:none;white-space:nowrap;transition:bottom .25s;color:#fff;z-index:6}
+#sub span{background:rgba(48,38,28,.84);padding:6px 18px;border-radius:12px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+#chip{left:50%;top:62px;transform:translateX(-50%);font-size:25px;font-weight:800;padding:10px 26px;border-radius:40px;
+ background:#fff;border:3px solid #f0a04b;color:#3a2f24;white-space:nowrap;z-index:4;box-shadow:0 6px 18px rgba(120,80,30,.15)}
+#chip .st{color:#f08a24}
+/* 카드 */
+.cd{position:absolute;padding:20px 24px;border-radius:22px;background:#fff;border:3px solid #ead9bd;box-shadow:0 8px 22px rgba(120,80,30,.12)}
+.cd h3{margin:0 0 8px;font-size:30px;font-weight:900}
+.cd p{margin:0;font-size:22px;line-height:1.5;color:#5a4d3e}
+.cd ul{margin:6px 0 0;padding-left:22px;font-size:22px;line-height:1.5;color:#4a3f33}
+.cd.on{border-color:#f08a24;box-shadow:0 0 0 6px rgba(240,138,36,.18),0 10px 26px rgba(120,80,30,.18)}
+.k-blue{color:#2f7bd8}.k-grn{color:#23a271}.k-org{color:#e8781e}.k-red{color:#e0533f}.k-pur{color:#8a5ad6}.k-gry{color:#8a7a66}
+.b-blue{border-color:#8fbaf0}.b-grn{border-color:#88d6b5}.b-org{border-color:#f5bd84}.b-red{border-color:#f2a596}.b-pur{border-color:#c6aaf0}
+.tagp{display:inline-block;padding:4px 14px;border-radius:20px;font-size:20px;font-weight:800;margin:3px 4px 0 0}
+.tp-blue{background:#e3effd;color:#2f6fc4}.tp-grn{background:#dcf5ea;color:#1f8a5f}.tp-org{background:#fde9d4;color:#c4621a}.tp-red{background:#fde2dc;color:#c43f2c}.tp-pur{background:#eee4fd;color:#7246c0}.tp-gry{background:#efe8dc;color:#6f6252}
+/* 말풍선 */
+.bub{position:absolute;padding:12px 20px;border-radius:22px;background:#fff;border:3px solid #3f3326;font-size:26px;font-weight:800;color:#3a2f24;white-space:nowrap;transform:translate(-50%,-100%)}
+.bub:after{content:"";position:absolute;left:var(--tx,50%);bottom:-16px;width:22px;height:22px;background:#fff;border-right:3px solid #3f3326;border-bottom:3px solid #3f3326;transform:translateX(-50%) rotate(45deg)}
+.bub.th{border-style:dashed;color:#6f6252;font-weight:700}
+/* 체크 줄 */
+.ck{display:flex;align-items:flex-start;gap:14px;font-size:23px;line-height:1.45;margin:10px 0;opacity:0}
+.ck i{flex:none;width:32px;height:32px;border-radius:50%;background:#23a271;color:#fff;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:20px;margin-top:2px}
+/* 퀴즈 */
+.quiz{position:absolute;left:110px;right:110px;top:66px;bottom:96px;border-radius:26px;background:#fff;border:3px solid #ead9bd;padding:28px 40px;box-shadow:0 10px 30px rgba(120,80,30,.14)}
+.quiz .qn{font-size:23px;color:#e8781e;font-weight:900}
+.quiz .qt{font-size:28px;font-weight:800;line-height:1.45;margin:10px 0 16px;color:#3a2f24}
+.quiz .op{font-size:24px;line-height:1.3;padding:8px 16px;border-radius:14px;margin:6px 0;border:3px solid transparent;color:#4a3f33}
+.quiz .op.ok{background:#dcf5ea;border-color:#23a271;color:#145a3e;font-weight:900}
+.quiz .ex{margin-top:12px;font-size:22px;line-height:1.5;color:#6b4a14;padding:12px 18px;border-radius:14px;background:#fff1d6}
+/* 메뉴·조작바 */
+#menu{position:absolute;right:16px;bottom:96px;width:400px;max-height:70vh;overflow:auto;border-radius:14px;background:rgba(32,30,28,.97);border:1px solid #4a4540;padding:8px;display:none;z-index:40;cursor:default;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+#menu div{font-size:16px;padding:10px 14px;border-radius:10px;cursor:pointer;color:#f3ede4}
+#menu div:hover{background:#3d3832}
+#menu div b{color:#f5a95a;margin-right:8px}
+#bigplay{inset:0;display:flex;align-items:center;justify-content:center;opacity:1;z-index:9}
+#bigplay div{width:120px;height:120px;border-radius:50%;background:rgba(240,138,36,.92);box-shadow:0 10px 30px rgba(120,60,10,.35);display:flex;align-items:center;justify-content:center}
+#ctl{position:absolute;left:0;right:0;bottom:0;z-index:30;padding:40px 16px 12px;background:linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,.66));transition:opacity .25s;font-family:inherit;color:#fff}
+#ctl.hide{opacity:0;pointer-events:none}
+#vp.nocur{cursor:none}
+#prog{height:18px;position:relative;cursor:pointer;touch-action:none;margin:0 6px 6px}
+#track{position:absolute;left:0;right:0;top:7px;height:4px;border-radius:2px;background:rgba(255,255,255,.3);transition:height .12s,top .12s}
+#fill{position:absolute;left:0;top:7px;height:4px;border-radius:2px;background:#f5a03c;transition:height .12s,top .12s}
+#prog:hover #track,#prog:hover #fill{top:6px;height:6px}
+#knob{position:absolute;top:2px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#f5a03c;transform:scale(0);transition:transform .12s}
+#prog:hover #knob,#ctl.drag #knob{transform:scale(1)}
+.tick{position:absolute;top:7px;width:2px;height:4px;background:rgba(0,0,0,.45)}
+.tick.pg{background:rgba(255,255,255,.9);width:3px;top:4px;height:10px;border-radius:1px}
+.crow{display:flex;align-items:center;gap:10px}
+.crow .sp{flex:1}
+.grp{display:flex;align-items:center;background:rgba(30,28,26,.72);border-radius:26px;padding:3px;gap:2px}
+.pill{background:rgba(30,28,26,.72);border-radius:22px;padding:0 16px;height:42px;display:flex;align-items:center;font-size:15px;font-weight:600;color:#fff;white-space:nowrap;font-variant-numeric:tabular-nums}
+#scn{color:#f3e6d2;font-weight:500;max-width:340px;overflow:hidden;text-overflow:ellipsis}
+#ctl button{border:0;background:transparent;color:#fff;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;border-radius:22px}
+#ctl button:hover{background:rgba(255,255,255,.14)}
+#ctl button.ic{width:44px;height:40px}
+#ctl button.tx{height:40px;padding:0 13px;gap:6px;font-size:15px;font-weight:700}
+#ctl button svg,#ctl button span{pointer-events:none}
+#flash{top:50%;transform:translateY(-50%);font-size:34px;font-weight:800;padding:14px 22px;border-radius:40px;background:rgba(0,0,0,.55);color:#fff;z-index:10}
+#nextEp{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:18px;background:rgba(255,248,234,.95);z-index:12}
+#nextEp .t{font-size:32px;font-weight:900;color:#3a2f24}
+#nextEp a.n{font-size:26px;font-weight:800;color:#fff;background:#f08a24;padding:14px 30px;border-radius:30px;text-decoration:none}
+#nextEp a.h{font-size:20px;color:#8a7558}
+#credit{position:absolute;right:16px;top:20px;font-size:13px;color:#b8a488;z-index:5}
+</style>
+</head>
+<body>
+<div id="wrap">
+ <div id="vp">
+  <div id="stage">
+   <svg id="bgdeco" viewBox="0 0 1280 720"><circle cx="1180" cy="90" r="160" fill="#fde6c4" opacity=".55"/><circle cx="80" cy="660" r="190" fill="#fbe0b8" opacity=".45"/><circle cx="1240" cy="640" r="70" fill="#d9efe4" opacity=".6"/><circle cx="60" cy="120" r="44" fill="#e3effd" opacity=".8"/></svg>
+   <div id="layers"></div>
+   <div id="tag" class="ov"></div>
+   <div id="credit">음성 · elevenlabs.io</div>
+   <div id="chip" class="ov"></div>
+   <div id="sub"></div>
+   <div id="title" class="ov"><div class="ep">언어발달장애 국시 영상</div><div class="nm" id="titleNm"></div><div class="sb" id="titleSb"></div></div>
+   <div id="bigplay" class="ov"><div><svg width="54" height="54" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="#fff"/></svg></div></div>
+   <div id="nextEp"><div class="t">12편 끝</div><a class="n" href="index.html">13편 놀이와 학령기 중재는 준비 중 · 목록으로 ▶</a><a class="h" href="index.html">목록으로</a></div>
+   <div id="flash" class="ov"></div>
+  </div>
+ </div>
+ <div id="ctl">
+  <div id="prog"><div id="track"></div><div id="ticks"></div><div id="fill"></div><div id="knob"></div></div>
+  <div class="crow">
+   <div class="grp"><button id="bplay" class="ic" title="재생/일시정지 (Space·K)"></button><button id="bback" class="ic" title="10초 뒤로 (J)"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z" fill="#fff"/><text x="12" y="16.2" text-anchor="middle" font-size="7" font-weight="700" fill="#fff" font-family="sans-serif">10</text></svg></button><button id="bfwd" class="ic" title="10초 앞으로 (L)"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M12 5V2l5 4-5 4V7a6 6 0 1 0 6 6h2a8 8 0 1 1-8-8z" fill="#fff"/><text x="12" y="16.2" text-anchor="middle" font-size="7" font-weight="700" fill="#fff" font-family="sans-serif">10</text></svg></button></div>
+   <div class="pill" id="time">0:00 / 0:00</div>
+   <div class="pill" id="scn"></div>
+   <div class="sp"></div>
+   <div class="grp"><button id="bspd" class="tx" title="재생 속도 (&lt; &gt;)">1.0×</button><button id="bmenu" class="tx" title="목차"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 6h2v2H4zm4 0h12v2H8zM4 11h2v2H4zm4 0h12v2H8zM4 16h2v2H4zm4 0h12v2H8z" fill="#fff"/></svg><span>목차</span></button><button id="bhome" class="tx" title="목록 (Esc)"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z" fill="#fff"/></svg><span>목록</span></button><button id="bfull" class="ic" title="전체화면 (F)"><svg id="icoFull" viewBox="0 0 24 24" width="24" height="24"><path d="M4 9V4h5v2H6v3zm11-5h5v5h-2V6h-3zM4 15h2v3h3v2H4zm14 0h2v5h-5v-2h3z" fill="#fff"/></svg></button></div>
+  </div>
+ </div>
+ <div id="menu"></div>
+</div>
+<script>const AUD={};window.AUD=AUD;</script>
+<script>window.EP={name:'12편 · 특정 언어치료 프로그램',sub:'스크립트 · 낱말찾기 · 장벽게임 · AAC 4요소 · AAC 어휘 · 다중양식 · PECS 6단계 · 반다이크 · 사회적 상황 이야기',next:'index.html'};</script>
+<script>"use strict";
+window.EP=window.EP||{name:'1편',sub:''};
+/* ───────── 공용 도구 ───────── */
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const sm=x=>{x=cl(x);return x*x*(3-2*x)};
+const ramp=(t,a,b)=>sm((t-a)/(b-a));
+const win=(t,a,b,f=0.5)=>Math.min(ramp(t,a,a+f),1-ramp(t,b-f,b));
+const lerp=(a,b,k)=>a+(b-a)*k;
+const op=(e,v)=>{if(e)e.style.opacity=(+v).toFixed(3);};
+const NS='http://www.w3.org/2000/svg';
+function sv(tag,attrs,parent){const e=document.createElementNS(NS,tag);if(attrs)for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function hdiv(cls,html,parent,style){const e=document.createElement('div');if(cls)e.className=cls;if(html!=null)e.innerHTML=html;if(style)e.style.cssText=style;if(parent)parent.appendChild(e);return e;}
+const SVGROOT=layer=>sv('svg',{viewBox:'0 0 1280 720',style:'position:absolute;left:0;top:0;width:1280px;height:720px;overflow:visible'},layer);
+function stx(par,x,y,t,o={}){const e=sv('text',Object.assign({x,y,'text-anchor':'middle',fill:'#3a2f24','font-size':24,'font-weight':800},o),par);e.textContent=t;return e;}
+function grow(path,p){const L=path.__L||(path.__L=path.getTotalLength());path.style.strokeDasharray=L;path.style.strokeDashoffset=L*(1-cl(p));path.style.opacity=p>0?1:0;}
+/* 클래스 토글(바뀔 때만) */
+function cls(e,c,on){if(!e)return;const h=e.classList.contains(c);if(on&&!h)e.classList.add(c);else if(!on&&h)e.classList.remove(c);}
+/* 위로 떠오르며 나타나기 */
+function pop(e,v,dy=14){if(!e)return;op(e,v);const y=((1-v)*dy).toFixed(1);if(e.__y!==y){e.__y=y;e.style.translate=`0 ${y}px`;}}
+function setH(e,h){if(e.__h!==h){e.__h=h;e.innerHTML=h;}}
+
+/* ───────── 페이지·타임라인 ───────── */
+const PAGES=[];const ALL=[];let TOTAL=0;
+const DUR={};
+const est=tx=>{const n=tx.replace(/[\s,.?!·~()]/g,'').length;return Math.max(1.6,n*0.165+0.3);};
+function page(def){PAGES.push(def);return def;}
+function buildTimeline(){let T=0;
+ for(const p of PAGES){p.t0=T;let n=0;const first=p===PAGES[0];
+  for(const s of p.scenes){s.t0=T;T+=(s===p.scenes[0]&&!first)?Math.min(s.pre||0,0.9):(s.pre||0);s.L=[];
+   for(const raw of s.lines||[]){const o=typeof raw==='string'?{tx:raw}:raw;n++;
+    const id=p.id+'_'+String(n).padStart(2,'0');const mute=!!(o.mute||p.mute);
+    const d=o.d||(DUR[id]!=null?DUR[id]:est(o.say||o.tx));
+    const l={id,tx:o.tx,say:o.say||o.tx,t0:T,t1:T+d,mute,nosub:!!(o.nosub||mute),has:!mute&&DUR[id]!=null,src:'audio/'+id+'.mp3'};
+    s.L.push(l);ALL.push(l);T+=d+(o.gap!=null?o.gap:0.45);}
+   T+=(s===p.scenes[p.scenes.length-1]&&p!==PAGES[PAGES.length-1])?Math.min(s.post||0,1.2):(s.post||0);s.t1=T;}
+  p.t1=T;}
+ TOTAL=T;}
+let chipNow=null;
+function chip(html,v,y=62){if(v>0)chipNow={html,v,y};}
+
+/* 자막 나누기 */
+const SUBW=1150,subCache={};let subCtx=null;
+function subW(s){if(!subCtx){subCtx=document.createElement('canvas').getContext('2d');subCtx.font='600 27px "Pretendard","Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",sans-serif';}return subCtx.measureText(s).width+40;}
+function subChunks(tx){if(subCache[tx])return subCache[tx];const out=[];const push=s=>{s=s.trim();if(s)out.push(s);};
+ const sents=tx.match(/[^.?!]+[.?!]+\s*|[^.?!]+$/g)||[tx];
+ for(const sen of sents){if(subW(sen.trim())<=SUBW){push(sen);continue;}
+  const cs=sen.match(/[^,]+,?\s*/g)||[sen];let cur='';
+  for(const c of cs){const cand=cur+c;if(subW(cand.trim())<=SUBW){cur=cand;continue;}
+   push(cur);cur='';if(subW(c.trim())<=SUBW){cur=c;continue;}
+   let w='';for(const word of c.trim().split(' ')){const cw=w?w+' '+word:word;if(subW(cw)<=SUBW)w=cw;else{push(w);w=word;}}cur=w+' ';}
+  push(cur);}
+ return subCache[tx]=out.length?out:[tx];}
+/* ───────── 프레임 ───────── */
+function frame(t){
+ chipNow=null;
+ const cur=PAGES.find(p=>t>=p.t0&&t<p.t1)||PAGES[PAGES.length-1];
+ const last=PAGES[PAGES.length-1];
+ for(const p of PAGES){if(p!==cur){if(p.layer.style.display!=='none')p.layer.style.display='none';continue;}
+  p.layer.style.display='';op(p.layer,ramp(t,p.t0-0.01,p.t0+0.5)*(p===last?1:1-ramp(t,p.t1-0.3,p.t1)));
+  p.draw(t,p);}
+ const c=$('chip');const ch=chipNow?chipNow.html:'';if(c.dataset.v!==ch){c.dataset.v=ch;c.innerHTML=ch;}op(c,chipNow?chipNow.v:0);if(chipNow){const y=chipNow.y+'px';if(c.style.top!==y)c.style.top=y;}
+ const P0=PAGES[0];const tv=cur===P0?1-ramp(t,P0.t0+2.8,P0.t0+3.5):0;
+ op($('title'),tv);
+ const sc=cur.scenes.find(s=>t>=s.t0&&t<s.t1)||cur.scenes[cur.scenes.length-1];
+ const tg=`${EP.name} · <b>${cur.label||cur.id} ${cur.title}</b> · ${sc.name}`;if($('tag').dataset.v!==tg){$('tag').dataset.v=tg;$('tag').innerHTML=tg;}
+ op($('tag'),cur===P0?ramp(t,P0.t0+2.8,P0.t0+3.4):1);$('scn').textContent=(cur.label||cur.id)+' · '+sc.name;
+ let line=null;for(const l of ALL)if(!l.nosub&&t>=l.t0&&t<l.t1+0.25)line=l;
+ let want='';if(line){const chs=subChunks(line.tx);const tot=chs.reduce((a,c)=>a+c.length,0);let acc=0;want=chs[chs.length-1];
+  for(const c of chs){acc+=c.length;if(t<line.t0+(line.t1-line.t0)*acc/tot){want=c;break;}}}
+ const sub=$('sub');if(sub.dataset.v!==want){sub.dataset.v=want;sub.innerHTML=want?`<span>${want}</span>`:'';}
+}
+/* 장면 시간 도우미 */
+const LS=(p,i,j)=>p.scenes[i].L[j].t0, LE=(p,i,j)=>p.scenes[i].L[j].t1;
+const ST=(p,i)=>p.scenes[i].t0, SE=(p,i)=>p.scenes[i].t1;
+const sub_=(p,i,j,k,n)=>{const a=LS(p,i,j),b=LE(p,i,j);return a+(b-a)*k/n;};
+/* 현재 줄 번호(장면 i 안에서). 시작 전 -1 */
+const curLine=(t,p,i)=>{const L=p.scenes[i].L;let k=-1;for(let j=0;j<L.length;j++)if(t>=L[j].t0)k=j;return k;};
+</script>
+<script>"use strict";
+/* ───────── 2D 인물 그림 ─────────
+   person(par,{x,y,s,kind,shirt,hair,pants,face,flip})
+   kind: 'mom' | 'dad' | 'ther'(치료사) | 'kid'(유아) | 'boy' | 'baby'
+   발 아래 가운데가 (x,y). 반환: {g, arm(side,deg), face(type), look(dx)} */
+const SKIN='#f7d2b4',SKIN2='#eab894',INK='#3f3326';
+const PAL={mom:{shirt:'#f08a6b',hair:'#5a3a28',pants:'#5b6fa8'},dad:{shirt:'#5b8fd6',hair:'#2f2620',pants:'#4b4f63'},
+ ther:{shirt:'#4fb59a',hair:'#3b2a20',pants:'#5a5f78'},kid:{shirt:'#f6c64a',hair:'#3b2a20',pants:'#6a8fd8'},
+ boy:{shirt:'#7fc4ef',hair:'#2f2620',pants:'#e0884f'},baby:{shirt:'#f4a7c0',hair:'#6b4a33',pants:'#f4a7c0'}};
+function person(par,o){const k=o.kind||'kid';const P=Object.assign({},PAL[k],o);const adult=k==='mom'||k==='dad'||k==='ther';
+ const g=sv('g',{},par);const backHair=sv('g',{},g);sv('ellipse',{cx:0,cy:2,rx:adult?62:(k==='baby'?44:44),ry:9,fill:'rgba(150,110,60,.16)'},g);const body=sv('g',{},g);
+ const H=adult?1:(k==='baby'?0.5:0.62);           // 몸 높이 비율
+ const hr=adult?30:(k==='baby'?26:27);             // 머리 반지름
+ const hip=-95*H*(adult?1:1.05),sh=-180*H-(adult?0:4),hy=sh-hr-3,sw=adult?40:28,hw=adult?33:25;
+ if(k==='mom')sv('path',{d:`M${-hr-5},${hy} Q${-hr-9},${hy+hr+6} ${-hr-3},${sh+34} L${hr+3},${sh+34} Q${hr+9},${hy+hr+6} ${hr+5},${hy}Z`,fill:P.hair},backHair);
+ // 다리
+ if(k!=='baby'){for(const s of [-1,1]){sv('rect',{x:s*(adult?13:10)-(adult?11:9),y:hip-4,width:adult?22:18,height:-hip-2,rx:9,fill:P.pants},body);
+   sv('ellipse',{cx:s*(adult?15:12),cy:-3,rx:adult?16:12,ry:7,fill:INK},body);}}
+ else{sv('ellipse',{cx:0,cy:-10,rx:34,ry:14,fill:P.pants},body);}
+ // 치마(엄마)
+ if(k==='mom')sv('path',{d:`M${-hw-2},${hip-6} L${hw+2},${hip-6} L${hw+16},${hip+46} L${-hw-16},${hip+46}Z`,fill:'#e2735a'},body);
+ // 몸통
+ sv('path',{d:`M${-sw},${sh+10} Q${-sw},${sh} ${-sw+12},${sh} L${sw-12},${sh} Q${sw},${sh} ${sw},${sh+10} L${hw},${hip} Q${hw},${hip+6} ${hw-6},${hip+6} L${-hw+6},${hip+6} Q${-hw},${hip+6} ${-hw},${hip}Z`,fill:P.shirt},body);
+ if(k==='ther'){sv('path',{d:`M-14,${sh+2} L0,${sh+44} L14,${sh+2}`,fill:'none',stroke:'#2f6f5e','stroke-width':3},body);sv('rect',{x:-11,y:sh+44,width:22,height:28,rx:4,fill:'#fff',stroke:'#2f6f5e','stroke-width':2},body);}
+ // 팔
+ const arms={};for(const s of [-1,1]){const ag=sv('g',{},g);const ax=s*(sw-6),ay=sh+10;
+  const len=adult?78:52;sv('path',{d:`M${ax},${ay} L${ax+s*4},${ay+len}`,stroke:P.shirt,'stroke-width':adult?17:14,'stroke-linecap':'round'},ag);
+  sv('circle',{cx:ax+s*4,cy:ay+len+4,r:adult?9:8,fill:SKIN},ag);arms[s]={g:ag,x:ax,y:ay,deg:null};}
+ // 목·머리
+ sv('rect',{x:-9,y:sh-10,width:18,height:16,rx:4,fill:SKIN2},g);
+ const head=sv('g',{},g);
+ sv('circle',{cx:0,cy:hy,r:hr,fill:SKIN},head);
+ sv('ellipse',{cx:-hr+1,cy:hy+4,rx:5,ry:8,fill:SKIN2},head);sv('ellipse',{cx:hr-1,cy:hy+4,rx:5,ry:8,fill:SKIN2},head);
+ // 머리카락
+ if(k==='baby')sv('path',{d:`M-8,${hy-hr+2} Q0,${hy-hr-10} 6,${hy-hr+1}`,fill:'none',stroke:P.hair,'stroke-width':4,'stroke-linecap':'round'},head);
+ else if(k==='kid'){sv('path',{d:`M${-hr-2},${hy+2} Q${-hr},${hy-hr-6} 0,${hy-hr-4} Q${hr},${hy-hr-6} ${hr+2},${hy+2} Q${hr-4},${hy-hr+10} ${hr*0.2},${hy-hr+12} Q${-hr*0.4},${hy-hr+8} ${-hr+4},${hy-2}Z`,fill:P.hair},head);
+  sv('circle',{cx:hr-2,cy:hy-hr+6,r:7,fill:'#e2735a'},head);}
+ else sv('path',{d:`M${-hr-2},${hy+4} Q${-hr},${hy-hr-8} 0,${hy-hr-6} Q${hr},${hy-hr-8} ${hr+2},${hy+4} Q${hr-6},${hy-hr+8} 0,${hy-hr+10} Q${-hr+6},${hy-hr+8} ${-hr-2},${hy+4}Z`,fill:P.hair},head);
+ if(k==='dad'||k==='ther'){} 
+ // 얼굴
+ const fg=sv('g',{},head);const eY=hy+2,eX=hr*0.36;
+ const eyes=[sv('ellipse',{cx:-eX,cy:eY,rx:3.4,ry:4.4,fill:INK},fg),sv('ellipse',{cx:eX,cy:eY,rx:3.4,ry:4.4,fill:INK},fg)];
+ sv('circle',{cx:-eX-6,cy:eY+10,r:5,fill:'#f4a49a',opacity:.6},fg);sv('circle',{cx:eX+6,cy:eY+10,r:5,fill:'#f4a49a',opacity:.6},fg);
+ const mouth=sv('path',{d:'',fill:'none',stroke:INK,'stroke-width':2.6,'stroke-linecap':'round'},fg);
+ const M={smile:`M-8,${eY+13} Q0,${eY+20} 8,${eY+13}`,open:`M-7,${eY+13} Q0,${eY+24} 7,${eY+13} Z`,flat:`M-6,${eY+16} L6,${eY+16}`,sad:`M-7,${eY+19} Q0,${eY+13} 7,${eY+19}`,o:`M0,${eY+13} m-4,4 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0`};
+ const R={g,head,eyes,mouth,arms,P,hy,hr,adult,
+  face(type){if(R._f===type)return;R._f=type;mouth.setAttribute('d',M[type]||M.smile);mouth.setAttribute('fill',type==='open'||type==='o'?'#c44d3f':'none');},
+  arm(side,deg){const a=arms[side];if(a.deg===deg)return;a.deg=deg;a.g.setAttribute('transform',`rotate(${(-side*deg).toFixed(1)} ${a.x} ${a.y})`);},
+  look(dx){const v=(dx||0).toFixed(1);if(R._lk===v)return;R._lk=v;fg.setAttribute('transform',`translate(${v},0)`);},
+  bob(v){const y=(v||0).toFixed(1);if(R._b===y)return;R._b=y;R.g.setAttribute('transform',R.base+` translate(0,${y})`);}};
+ R.base=`translate(${o.x||0},${o.y||0}) scale(${(o.flip?-1:1)*(o.s||1)},${o.s||1})`;g.setAttribute('transform',R.base);
+ R.face(o.face||'smile');return R;}
+/* 말풍선(HTML). x,y = 꼬리 끝 위치 */
+function bubble(L,x,y,html,o={}){const d=hdiv('bub ov'+(o.cls?' '+o.cls:''),html,L,`left:${x}px;top:${y-18}px;`+(o.style||''));if(o.tail)d.style.setProperty('--tx',o.tail);d.set=h=>setH(d,h);return d;}
+/* 간단 소품 */
+function iconCup(par,x,y,s=1){const g=sv('g',{transform:`translate(${x},${y}) scale(${s})`},par);sv('path',{d:'M-16,-30 L16,-30 L12,8 L-12,8Z',fill:'#fff',stroke:INK,'stroke-width':3},g);sv('path',{d:'M-14,-18 L14,-18 L11,6 L-11,6Z',fill:'#f1f1f1'},g);sv('path',{d:'M16,-22 Q30,-18 14,-4',fill:'none',stroke:INK,'stroke-width':3},g);return g;}
+function iconBall(par,x,y,r=22){const g=sv('g',{},par);sv('circle',{cx:x,cy:y,r,fill:'#f26b5b',stroke:INK,'stroke-width':3},g);sv('path',{d:`M${x-r},${y} Q${x},${y-r*0.5} ${x+r},${y}`,fill:'none',stroke:'#fff','stroke-width':4},g);return g;}
+function iconBook(par,x,y,s=1,c='#5b8fd6'){const g=sv('g',{transform:`translate(${x},${y}) scale(${s})`},par);sv('path',{d:'M-34,-24 Q-17,-32 0,-22 Q17,-32 34,-24 L34,22 Q17,14 0,24 Q-17,14 -34,22Z',fill:'#fff',stroke:c,'stroke-width':4},g);sv('line',{x1:0,y1:-22,x2:0,y2:24,stroke:c,'stroke-width':3},g);return g;}
+function iconSock(par,x,y,s=1){const g=sv('g',{transform:`translate(${x},${y}) scale(${s})`},par);sv('path',{d:'M-10,-36 L10,-36 L10,0 Q10,14 26,14 L30,14 Q38,14 38,22 Q38,30 30,30 L4,30 Q-10,30 -10,14Z',fill:'#f6c64a',stroke:INK,'stroke-width':3},g);sv('rect',{x:-10,y:-36,width:20,height:8,fill:'#e2735a'},g);return g;}
+/* 동그란 번호 배지 */
+const badge=(n,c='#f08a24')=>`<span style="display:inline-flex;width:34px;height:34px;border-radius:50%;background:${c};color:#fff;font-weight:900;align-items:center;justify-content:center;font-size:20px;margin-right:10px;flex:none">${n}</span>`;
+/* 바닥 그림자 */
+function floor(){return null;}
+</script>
+<script>"use strict";
+Object.assign(DUR,{});
+</script>
+<script>"use strict";
+/* ═════════ 12편 · 특정 언어치료 프로그램 ═════════ */
+const ap=(t,a,d=0.45)=>ramp(t,a,a+d);
+const EMO=(e,s=44)=>`<span style="font-size:${s}px;line-height:1">${e}</span>`;
+const KC=(L,o)=>hdiv((o.raw?'':'cd ')+'ov'+(o.b?' b-'+o.b:''),o.html,L,`left:${o.x}px;top:${o.y}px;${o.w?'width:'+o.w+'px;':''}${o.raw?'':'padding:'+(o.pad||'14px 18px')+';'}${o.center?'text-align:center;':''}`);
+const KT=(t,c,f)=>`<span class="tagp tp-${c||'gry'}" style="font-size:${f||17}px">${t}</span>`;
+const KH=(t,c,f)=>`<b class="k-${c||'org'}" style="font-size:${f||22}px">${t}</b>`;
+const KR=(k,v,f)=>`<div style="font-size:${f||17}px;margin-top:5px;line-height:1.45"><b style="color:#8a7558">${k}</b> · ${v}</div>`;
+const KB=(t,c)=>`<span style="display:inline-block;padding:6px 12px;margin:3px 2px;border-radius:10px;background:${c||'#5b8fd6'};color:#fff;font-weight:900;font-size:20px">${t}</span>`;
+const AR='<b style="color:#e8b07a;font-size:20px;margin:0 4px">➜</b>';
+const ROW=(items,c,f)=>`<div style="display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:8px">${items.map(x=>KT(x,c,f||18)).join(AR)}</div>`;
+const C_N='#5b8fd6',C_J='#e8781e',C_V='#23a271',C_M='#2aa7a0';
+function kDraw(X,t,p){X.forEach((cards,si)=>{const last=si===p.scenes.length-1;const on=t>=ST(p,si)&&(t<SE(p,si)||last);const cur=on?curLine(t,p,si):-1;
+ cards.forEach(({c,el})=>{const a=c.sub!=null?sub_(p,si,c.line,c.sub,c.n||2):LS(p,si,c.line)+0.2;const until=c.until!=null?LS(p,si,c.until):1e9;
+  pop(el,on&&t>=a&&t<until?ramp(t,a,a+0.45):0);cls(el,'on',on&&cur===c.line&&!c.noOn&&!c.raw);});});}
+function KP(def){const scenes=def.scenes.map((s,i)=>({name:s.name,pre:s.pre!=null?s.pre:(i===0?0.6:0.3),post:s.post!=null?s.post:(i===def.scenes.length-1?1.2:0.4),lines:s.lines}));
+ return page({id:def.id,label:def.label,title:def.title,scenes,
+  init(L){this.__x=def.scenes.map(s=>(s.cards||[]).map(c=>({c,el:KC(L,c)})));if(def.xi)def.xi.call(this,L);},
+  draw(t,p){kDraw(this.__x,t,p);if(def.xd)def.xd.call(this,t,p);}});}
+const inS=(t,p,i)=>t>=ST(p,i)&&(t<SE(p,i)||i===p.scenes.length-1);
+
+/* 장면 도우미: 치료사 · 아이 + 말풍선 (R = [line, sub, who(0 어른 1 아이), 말]) */
+function scene2(L,o){const s=SVGROOT(L);const g=sv('g',{opacity:0},s);
+ const A=person(g,{kind:o.ak||'ther',x:o.ax||330,y:575,s:0.95});const B=person(g,{kind:o.bk||'kid',x:o.bx||950,y:575,s:0.95,flip:o.bflip});
+ const ba=bubble(L,o.ax||330,330,'');const bb=bubble(L,o.bx||950,400,'');return {g,A,B,ba,bb,svg:s};}
+function scene2Draw(S,t,p,si,R){const on=inS(t,p,si);op(S.g,on?ap(t,ST(p,si)+0.1):0);if(!on){op(S.ba,0);op(S.bb,0);return;}
+ const k=curLine(t,p,si);let ra=null,rb=null;for(const r of R){if(r[0]===k&&t>=sub_(p,si,r[0],r[1],2)){if(r[2]===0)ra=r;else rb=r;}}
+ [[ra,S.ba,S.A],[rb,S.bb,S.B]].forEach(([r,b,P])=>{if(r){b.set(r[3]);pop(b,ap(t,sub_(p,si,r[0],r[1],2)));P.face('open');}else{op(b,0);P.face('smile');}});}
+
+/* ═════════ 12-1 스크립트란 ═════════ */
+KP({id:'e12-1',label:'12-1',title:'스크립트 문맥을 이용한 언어치료',scenes:[
+ {name:'스크립트란',lines:[
+  {tx:'스크립트는 특정한 문맥에서 진행되는 단계적인 사건들의 구조입니다. 생일잔치를 떠올리면 케이크를 놓고, 초를 꽂고, 불을 켜고, 노래하고, 불을 끄는 순서가 바로 떠오르죠.',say:'스크립트는 특정한 문맥에서 진행되는 단계적인 사건들의 구조입니다. 생일잔치를 떠올리면 케이크를 놓고, 초를 꽂고, 불을 켜고, 노래하고, 불을 끄는 순서가 바로 떠오르죠.'},
+  '이렇게 일상화된 상황은 상황 지식을 함께 나누게 해 줍니다. 아이는 어른이 무슨 말을 할지 예측할 수 있어서, 그 상황에서 늘 쓰는 상황언어를 쉽게 배웁니다.',
+  '스크립트와 일상적 공동활동은 아이에게 익숙한 상황, 통일된 주제, 논리적 순서, 예측 가능한 결말이라는 네 가지 특징을 가집니다.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'org',html:`<div style="text-align:center">${KH('🎂 생일잔치 스크립트','org',23)}</div>${ROW(['케이크 놓기','초 꽂기','불 켜기','노래하기','불 끄기','나눠 먹기'],'org',18)}`},
+   {line:1,x:90,y:245,w:1100,b:'blue',center:1,html:`<div style="display:flex;gap:10px;justify-content:center;align-items:center">${KT('공유된 상황 지식','blue',19)}${AR}${KT('어른 말을 <b>예측</b>','blue',19)}${AR}${KT('<b>상황언어</b>를 쉽게 습득','blue',19)}</div>`},
+   ...[['🏠','익숙한 상황'],['🎯','통일된 주제'],['🔢','논리적 순서'],['🏁','예측 가능한 결말']].map((x,i)=>({line:2,sub:0.5+i*0.35,n:2,x:90+i*282,y:360,w:255,b:'grn',center:1,pad:'10px',html:`${EMO(x[0],30)}<div>${KH(x[1],'grn',20)}</div>`}))]},
+ {name:'효과와 사용 원칙',lines:[
+  '스크립트 상황에서 아이는 더 길고 복잡한 문장, 더 다양한 문법형태소를 쓰고, 대화를 스스로 시작하거나 차례를 채우는 일이 늘어납니다.',
+  '쓸 때는 주고받는 대화 기회를 많이 주고, 활동 속에서 상황언어를 많이 들려주며, 익숙해지면 일부러 스크립트를 깨서 자발적인 말을 끌어냅니다.'],
+  cards:[{line:0,x:90,y:100,w:540,b:'blue',html:KH('📈 효과','blue',22)+`<div style="margin-top:6px">${['더 길고 복잡한 문장','긴 MLU · 다양한 문법형태소','대화 자발 시작 · 차례 채우기','문장 이해 · 관계어 습득'].map(x=>KT(x,'blue',17)).join('')}</div>`},
+   {line:1,x:650,y:100,w:540,b:'org',html:KH('🧭 사용 원칙','org',22)+KR('①','주고받는 대화 기회를 많이')+KR('②','상황언어를 활동 속에서 많이')+KR('③','익숙해지면 <b>일부러 스크립트 위반</b> → 자발적 언어')}]},
+ {name:'스크립트 깨기',lines:[
+  '예를 들어 매번 초를 꽂고 불을 켜던 아이 앞에서, 초를 꽂지 않고 바로 불을 켜려고 하면 아이가 먼저 초 꽂아요 하고 말합니다.'],
+  cards:[{line:0,raw:1,x:0,y:100,w:1280,center:1,html:KT('익숙한 순서를 일부러 깨기 → 아이의 <b>자발적</b> 말','org',21)}]}],
+ xi(L){this.S=scene2(L,{ax:360,bx:930});this.cake=hdiv('ov','<div style="text-align:center"><span style="font-size:70px">🍰</span><div style="font-size:15px;font-weight:800;color:#8a7558">초 없음</div></div>',L,'position:absolute;left:600px;top:430px');},
+ xd(t,p){scene2Draw(this.S,t,p,2,[[0,0.15,0,'자, 불 켜자! 🔥'],[0,1.1,1,'초 꽂아요!']]);op(this.cake,inS(t,p,2)?ap(t,ST(p,2)+0.2):0);}});
+
+/* ═════════ 12-2 스크립트 활용 7단계 ═════════ */
+const K122=[['① 목표언어 구조 계획','[대상-행위] · [장소-행위] · 요구 · 거부 · 조사 · 어미'],['② 익숙한 일상 활동 선정','생일잔치 · 목욕 · 간식 만들기'],['③ 하위행동 나열','핵심 행동과 부수 행동 구분'],['④ 하위행동마다 목표언어','"머리에 써" · "케이크에 꽂아" · "접시에 담아"'],['⑤ 불필요한 하위행동 삭제','핵심 · 아이가 좋아하는 행동은 유지'],['⑥ 유도할 상황 · 발화 계획','싫어하는 컵 먼저(거부) · 안 열리는 상자(요구)'],['⑦ 체계적으로 바꾸며 반복','비슷한 스크립트 2~3개 · 기본 → 변형']];
+KP({id:'e12-2',label:'12-2',title:'스크립트 활용 7단계',scenes:[
+ {name:'7단계',lines:[
+  '스크립트는 일곱 단계로 짭니다. 먼저 대상과 행위, 장소와 행위 같은 목표언어 구조를 정하고, 아이에게 익숙하고 주제가 있는 생일잔치 같은 활동을 고릅니다.',
+  '활동의 하위행동을 나열하고, 하위행동마다 머리에 써, 케이크에 꽂아처럼 구체적인 목표언어를 붙입니다. 목표언어를 넣기 어려운 행동은 지웁니다.',
+  '싫어하는 컵을 먼저 줘서 거부를, 잘 안 열리는 상자로 요구를 끌어내는 식으로 유도 상황을 계획하고, 활동을 조금씩 바꾸며 여러 회기 반복합니다.',
+  '자폐 아동처럼 변화를 싫어하면 한 가지에 고착되지 않게 회기마다 조금씩 바꾸고, 인지나 신체 제약이 크면 짧은 스크립트를 여러 번 반복합니다.'],
+  cards:[...K122.map((x,i)=>({line:i<2?0:(i<5?1:2),sub:[0.1,1.1,0.1,0.6,1.4,0.1,1.3][i],n:2,x:90+(i%2)*560,y:96+Math.floor(i/2)*92,w:540,pad:'8px 16px',html:`<b style="font-size:19px;color:#c4621a">${x[0]}</b><div style="font-size:16px;margin-top:2px">${x[1]}</div>`})),
+   {line:3,x:650,y:372,w:540,b:'red',pad:'8px 16px',html:`<b style="font-size:18px;color:#c43f2c">⚠ 조정</b><div style="font-size:16px;margin-top:2px">자폐 아동 → 회기마다 조금씩 변화 · 제약이 크면 → 짧게 여러 번</div>`}]}]});
+
+/* ═════════ 12-3 낱말찾기 장애 ═════════ */
+KP({id:'e12-3',label:'12-3',title:'낱말찾기 장애',scenes:[
+ {name:'낱말찾기 장애란',lines:[
+  '낱말찾기 장애는 특정 낱말을 빠르고 정확하게 꺼내 말하기 어려운 것으로, 단순언어장애와 언어학습장애 아동에게 많습니다. 대화에서 그거, 있잖아 같은 간투어와 반복, 바꿔 말하기가 늘고 읽기에도 영향을 줍니다.',
+  '원인은 두 가지로 설명합니다. 저장 가설은 어휘가 빈약하거나 기억 속에 정확히 저장되지 않았다고 보고, 인출 가설은 저장은 됐지만 효율적으로 꺼내지 못한다고 봅니다.',
+  '이름대기 오류는 의미적 오류가 가장 많고, 낱말 지식 자체가 부족하면 시각적 오류가 많아집니다.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'org',html:`<div style="display:flex;gap:18px;align-items:center">${EMO('🤔',54)}<div><span style="font-size:24px;font-weight:900">"그거… 있잖아… 그…"</span><div style="font-size:18px;margin-top:6px">특정 낱말을 <b>빠르고 정확하게</b> 꺼내기 어려움 · 단순언어장애(SLI)/발달성 언어장애(DLD) · 언어학습장애</div><div style="margin-top:6px">${['간투어 ↑','반복 · 재구성 · 대치 ↑','읽기에도 영향'].map(x=>KT(x,'org',17)).join('')}</div></div></div>`},
+   {line:1,sub:0.2,n:2,x:90,y:270,w:540,b:'blue',center:1,html:`${EMO('📦',40)}<div>${KH('저장 가설','blue',23)}</div><div style="font-size:18px;margin-top:6px">어휘가 빈약 · 기억에 <b>정확히 저장 안 됨</b></div>`},
+   {line:1,sub:1.1,n:2,x:650,y:270,w:540,b:'grn',center:1,html:`${EMO('🎣',40)}<div>${KH('인출 가설','grn',23)}</div><div style="font-size:18px;margin-top:6px">저장은 됐지만 <b>꺼내지 못함</b></div>`},
+   {line:2,raw:1,x:0,y:470,w:1280,center:1,html:KT('이름대기 오류 = <b>의미적 오류</b>가 가장 많음 · 낱말 지식 부족 → 시각적 오류','gry',18)}]}]});
+
+/* ═════════ 12-4 낱말찾기 훈련 ═════════ */
+KP({id:'e12-4',label:'12-4',title:'낱말찾기 훈련 · 세 가지 단서',scenes:[
+ {name:'훈련 계획',lines:[
+  '목표 낱말은 연령과 흥미, 어려워하는 낱말을 고려해 주제별로 묶습니다. 활동은 기억 용량을 늘리는 기억확장 활동과 효율적으로 꺼내는 기억인출 활동을 함께 할 때 일반화 효과가 좋습니다.'],
+  cards:[{line:0,x:90,y:110,w:1100,b:'blue',center:1,html:KH('🎯 목표 낱말','blue',22)+`<div style="margin-top:6px">${['연령','흥미 · 주제','어려워하는 낱말','<b>주제 중심</b> 묶음'].map(x=>KT(x,'blue',18)).join('')}</div>`},
+   {line:0,sub:1.0,n:2,x:90,y:270,w:540,b:'grn',center:1,html:`${EMO('🧠',34)}<div>${KH('기억확장 활동','grn',22)}</div><div style="font-size:17px">저장 용량 늘리기</div>`},
+   {line:0,sub:1.3,n:2,x:650,y:270,w:540,b:'org',center:1,html:`${EMO('🎣',34)}<div>${KH('기억인출 활동','org',22)}</div><div style="font-size:17px">효율적으로 꺼내기</div>`},
+   {line:0,sub:1.7,n:2,raw:1,x:0,y:430,w:1280,center:1,html:KT('두 가지를 <b>병행</b>할 때 일반화 효과 ↑','pur',19)}]},
+ {name:'세 가지 단서',lines:[
+  '단서는 세 가지입니다. 의미적 단서는 자동차를 타는 거, 바퀴로 굴러가는 거처럼 기능, 특성, 범주, 연상어로 힌트를 줍니다.',
+  '구문적 단서는 그 낱말이 자주 쓰이는 문맥을 들려주는 것으로, 고추라면 고추 먹고 맴맴처럼 말해 줍니다.',
+  '음향 음소적 단서는 첫음절을 말해 주거나 음절 수만큼 두드려 주는 것입니다. 연구에서는 음향 음소 단서가 대체로 더 효율적이었고, 스스로 단서를 쓰는 자기단서 훈련도 효과가 있었습니다.'],
+  cards:[{line:0,x:90,y:100,w:350,b:'blue',center:1,html:`${EMO('🔑',36)}<div>${KH('의미적 단서','blue',22)}</div><div style="font-size:16px;margin-top:4px">기능 · 특성 · 범주 · 동의어 · 반의어 · 연상어 · 몸짓</div><div style="font-size:18px;margin-top:8px;background:#eef4fd;border-radius:10px;padding:6px">자동차 → "타는 거, 바퀴로 굴러가는 거"</div><div style="font-size:15px;color:#8a7558;margin-top:4px">기억확장(저장)과 관련</div>`},
+   {line:1,x:465,y:100,w:350,b:'grn',center:1,html:`${EMO('🔑',36)}<div>${KH('구문적 단서','grn',22)}</div><div style="font-size:16px;margin-top:4px">자주 쓰이는 문맥 · 상용구</div><div style="font-size:18px;margin-top:8px;background:#e6f6ee;border-radius:10px;padding:6px">고추 → "○○ 먹고 맴맴"</div>`},
+   {line:2,x:840,y:100,w:350,b:'org',center:1,html:`${EMO('🔑',36)}<div>${KH('음향-음소적 단서','org',22)}</div><div style="font-size:16px;margin-top:4px">첫음절 · 음절 수 두드리기 · 첫 글자</div><div style="font-size:18px;margin-top:8px;background:#fff1e0;border-radius:10px;padding:6px">자동차 → "자…" 👏👏👏</div><div style="font-size:15px;color:#8a7558;margin-top:4px">인출과 관련 · 대체로 더 효율적</div>`},
+   {line:2,sub:1.5,n:2,raw:1,x:0,y:420,w:1280,center:1,html:KT('효과 측정 · 그림 이름대기 <b>오류율 · 반응시간</b> · 종료 <b>1개월 뒤</b> 재검사','gry',18)}]}]});
+
+/* ═════════ 12-5 참조적 의사소통 훈련 ═════════ */
+KP({id:'e12-5',label:'12-5',title:'참조적 의사소통 훈련 · 장벽게임',scenes:[
+ {name:'화자와 청자',lines:[
+  '참조적 의사소통 훈련은 여러 대상 중 하나를 상대가 정확히 고를 수 있게 말로 설명하는 능력을 기릅니다. 화자는 비슷한 것과 구별되는 특징을 골라 말하고, 상대가 못 알아들으면 고쳐 말해야 합니다.',
+  '청자는 들은 정보를 분석해 목표를 고르고, 정보가 부족하면 명료화를 요구해야 합니다. 학령전 아동은 특히 헷갈릴 수 있는 것과의 차이를 말해야 한다는 차별화 규칙을 잘 모릅니다.'],
+  cards:[{line:0,x:90,y:100,w:540,b:'blue',html:KH('🗣️ 화자','blue',22)+KR('청자 분석','청자 관점에서 메시지 구성')+KR('과제 분석','비슷한 것과 <b>구별되는 특징</b> 선택')+KR('수정','못 알아들으면 고쳐 말하기')},
+   {line:1,x:650,y:100,w:540,b:'grn',html:KH('👂 청자','grn',22)+KR('정보 분석','목표 참조물 정확히 고르기')+KR('명료화 요구','부족한 정보에 질문 (늦게 발달)')},
+   {line:1,sub:1.3,n:2,raw:1,x:0,y:330,w:1280,center:1,html:KT('학령전 아동 → <b>차별화 규칙</b>(헷갈릴 수 있는 것과의 차이 말하기)을 잘 모름','org',19)}]},
+ {name:'장벽게임',lines:[
+  '장벽게임은 두 사람 사이에 칸막이를 두고 말로만 정보를 주고받으며 같은 그림을 완성하는 활동입니다. 굴뚝을 그려 하면 아이는 어떤 굴뚝인지 다시 물어야 합니다.',
+  '치료사는 그런 게 여기 두 개 있는데, 다른 거랑 어떻게 달라 하고 차별화 규칙을 일깨우는 지각적 피드백을 주고, 끝난 뒤 서로의 그림을 맞대어 보는 대면 시간을 갖습니다.'],
+  cards:[{line:1,sub:1.2,n:2,raw:1,x:0,y:100,w:1280,center:1,html:KT('지각적 피드백 + 끝나고 그림 맞대 보기 (대면 시간)','pur',20)}]}],
+ xi(L){this.S=scene2(L,{ax:320,bx:960});sv('rect',{x:610,y:300,width:60,height:275,rx:8,fill:'#c9a37a'},this.S.g);
+  this.bd=[hdiv('ov','<span style="font-size:46px">🏠</span>',L,'position:absolute;left:470px;top:470px'),hdiv('ov','<span style="font-size:46px">🏠</span>',L,'position:absolute;left:760px;top:470px')];},
+ xd(t,p){scene2Draw(this.S,t,p,1,[[0,0.2,0,'굴뚝을 그려.'],[0,1.1,1,'어떤 굴뚝이요?'],[1,0.1,0,'그런 게 두 개 있어. 어떻게 달라?'],[1,0.9,1,'빨갛고 큰 굴뚝!']]);this.bd.forEach(b=>op(b,inS(t,p,1)?ap(t,ST(p,1)+0.3):0));}});
+
+/* ═════════ 12-6 AAC란 ═════════ */
+KP({id:'e12-6',label:'12-6',title:'보완대체의사소통(AAC)이란',scenes:[
+ {name:'정의와 대상',lines:[
+  {tx:'보완대체의사소통(AAC)은 말과 언어에 심한 어려움이 있는 사람에게 말을 보완하거나 대체하는 방법으로 의사소통 기회를 주는 것입니다. 보완은 말에 더하는 것, 대체는 말 대신 쓰는 것입니다.',say:'보완대체의사소통은 말과 언어에 심한 어려움이 있는 사람에게 말을 보완하거나 대체하는 방법으로 의사소통 기회를 주는 것입니다. 보완은 말에 더하는 것, 대체는 말 대신 쓰는 것입니다.'},
+  '지적장애, 자폐스펙트럼장애, 뇌성마비, 중복 감각장애, 실어증, 말실행증 등이 대상이며, 문제행동 감소와 학습 참여, 말과 언어 발달 촉진까지 기대할 수 있습니다.',
+  '전제는 보완대체의사소통을 사용하지 못하는 사람은 없다는 것입니다. 보완대체의사소통은 구어 발달을 막지 않으므로, 말이 나오기를 기다리느라 미루지 않습니다.'],
+  cards:[{line:0,x:90,y:100,w:540,b:'blue',center:1,html:`${EMO('➕',36)}<div>${KH('보완 (augmentative)','blue',23)}</div><div style="font-size:18px;margin-top:4px">말에 <b>더해서</b></div>`},
+   {line:0,sub:1.4,n:2,x:650,y:100,w:540,b:'grn',center:1,html:`${EMO('🔁',36)}<div>${KH('대체 (alternative)','grn',23)}</div><div style="font-size:18px;margin-top:4px">말 <b>대신</b></div>`},
+   {line:1,x:90,y:255,w:1100,b:'org',html:KH('대상','org',21)+` <span>${['지적장애','자폐스펙트럼장애(ASD)','뇌성마비','중복 감각장애','실어증','말실행증'].map(x=>KT(x,'org',17)).join('')}</span><div style="margin-top:8px">${KH('기대 효과','org',21)} ${['문제행동 감소','정서 성장','학습 참여','독립 생활','<b>말 · 언어 발달 촉진</b>'].map(x=>KT(x,'grn',17)).join('')}</div>`},
+   {line:2,x:190,y:420,w:900,b:'red',center:1,html:`<div style="font-size:22px;font-weight:900">"AAC를 사용하지 못하는 사람은 없다" ★</div><div style="font-size:18px;margin-top:4px">구어 발달을 막지 않음 → 말을 기다리느라 <b>미루지 않음</b></div>`}]}]});
+</script>
+<script>"use strict";
+/* ═════════ 12-7 AAC 4요소 ═════════ */
+const K127=[['🍎','실물'],['🧸','모형'],['📷','사진'],['🖼️','그림 · 선화'],['🔤','글자 · 점자']];
+KP({id:'e12-7',label:'12-7',title:'AAC 구성요소 4가지',scenes:[
+ {name:'상징',lines:[
+  '보완대체의사소통은 상징, 도구, 기법, 전략의 네 요소로 이루어집니다. 상징 중 비도구적 상징은 몸짓이나 수어처럼 자기 몸만 쓰는 것으로, 언제나 쓸 수 있지만 모르는 상대와는 통하기 어렵습니다.',
+  '도구적 상징은 몸 밖의 것을 씁니다. 실물과 모형 같은 유형상징에서 사진, 그림, 선화 같은 표상상징, 그리고 글자와 점자 같은 철자상징으로 갈수록 추상적입니다.',
+  '상징이 가리키는 대상과 얼마나 닮았는지를 도상성이라고 합니다. 도상성이 높을수록 배우기 쉽고, 블리스심볼처럼 투명성이 낮은 상징은 인지가 낮은 아동에게 어렵습니다.'],
+  cards:[{line:0,raw:1,x:0,y:96,w:1280,center:1,noOn:1,html:`<div style="display:flex;gap:10px;justify-content:center">${[['상징','org'],['도구','blue'],['기법','grn'],['전략','pur']].map(x=>KT('🧩 '+x[0],x[1],22)).join('')}</div>`},
+   {line:0,sub:0.6,n:2,x:90,y:160,w:1100,b:'org',pad:'10px 18px',html:`${KH('비도구적 상징','org',21)} <span style="font-size:18px">몸짓 · 수어 · 자기 몸만 사용 → ✔ 항상 사용 가능 · ✘ 모르는 상대와 제한</span>`},
+   {line:1,x:90,y:240,w:1100,b:'blue',pad:'10px 18px',html:`${KH('도구적 상징','blue',21)}<div style="display:flex;gap:8px;justify-content:center;align-items:center;margin-top:8px">${K127.map(x=>`<div style="text-align:center;background:#eef4fd;border-radius:12px;padding:6px 12px">${EMO(x[0],30)}<div style="font-size:16px;font-weight:800">${x[1]}</div></div>`).join(AR)}</div><div style="display:flex;justify-content:space-around;font-size:16px;color:#8a7558;margin-top:4px"><span>유형상징</span><span>표상상징 (PCS · 이화-AAC · 블리스심볼)</span><span>철자상징</span></div>`},
+   {line:2,raw:1,x:90,y:435,w:1100,html:`<div style="display:flex;justify-content:space-between;font-size:18px;font-weight:900"><span class="k-grn">도상성 높음 · 배우기 쉬움</span><span class="k-red">도상성 낮음 · 추상적</span></div><div style="height:12px;border-radius:6px;margin-top:6px;background:linear-gradient(90deg,#88d6b5,#f5bd84,#f2a596)"></div>`}]},
+ {name:'도구 · 기법 · 전략',lines:[
+  '도구에는 의사소통판이나 의사소통책 같은 비전자적 도구와, 음성이 나오는 기기나 태블릿 앱 같은 전자적 도구가 있습니다.',
+  '기법은 고르는 방법입니다. 손가락이나 헤드스틱으로 바로 가리키면 직접 선택, 항목이 차례로 지나갈 때 원하는 곳에서 스위치를 누르면 간접 선택인 스캐닝입니다.',
+  '전략은 부호화, 낱말과 문장 예측, 색깔 부호화처럼 메시지를 더 빠르고 정확하게 전하는 방법입니다.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'blue',pad:'10px 18px',html:`${KH('🛠️ 도구','blue',21)} ${KT('비전자적 · 의사소통판 · 의사소통책','blue',17)}${KT('전자적 · 로우테크 · 하이테크(SGD · VOCA · 태블릿 앱)','blue',17)}`},
+   {line:1,x:90,y:190,w:540,b:'grn',center:1,html:KH('👆 직접 선택','grn',22)+`<div style="font-size:30px;margin:6px 0">☝️ ▦</div><div style="font-size:17px">손가락 · 헤드스틱 · 마우스스틱 · 빔으로 바로 지적</div>`},
+   {line:1,sub:1.0,n:2,x:650,y:190,w:540,b:'org',center:1,html:KH('🔦 간접 선택 = 스캐닝','org',22)+`<div style="font-size:30px;margin:6px 0">▢ ▢ <span style="color:#e8781e">▣</span> ▢ → 🔘</div><div style="font-size:17px">불빛이 차례로 지나갈 때 원하는 곳에서 <b>스위치</b></div>`},
+   {line:2,x:90,y:400,w:1100,b:'pur',pad:'10px 18px',html:`${KH('⚡ 전략','pur',21)} ${['부호화','낱말 · 문장 예측','색깔 부호화'].map(x=>KT(x,'pur',17)).join('')} <span style="font-size:17px">→ 전달 속도 · 정확도 ↑</span>`}]}]});
+
+/* ═════════ 12-8 AAC 선택 고려 · 어휘 ═════════ */
+const K128=[['상황어휘','blue','특정 상황의 핵심 메시지 · <b>기능적</b>','패스트푸드점: 햄버거 · 주스 · 케첩'],['발달어휘','grn','<b>언어 · 어휘 성장</b> 촉진','또 · 그만 · 더 · 안 · 감정어 · 행동어'],['핵심어휘','org','많은 사람이 <b>아주 자주</b> 쓰는 말','하다 · 되다 · 이거 · 여기'],['개인어휘','pur','아이 <b>개인</b>의 관심 · 고유 어휘','가족 이름 · 좋아하는 캐릭터']];
+KP({id:'e12-8',label:'12-8',title:'AAC 선택 고려사항과 어휘',scenes:[
+ {name:'선택 고려사항',lines:[
+  '보완대체의사소통을 고를 때 어휘와 문장은 정신연령이 아니라 생활연령에 맞춥니다. 정신연령은 가르치는 방법과 교재를 고를 때 고려합니다.',
+  '그 밖에 요구, 주의 끌기, 감정 표현 같은 기능성, 상호작용성, 사회적 의미, 하나 이상의 도구와 양식, 자연스러운 환경에서의 중재, 아이의 선호, 부모와의 협력을 고려합니다.'],
+  cards:[{line:0,x:190,y:100,w:900,b:'red',center:1,html:`${KH('어휘 · 문장 = <u>생활연령</u>에 맞게 ★','red',24)}<div style="font-size:18px;margin-top:6px">정신연령 → 교수 방법 · 교재 선택에 고려</div>`},
+   {line:1,x:90,y:240,w:1100,b:'blue',center:1,html:`<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">${['기능성','상호작용성','중재 가능성','사회적 의미','선수 기술','1개 이상의 도구 · 양식','자연스러운 환경','아동의 선호도','부모-중재자 협력','AAC 체계의 특성'].map(x=>KT(x,'blue',18)).join('')}</div>`}]},
+ {name:'어휘 네 가지',lines:[
+  '어휘는 네 가지로 나눕니다. 상황어휘는 패스트푸드점의 햄버거, 주스처럼 특정 상황의 핵심 메시지를 전하는 기능적 어휘이고, 발달어휘는 또, 그만, 더, 안처럼 언어 성장을 이끄는 어휘입니다.',
+  '핵심어휘는 하다, 이거, 여기처럼 많은 사람이 아주 자주 쓰는 어휘이고, 개인어휘는 가족 이름이나 좋아하는 캐릭터처럼 아이에게만 중요한 어휘입니다. 초기 사용자에게도 발달어휘를 넣어 낱말 조합을 이끕니다.'],
+  cards:K128.map((x,i)=>({line:i<2?0:1,sub:i%2===0?0.2:1.0,n:2,x:90+(i%2)*560,y:105+Math.floor(i/2)*175,w:540,b:x[1],html:KH(x[0],x[1],23)+`<div style="font-size:18px;margin-top:4px">${x[2]}</div><div style="font-size:17px;margin-top:6px;background:#faf5ec;border-radius:10px;padding:6px 10px">예 · ${x[3]}</div>`}))}]});
+
+/* ═════════ 12-9 다중양식 · 도움 언어 모델링 ═════════ */
+const TAB=(hi,lab)=>`<div style="background:#3f3326;border-radius:16px;padding:10px;width:210px"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">${['🛝','🍪','🚗','🧃','🎵','🧸'].map((e,i)=>`<div style="background:${i===hi?'#ffe08a':'#fff'};border-radius:8px;text-align:center;font-size:30px;padding:4px;${i===hi?'outline:4px solid #e8781e':''}">${e}</div>`).join('')}</div><div style="color:#fff;text-align:center;font-size:15px;margin-top:4px">${lab}</div></div>`;
+KP({id:'e12-9',label:'12-9',title:'다중양식 의사소통 · 도움 언어 모델링',scenes:[
+ {name:'말하면서 상징 누르기',lines:[
+  '다중양식 의사소통은 말, 표정, 몸짓, 수어, 그림 상징, 글처럼 여러 양식을 함께 쓰는 것입니다. 사람은 원래 여러 양식으로 소통합니다.',
+  '도움 언어 모델링은 대화 상대가 말하면서 동시에 보완대체의사소통 상징을 눌러 보여 주는 것입니다. 치료사가 놀이터 놀이 할까 하고 말하며 놀이터 상징을 누르면, 치료사는 다중양식을 쓰고 있는 것입니다.',
+  '아이가 태블릿에서 놀이터 상징을 직접 누르면 도구적 상징을 쓰는 직접 선택입니다. 불빛이 지나가지 않았으므로 스캐닝이 아닙니다.'],
+  cards:[{line:0,raw:1,x:0,y:96,w:1280,center:1,html:`<div style="display:flex;gap:8px;justify-content:center">${['🗣️ 말','😊 표정','👋 몸짓','🤟 수어','🖼️ 그림 상징','✏️ 글'].map(x=>KT(x,'pur',18)).join('')}</div>`},
+   {line:1,sub:1.0,n:2,raw:1,x:0,y:150,w:1280,center:1,until:2,html:KT('말 + 상징을 <b>동시에</b> = 도움 언어 모델링 → 치료사는 <b>다중양식</b>','org',20)},
+   {line:2,raw:1,x:0,y:150,w:1280,center:1,html:KT('아이 · <b>도구적 상징</b> + <b>직접 선택</b> (스캐닝 ✘)','grn',20)}]},
+ {name:'보완적 입력',lines:[
+  '이해를 돕기 위해 그림과 글자로 된 일과표나 상징 스크립트처럼 눈으로 보는 입력도 함께 줍니다. 이것을 보완적 입력 전략이라고 합니다.'],
+  cards:[{line:0,x:240,y:120,w:800,b:'blue',center:1,html:KH('📅 보완적 입력 · 그림 일과표','blue',23)+`<div style="display:flex;gap:8px;justify-content:center;align-items:center;margin-top:10px">${[['🍚','밥 먹기'],['🪥','양치'],['🎒','유치원'],['🛝','놀이터']].map(x=>`<div style="background:#eef4fd;border-radius:12px;padding:6px 12px">${EMO(x[0],32)}<div style="font-size:16px;font-weight:800">${x[1]}</div></div>`).join(AR)}</div>`}]}],
+ xi(L){this.S=scene2(L,{ax:330,bx:1040});this.tb1=hdiv('ov',TAB(0,'치료사가 누름'),L,'position:absolute;left:470px;top:330px');this.tb2=hdiv('ov',TAB(0,'아이가 직접 누름'),L,'position:absolute;left:690px;top:330px');},
+ xd(t,p){scene2Draw(this.S,t,p,0,[[1,0.5,0,'놀이터 놀이 할까?'],[2,0.3,1,'(👆 놀이터)']]);const on=inS(t,p,0);const k=on?curLine(t,p,0):-1;
+  op(this.tb1,on&&k===1?ap(t,sub_(p,0,1,0.6,2)):0);op(this.tb2,on&&k===2?ap(t,LS(p,0,2)+0.2):0);}});
+
+/* ═════════ 12-10 PECS ═════════ */
+const K1210=[['1','의사소통적 교환','그림카드를 건네고 사물 받기','촉진자 신체 촉진 · <b>변별 요구 안 함</b>'],['2','거리 늘리기','상대 · 카드와의 거리를 점점','여러 장소 · 상대 · 주의 끌기'],['3','그림카드 변별','여러 카드 중 원하는 것 선택','선호 + 비선호 2장부터'],['4','"[사물] + 주세요" 문장','문장띠에 붙여 건네기','<b>역행 연쇄</b> · 3~5초 시간지연 · 발화 강요 ✘'],['5','"뭐 갖고 싶어?" 반응','질문에 문장띠로 대답','촉진을 점차 줄임'],['6','언급하기','"뭐 보여?" → "봐요 ○○"','요구 넘어 <b>언급</b>의 사회적 기능']];
+KP({id:'e12-10',label:'12-10',title:'그림교환 의사소통 체계 (PECS)',scenes:[
+ {name:'PECS란',lines:[
+  {tx:'그림교환 의사소통 체계(PECS)는 Bondy와 Frost가 자폐 아동을 위해 만든 보완대체의사소통 기반 프로그램으로, 말이 없거나 거의 없는 아동에게 씁니다.',say:'그림교환 의사소통 체계는 본디와 프로스트가 자폐 아동을 위해 만든 보완대체의사소통 기반 프로그램으로, 말이 없거나 거의 없는 아동에게 씁니다.'},
+  '의사소통의 가장 기본 문제를 시작의 실패로 보고, 원하는 것을 얻기 위해 스스로 상호작용을 시작하게 합니다. 가장 큰 효과는 자발적 의사소통의 증가입니다.'],
+  cards:[{line:0,x:90,y:110,w:1100,b:'org',center:1,html:KH('🖼️ PECS · 그림교환 의사소통 체계','org',24)+`<div style="margin-top:8px">${['Bondy & Frost','자폐 아동','무발화 · 최소발화'].map(x=>KT(x,'org',18)).join('')}</div>`},
+   {line:1,x:90,y:270,w:540,b:'red',center:1,html:KH('핵심 문제','red',21)+`<div style="font-size:19px;margin-top:6px">의사소통 <b>시작의 실패</b></div>`},
+   {line:1,sub:1.1,n:2,x:650,y:270,w:540,b:'grn',center:1,html:KH('가장 큰 효과','grn',21)+`<div style="font-size:19px;margin-top:6px"><b>자발적</b> 의사소통 ↑</div>`}]},
+ {name:'6단계',lines:[
+  '1단계는 의사소통적 교환으로, 그림카드를 상대 손에 건네고 원하는 것을 받습니다. 뒤에 있는 촉진자가 신체로 돕고, 아직 카드 고르기는 요구하지 않습니다. 2단계는 상대와 카드와의 거리를 점점 늘립니다.',
+  '3단계에서 비로소 여러 카드 중 원하는 것을 고르는 변별을 배웁니다. 4단계는 주세요 카드와 사물 카드를 문장띠에 붙이는 문장 구성으로, 역행 연쇄로 가르치고 3에서 5초 기다려 말할 기회를 주지만 말을 강요하지 않습니다.',
+  '5단계는 뭐 갖고 싶어 하는 질문에 대답하기, 6단계는 뭐 보여 하는 질문에 봐요 카드로 대답하며 요구를 넘어 언급하기를 배웁니다.'],
+  cards:K1210.map((x,i)=>({line:i<2?0:(i<4?1:2),sub:[0.1,1.4,0.1,0.8,0.1,0.9][i],n:2,x:90+(i%3)*375,y:96+Math.floor(i/3)*190,w:350,b:['blue','blue','grn','grn','org','pur'][i],pad:'10px 14px',html:`<div style="display:flex;gap:10px;align-items:center"><b style="font-size:34px;color:#e8781e">${x[0]}</b>${KH(x[1],'org',20)}</div><div style="font-size:16px;margin-top:4px">${x[2]}</div><div style="font-size:15px;margin-top:4px;color:#8a7558">${x[3]}</div>`})).concat([{line:1,sub:1.7,n:2,raw:1,x:0,y:470,w:1280,center:1,html:KT('★ 1단계 = 교환(변별 없음) · 3단계 = 변별 · 4단계 = 문장','red',18)}])}]});
+
+/* ═════════ 12-11 반다이크 ═════════ */
+const K1211=[['공명','🤗','몸을 <b>붙이고</b> 함께 흔들기 · 기기 · 뒹굴기','blue'],['협동','🧍‍♀️🧍','아이와 어른 사이에 <b>거리</b>를 두고 함께','grn'],['모방','🪞','<b>시간 간격</b>을 두고 어른 움직임 따라 하기','org'],['몸짓','👋','사물의 모양 · 움직임을 <b>몸짓</b>으로 표현','pur']];
+KP({id:'e12-11',label:'12-11',title:'반다이크 언어이전기 의사소통 프로그램',scenes:[
+ {name:'공명 → 협동 → 모방 → 몸짓',lines:[
+  '반다이크 프로그램은 원래 시각장애와 청각장애가 함께 있는 농맹 아동을 위해 만들어졌고, 언어 습득의 인지적, 사회적 바탕에 초점을 둬 중증 장애 아동에게도 씁니다.',
+  '네 활동을 차례로 잇습니다. 공명은 어른이 아이와 몸을 붙이고 흔들기나 뒹굴기처럼 시작과 끝이 분명한 움직임을 반복하는 것이고, 협동은 같은 활동을 거리를 두고 하는 것입니다.',
+  '모방은 시간 간격을 두고 어른의 움직임을 보고 따라 하는 것, 몸짓은 사물의 모양이나 움직임을 몸짓으로 나타내는 것입니다. 몸 접촉, 거리, 시간 간격, 상징적 몸짓 순서로 기억하세요.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'gry',center:1,html:`<div style="font-size:19px">원래 <b>농맹(시각 + 청각장애)</b> 아동 · 언어 습득의 <b>인지적 · 사회적 선행 능력</b> · 중증 장애 · 자기자극 · 집착이 있는 아동에게도</div>`},
+   ...K1211.map((x,i)=>({line:i<2?1:2,sub:i%2===0?0.1:1.1,n:2,x:90+i*282,y:230,w:255,b:x[3],center:1,pad:'12px 8px',html:`<b style="font-size:16px;color:#8a7558">${i+1}단계</b><div style="font-size:38px">${x[1]}</div>${KH(x[0],x[3],24)}<div style="font-size:16px;margin-top:6px">${x[2]}</div>`})),
+   {line:2,sub:1.5,n:2,raw:1,x:0,y:470,w:1280,center:1,html:KT('★ 몸 접촉 → 거리 → 시간 간격 → 상징적 몸짓','red',20)}]}]});
+
+/* ═════════ 12-12 사회적 상황 이야기 ═════════ */
+const K1212=[['설명문','blue','상황을 사실대로 (누가 · 어디서 · 무엇을 · 왜) · 꼭 포함','점심시간에는 친구들이 줄을 서요.'],['조망문','grn','다른 사람의 생각 · 감정','선생님은 내가 줄을 서면 기뻐해요.'],['지시문','org','기대되는 반응','나는 차례를 기다리려고 노력할 거예요.'],['긍정문','pur','공유되는 가치 · 안심','이건 괜찮아요.'],['협력문','grn','다른 사람이 도울 방법','힘들면 선생님이 도와줄 수 있어요.']];
+KP({id:'e12-12',label:'12-12',title:'사회적 상황 이야기',scenes:[
+ {name:'사회적 상황 이야기란',lines:[
+  'Carol Gray가 만든 사회적 상황 이야기는 주로 자폐스펙트럼장애 아동에게 어려운 사회적 상황을 짧은 이야기로 설명해, 무슨 일이 일어나고 사람들이 어떻게 느끼며 어떻게 하면 좋은지 알려 줍니다.',
+  '긍정적이고 차분한 말투로, 글자 그대로 받아들여도 정확하게 씁니다. 항상 대신 보통이라고 쓰고, 한 이야기에는 한 주제만 담으며 그림이나 사진을 함께 씁니다.'],
+  cards:[{line:0,x:90,y:100,w:1100,b:'blue',center:1,html:KH('📘 사회적 상황 이야기 (Social Story)','blue',24)+`<div style="margin-top:8px">${['Carol Gray','자폐스펙트럼장애','어려운 사회적 상황을 짧은 이야기로'].map(x=>KT(x,'blue',18)).join('')}</div><div style="font-size:16px;margin-top:6px;color:#8a7558">배경 · 마음이론 결함 · 약한 중앙응집력</div>`},
+   {line:1,x:90,y:285,w:1100,b:'grn',center:1,html:KH('쓰는 원칙','grn',22)+`<div style="margin-top:8px">${['1인칭 · 3인칭','긍정적 · 차분한 말투','글자 그대로 정확하게 ("항상" ✘ → "보통")','한 이야기 = 한 주제','그림 · 사진'].map(x=>KT(x,'grn',17)).join('')}</div>`}]},
+ {name:'문장 유형과 비율',lines:[
+  '문장은 상황을 사실대로 알려 주는 설명문, 다른 사람의 생각과 감정을 담은 조망문, 기대되는 행동을 담은 지시문, 그리고 안심시키는 긍정문과 도와줄 방법을 알려 주는 협력문 등이 있습니다.',
+  '중요한 것은 비율입니다. 지시문 하나에 설명문과 조망문 같은 문장이 두 개에서 다섯 개 들어가도록, 설명이 지시보다 많아야 합니다.'],
+  cards:[...K1212.map((x,i)=>({line:0,sub:0.1+i*0.35,n:2,x:90,y:96+i*68,w:700,b:x[1],pad:'6px 14px',html:`<div style="display:flex;gap:12px;align-items:center"><b class="k-${x[1]}" style="font-size:19px;width:70px">${x[0]}</b><div style="font-size:16px;flex:1">${x[2]}<div style="color:#5a4d3e">"${x[3]}"</div></div></div>`})),
+   {line:1,x:820,y:110,w:370,b:'red',center:1,html:KH('비율 ★','red',24)+`<div style="margin-top:10px;font-size:20px">${'<span style="display:inline-block;width:30px;height:30px;border-radius:6px;background:#5b8fd6;margin:2px"></span>'.repeat(4)}<span style="display:inline-block;width:30px;height:30px;border-radius:6px;background:#e8781e;margin:2px"></span></div><div style="font-size:18px;margin-top:8px">지시문 <b>1</b> : 설명 · 조망 등 <b>2~5</b></div><div style="font-size:16px;margin-top:4px;color:#8a7558">설명이 지시보다 많아야 함</div>`}]}]});
+
+/* ═════════ 12-13 확인 문제 (무음) ═════════ */
+const E12Q=[
+ ['스크립트 문맥 중재에서 아동의 자발적 언어를 끌어내기 위해 쓰는 방법은?',['스크립트를 매번 새로 바꾼다','익숙해진 스크립트를 일부러 위반한다','하위행동을 모두 삭제한다','목표언어를 정하지 않는다','반드시 모방을 요구한다'],1,'익숙해진 뒤 위반 → 아동이 먼저 말함'],
+ ['"그거 있잖아요…" 하다가 첫음절 "자…"를 듣자 "자동차!"라고 했다. 쓰인 단서와 시사점은?',['의미적 단서 · 저장 문제','구문적 단서 · 저장 문제','음향-음소적 단서 · 인출 문제','의미적 단서 · 인출 문제','구문적 단서 · 이해 문제'],2,'첫소리 단서로 바로 산출 → 인출의 어려움'],
+ ['장벽게임에서 "그런 게 두 개 있어. 어떻게 달라?"라고 하는 것은?',['대면 시간','지각적 피드백','명료화 요구 훈련 종료','스캐닝','도움 언어 모델링'],1,'차별화 규칙을 일깨움'],
+ ['불빛이 차례로 지나갈 때 원하는 항목에서 스위치를 누르는 선택 기법은?',['직접 선택','스캐닝(간접 선택)','부호화','예측','도움 언어 모델링'],1,'손가락으로 바로 누르면 직접 선택'],
+ ['AAC 어휘와 문장을 정할 때 기준으로 삼는 것은?',['정신연령','생활연령','언어연령','등가연령','치료 기간'],1,'정신연령은 교수 방법 · 교재 선택에 고려'],
+ ['치료사가 "놀이터 놀이 할까?"라고 말하며 태블릿의 놀이터 상징을 누를 때 치료사가 쓰는 것은?',['비도구적 상징만','스캐닝','다중양식 의사소통(도움 언어 모델링)','PECS 6단계','사회적 상황 이야기'],2,'말과 상징을 동시에'],
+ ['PECS에서 여러 그림카드 중 원하는 것을 고르는 변별을 처음 가르치는 단계는?',['1단계','2단계','3단계','4단계','6단계'],2,'1단계 교환에서는 변별을 요구하지 않음'],
+ ['반다이크 프로그램의 순서로 옳은 것은?',['협동 → 공명 → 모방 → 몸짓','공명 → 협동 → 모방 → 몸짓','모방 → 공명 → 협동 → 몸짓','공명 → 모방 → 협동 → 몸짓','몸짓 → 모방 → 협동 → 공명'],1,'몸 접촉 → 거리 → 시간 간격 → 몸짓']];
+page({id:'e12-13',label:'12-13',title:'확인 문제',mute:true,scenes:[
+ {name:'확인 문제',pre:0.8,post:2,lines:E12Q.flatMap(q=>[{tx:'Q',d:9,gap:0.2},{tx:'A',d:7,gap:0.6}])}],
+ init(L){this.q=hdiv('quiz ov','',L);this.cur='';},
+ draw(t,p){const k=curLine(t,p,0);const qi=Math.max(0,Math.floor(k/2)),rev=k>=0&&k%2===1;const q=E12Q[qi];
+  const key=qi+'|'+rev;if(this.cur!==key){this.cur=key;
+   this.q.innerHTML=`<div class="qn">확인 문제 ${qi+1} / ${E12Q.length}</div><div class="qt">${q[0]}</div>`+q[1].map((o,i)=>`<div class="op${rev&&i===q[2]?' ok':''}">${'①②③④⑤'[i]} ${o}</div>`).join('')+(rev?`<div class="ex">💡 ${q[3]}</div>`:'');}
+  op(this.q,ap(t,ST(p,0)+0.2));
+ }});
+
+/* 음성 없는 줄 표시 */
+PAGES.forEach(p=>{const oi=p.init,od=p.draw;p.init=function(L){oi.call(this,L);this.__nv=hdiv('ov','<span class="tagp tp-gry" style="font-size:15px">🔇 음성 추가 예정 · 자막으로 봐 주세요</span>',L,'right:24px;top:56px;position:absolute');};
+ p.draw=function(t,pp){od.call(this,t,pp);const l=ALL.find(x=>t>=x.t0&&t<x.t1);op(this.__nv,l&&!l.has&&!l.mute&&t>=pp.t0&&t<pp.t1?1:0);};});
+</script>
+<script>"use strict";
+/* ───────── 시작 ───────── */
+for(const p of PAGES){p.layer=hdiv('page','',$('layers'));p.layer.style.display='none';p.init(p.layer);}
+buildTimeline();
+for(const l of ALL){if(l.has){l.a=new Audio((window.AUD&&AUD[l.src])||l.src);l.a.preload='auto';}}
+$('titleNm').textContent=EP.name;$('titleSb').textContent=EP.sub||'';
+
+let rate=1,t=0,playing=false,last=performance.now(),dragging=false,wasPlaying=false,curA=null;
+const fmt=s=>{s=Math.max(0,Math.floor(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
+const icoPlay='<svg width="24" height="24" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="#fff"/></svg>',icoPause='<svg width="24" height="24" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1" fill="#fff"/><rect x="14" y="4" width="4" height="16" rx="1" fill="#fff"/></svg>';
+const icoFull='<path d="M4 9V4h5v2H6v3zm11-5h5v5h-2V6h-3zM4 15h2v3h3v2H4zm14 0h2v5h-5v-2h3z" fill="#fff"/>',icoExit='<path d="M9 4v5H4V7h3V4zm6 0h2v3h3v2h-5zM4 15h5v5H7v-3H4zm11 0h5v2h-3v3h-2z" fill="#fff"/>';
+let SCALE=1,hideT=null;const CTL=$('ctl'),VP=$('vp');
+function subShift(){const vis=!CTL.classList.contains('hide');$('sub').style.bottom=(vis?26+Math.max(0,CTL.offsetHeight-30)/SCALE:26)+'px';}
+let overCtl=false;
+function showCtl(){CTL.classList.remove('hide');VP.classList.remove('nocur');clearTimeout(hideT);if(playing&&!dragging&&!overCtl&&$('menu').style.display!=='block')hideT=setTimeout(()=>{CTL.classList.add('hide');VP.classList.add('nocur');subShift();},2600);subShift();}
+VP.addEventListener('pointermove',showCtl);VP.addEventListener('pointerdown',showCtl);
+CTL.addEventListener('pointerenter',()=>{overCtl=true;clearTimeout(hideT);CTL.classList.remove('hide');VP.classList.remove('nocur');});CTL.addEventListener('pointerleave',()=>{overCtl=false;showCtl();});
+function stopAudio(){for(const l of ALL)if(l.a&&!l.a.paused)l.a.pause();curA=null;}
+function syncAudio(){if(!playing||dragging){stopAudio();return;}
+ const l=ALL.find(l=>l.a&&t>=l.t0&&t<l.t1);
+ if(!l){if(curA)stopAudio();return;}
+ if(curA!==l){stopAudio();curA=l;l.a.playbackRate=rate;l.a.currentTime=Math.max(0,t-l.t0);l.a.play().catch(()=>{});}
+ else if(!l.a.paused&&Math.abs(l.a.currentTime-(t-l.t0))>0.3)l.a.currentTime=Math.max(0,t-l.t0);}
+function ui(){$('fill').style.width=(t/TOTAL*100)+'%';$('knob').style.left=(t/TOTAL*100)+'%';$('time').textContent=fmt(t)+' / '+fmt(TOTAL);
+ const bp=$('bplay'),st=playing?'pause':'play';if(bp.dataset.st!==st){bp.dataset.st=st;bp.innerHTML=playing?icoPause:icoPlay;}op($('bigplay'),playing||t>0.01?0:1);}
+function setPlay(v){if(v&&t>=TOTAL-0.05)t=0;playing=v;last=performance.now();if(v){const n=$('nextEp');if(n)n.style.display='none';}if(!v)stopAudio();else syncAudio();ui();showCtl();}
+function seek(x){t=cl(x,0,TOTAL);stopAudio();frame(t);ui();if(playing)syncAudio();}
+function flash(txt,left){const f=$('flash');f.textContent=txt;f.style.left=left?'80px':'';f.style.right=left?'':'80px';f.style.opacity=1;clearTimeout(flash.h);flash.h=setTimeout(()=>f.style.opacity=0,500);}
+function loop(now){const dt=Math.min(0.5,(now-last)/1000);last=now;
+ if(playing&&!dragging){
+  if(curA&&!curA.a.paused&&curA.a.currentTime>0&&!curA.a.ended)t=curA.t0+curA.a.currentTime;else t+=dt*rate;
+  if(t>=TOTAL){t=TOTAL;playing=false;stopAudio();const n=$('nextEp');if(n)n.style.display='flex';}
+  syncAudio();frame(t);ui();}
+ requestAnimationFrame(loop);}
+for(const p of PAGES){for(const s of p.scenes){if(s.t0<=0)continue;const k=hdiv('tick'+(s===p.scenes[0]?' pg':''),'',$('ticks'));k.style.left=(s.t0/TOTAL*100)+'%';k.title=(p.label||p.id)+' '+s.name;}}
+$('menu').innerHTML=PAGES.map((p,i)=>`<div data-i="${i}"><b>${p.label||p.id}</b>${p.title} <span style="color:#a8988a;font-size:15px">${fmt(p.t0)}</span></div>`).join('');
+$('menu').addEventListener('pointerup',e=>{e.stopPropagation();const d=e.target.closest('[data-i]');if(!d)return;seek(PAGES[+d.dataset.i].t0+0.01);$('menu').style.display='none';});
+$('bmenu').onclick=()=>{const m=$('menu');m.style.display=m.style.display==='block'?'none':'block';showCtl();};
+function toggleFull(){if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen().catch(()=>{});}
+$('bfull').onclick=toggleFull;
+document.addEventListener('fullscreenchange',()=>{const ic=document.getElementById('icoFull');if(ic)ic.innerHTML=document.fullscreenElement?icoExit:icoFull;setTimeout(fit,100);});
+$('bplay').onclick=()=>setPlay(!playing);
+$('bback').onclick=()=>{seek(t-10);flash('◀◀ 10초',true);};
+$('bfwd').onclick=()=>{seek(t+10);flash('10초 ▶▶',false);};
+const prog=$('prog');const px=e=>{const r=prog.getBoundingClientRect();return cl((e.clientX-r.left)/r.width)*TOTAL;};
+prog.addEventListener('pointerdown',e=>{dragging=true;CTL.classList.add('drag');wasPlaying=playing;playing=false;prog.setPointerCapture(e.pointerId);seek(px(e));});
+prog.addEventListener('pointermove',e=>{if(dragging)seek(px(e));});
+prog.addEventListener('pointerup',e=>{if(!dragging)return;dragging=false;CTL.classList.remove('drag');seek(px(e));setPlay(wasPlaying);});
+const stage=$('stage');let tapT=0,tapH=null;
+stage.addEventListener('pointerup',e=>{if(e.target.closest('#nextEp'))return;if($('menu').style.display==='block'){$('menu').style.display='none';return;}
+ if(e.pointerType==='mouse'){setPlay(!playing);return;}
+ const now=performance.now();const r=stage.getBoundingClientRect();const left=(e.clientX-r.left)<r.width/2;
+ if(now-tapT<300){clearTimeout(tapH);tapT=0;if(left){seek(t-10);flash('◀◀ 10초',true);}else{seek(t+10);flash('10초 ▶▶',false);}return;}
+ tapT=now;tapH=setTimeout(()=>setPlay(!playing),300);});
+const VOICED=()=>ALL.filter(l=>!l.nosub||l.mute);
+function nextLine(d){const L=VOICED();if(d>0){const n=L.find(l=>l.t0>t+0.05);if(n)seek(n.t0);}else{const ps=L.filter(l=>l.t0<t-0.8);if(ps.length)seek(ps[ps.length-1].t0);else seek(0);}}
+function setRate(r){rate=Math.round(cl(r,0.5,2)*100)/100;for(const l of ALL)if(l.a)l.a.playbackRate=rate;$('bspd').textContent=rate.toFixed(rate*10%1?2:1)+'×';flash('속도 '+rate+'×',false);}
+const RATES=[0.5,0.75,0.9,1,1.1,1.25,1.5,1.75,2];
+addEventListener('keydown',e=>{const k=e.key,c=e.code;if(e.ctrlKey||e.metaKey||e.altKey)return;
+ if(c==='Space'||k==='k'||k==='K'){e.preventDefault();setPlay(!playing);}
+ else if(k==='j'||k==='J'||(e.shiftKey&&c==='ArrowLeft')){seek(t-10);flash('◀◀ 10초',true);}
+ else if(k==='l'||k==='L'||(e.shiftKey&&c==='ArrowRight')){seek(t+10);flash('10초 ▶▶',false);}
+ else if(c==='ArrowLeft'){nextLine(-1);flash('◀ 이전 대사',true);}
+ else if(c==='ArrowRight'){nextLine(1);flash('다음 대사 ▶',false);}
+ else if(/^[0-9]$/.test(k)){seek(TOTAL*(+k)/10);}
+ else if(k==='<'||k===','){setRate(RATES[Math.max(0,RATES.findIndex(r=>r>=rate)-1)]);}
+ else if(k==='>'||k==='.'){setRate(RATES[Math.min(RATES.length-1,RATES.findIndex(r=>r>rate))]||2);}
+ else if(k==='r'||k==='R'){seek(0);setPlay(true);}
+ else if(k==='Escape'){if($('menu').style.display==='block')$('menu').style.display='none';else location.href='index.html';}
+ else if(k==='f'||k==='F'){toggleFull();}
+ showCtl();});
+$('bspd').onclick=()=>{const i=RATES.indexOf(rate);setRate(RATES[(i+1)%RATES.length]);};
+$('bhome').onclick=()=>{location.href='index.html';};
+function fit(){const vp=$('vp');const s=Math.min(vp.clientWidth/1280,vp.clientHeight/720);SCALE=s;stage.style.transform=`translate(-50%,-50%) scale(${s})`;frame(t);}
+addEventListener('resize',fit);fit();ui();showCtl();requestAnimationFrame(loop);
+{const h=decodeURIComponent(location.hash.slice(1));const pg=PAGES.find(p=>p.id===h||p.label===h);if(pg)seek(pg.t0+0.01);}
+window.DBG={seek,get TOTAL(){return TOTAL},PAGES,get t(){return t},ALL};
+</script>
+</body>
+</html>
